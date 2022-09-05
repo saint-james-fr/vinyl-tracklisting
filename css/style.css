@@ -1,0 +1,59 @@
+body {
+	font-family: Helvetica;
+	font-size: 16px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.highlight {
+	background-color: bisque;
+}
+
+.minute-input, 
+.second-input{
+	width: 70px;
+}
+
+
+
+.handle {
+	text-align: center;
+}
+
+.time-separator {
+	text-align: center;
+}
+
+.handle-function {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.time-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.position {
+	text-align: right;
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	margin: 10px auto;
+}
+
+.controls button {
+	margin: 0 10px;
+}
