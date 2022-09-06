@@ -38,7 +38,7 @@ function updatePosition() {
 	for (let i = 0; i < positionElements.length; i++) {
 		a = document.getElementById(positionElements[i].id);
 		newNumber = i + 1		
-		a.textContent = `A${newNumber}`
+		a.textContent = `A${newNumber}`		
 	}
 }
 
