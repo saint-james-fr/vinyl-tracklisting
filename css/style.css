@@ -1,6 +1,10 @@
 body {
 	font-family: Helvetica;
 	font-size: 16px;
+	max-width: 90%;
+	padding: 0;
+	margin: 0;
+	margin: auto;
 }
 
 * {
@@ -13,14 +17,13 @@ btn:focus {
 }
 
 .highlight {
-	background-color: bisque;
+	background-color: ;
 }
 
 .minute-input, 
 .second-input{
-	width: 70px;
+	width: 49%;
 }
-
 
 
 .handle {
@@ -29,6 +32,9 @@ btn:focus {
 
 .time-separator {
 	text-align: center;
+	margin: 0 5px;
+	position: relative;
+	top: 2px;
 }
 
 .handle-function {
@@ -36,6 +42,45 @@ btn:focus {
 	flex-wrap: nowrap;
 	justify-content: space-around;
 	align-items: center;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;	
+	transition: 0.1s ease-in-out;
+	cursor: move;
+}
+
+.list-group-flush>.list-group-item.handle-function {
+	border-radius: 8px;
+	border:  0px;
+
+}
+
+/* Chrome, Safari, Edge, Opera -----Remove arrows for input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox -----Remove arrows for input number */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:not(:placeholder-shown),
+minute-input:not(:placeholder-shown),
+seconde-input:not(:placeholder-shown) {
+  border-color: green;
+  border-style: solid;
+  border-width: 2px;
+}
+input:focus {
+	outline: none;
+}
+
+.handle-function:focus-within {
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 5px 0px, rgba(0, 0, 0, 0.6) 0px 0px 1px 0px;
+	transition: 0.1s ease-in-out;
+
 }
 
 .time-wrapper {
@@ -47,6 +92,9 @@ btn:focus {
 .position {
 	text-align: right;
 }
+
+
+
 
 .controls {
 	display: flex;

@@ -1,9 +1,11 @@
 Sortable.create(sideA, {
-	animation: 200,
+	animation: 150,
+	swapThreshold: 0.90,
 	handle: ".handle-function",
 	group: "shared",
 	swap : true,
 	swapClass: "highlight",
+	filter: ".not_sortable",
 });
 
 // window.onbeforeunload = function(){ return 'Do you want to reload the page?';} // cool security to add
@@ -154,7 +156,7 @@ function createSecond(secondId) {
 	document.getElementById(secondId).setAttribute("placeholder", "ss");
 	document.getElementById(secondId).setAttribute("type", "number");
 	document.getElementById(secondId).setAttribute("min", "0");
-	document.getElementById(minuteId).setAttribute("max", "59");
+	document.getElementById(secondId).setAttribute("max", "59");
 	document.getElementById(secondId).setAttribute("oninput", "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null");	
 }
 
