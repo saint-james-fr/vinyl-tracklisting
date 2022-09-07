@@ -17,7 +17,7 @@ btn:focus {
 }
 
 .highlight {
-	background-color: ;
+	background-color: bisque;
 }
 
 .minute-input, 
@@ -72,10 +72,25 @@ seconde-input:not(:placeholder-shown) {
   border-color: green;
   border-style: solid;
   border-width: 2px;
+  transition: 0.2s ease-in;
 }
+
 input:focus {
 	outline: none;
 }
+
+input::placeholder {
+	text-align: center;
+}
+
+input:focus::placeholder {
+	color: transparent;
+}
+
+input {
+	text-align: center;
+}
+
 
 .handle-function:focus-within {
 	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 5px 0px, rgba(0, 0, 0, 0.6) 0px 0px 1px 0px;
