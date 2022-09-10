@@ -72,7 +72,7 @@ el = document.getElementById(`length ${side}`);
 	else {
 	result = value[0] + " : " + value[1];
 	}
-el.textContent = "Durée Face A : " + result;
+el.textContent = "Durée Face A --- " + result;
 }
 
 
