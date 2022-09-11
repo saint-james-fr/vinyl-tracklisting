@@ -2,10 +2,11 @@ Init("sideA")
 
 function Init(side) {
 updateNumberOfTracks(side);
+getSideLetter(side)
 // attach first event listeners
-document.getElementById("minute 1").addEventListener("input", event => length(side));
-document.getElementById("second 1").addEventListener("input", event => length(side));
-document.getElementById("second 1").addEventListener("input", event => formatSecond("second 1", side));
+document.getElementById("minute A1").addEventListener("input", event => length(side));
+document.getElementById("second A1").addEventListener("input", event => length(side));
+document.getElementById("second A1").addEventListener("input", event => formatSecond("second A1", side));
 length(side);
 }
 
@@ -21,6 +22,7 @@ var numberOfTracks;
 var positionNumber;
 var timeWrapperNumber;
 var sumOfSideA;
+var sideLetter;
 
 
 // ************************* DATA VALIDATION
@@ -53,7 +55,7 @@ mutationObserver.observe(document.documentElement, {
 });
 
 
-// ************************* CALCUL 
+// ************************* LENGTH CALCUL 
 
 
 function length(side){
@@ -72,7 +74,8 @@ el = document.getElementById(`length ${side}`);
 	else {
 	result = value[0] + " : " + value[1];
 	}
-el.textContent = "Durée Face A --- " + result;
+
+el.textContent = `Durée Face ${getSideLetter(side)} --- ${result}`;
 }
 
 
@@ -87,9 +90,10 @@ return [minutes, seconds];
 
 function sumMinutes(side) {
 updateNumberOfTracks(side);
+getSideLetter(side);
 	sumMinutesResults = {}
 		for (var i = 0; i < numberOfTracks; i++) {
-			id = `minute ${i + 1}`;
+			id = `minute ${sideLetter}${i + 1}`;
 			sumMinutesResults[id] = Number(document.getElementById(id).value); 
 			// construction de l'objet	
   }
@@ -98,9 +102,10 @@ updateNumberOfTracks(side);
 
 function sumSeconds(side) {
 	updateNumberOfTracks(side);
+	getSideLetter(side);
 	sumSecondsResults = {}
 		for (var i = 0; i < numberOfTracks; i++) {
-			id = `second ${i + 1}`;
+			id = `second ${sideLetter}${i + 1}`;
 			sumSecondsResults[id] = Number(document.getElementById(id).value); 
 			// construction de l'objet	
   }
@@ -115,13 +120,20 @@ return result;
 }
 
 function sumObjValues(obj) {
-  	return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);
+  	return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);  // additionne les keys
 	};
 
 // ************************* NEW TITLES CREATION 
 
 
-// ELEMENT WITH CLASSES & DIV CREATOR
+// GET SIDE
+function getSideLetter(side){
+sideLetter = side.slice(4);
+return sideLetter;
+}
+
+
+// CREATE ELEMENT 
 function newElement(el, classes, sourceId, newId) {	
 	el = document.createElement(el);
 	for (i =0; i < classes.length; i++) {
@@ -137,8 +149,10 @@ function updateNumberOfTracks(side) {
 	numberOfTracks = document.getElementById(side).children.length;
 }
 
+// UPDATE POSITION
+
 function updatePosition(side) {
-	var sideLetter = side.slice(4)
+	getSideLetter(side);
 	positionElements = document.getElementsByClassName("position")
 	for (let i = 0; i < positionElements.length; i++) {
 		a = document.getElementById(positionElements[i].id);
@@ -147,26 +161,29 @@ function updatePosition(side) {
 	}
 }
 
+// ADD TITLE
+
+
 function addTitle(side) {
-		var sideLetter = side.slice(4);
+		getSideLetter(side);
 	  updateNumberOfTracks(side);
 	  numberOfTracks += 1;
 	  handlerNumber = numberOfTracks;	  	
-		createHandler(`handler ${handlerNumber}`,side);
+		createHandler(`handler ${sideLetter}${handlerNumber}`,side);
 		positionNumber = handlerNumber;
-		createPosition(`position ${positionNumber}`, sideLetter);		
-		createIcon();
-		createTitle(`title ${positionNumber}`);
+		createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
+		createIcon(sideLetter);
+		createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
 		timeWrapperNumber = handlerNumber;
-		createTimeWrapper(`timeWrapper ${positionNumber}`);
-		createMinute(`minute ${positionNumber}`, side)
-		createSeparator(`separator ${positionNumber}`);
-		createSecond(`second ${positionNumber}`, side);			
+		createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
+		createMinute(`minute ${sideLetter}${positionNumber}`, side)
+		createSeparator(`separator ${sideLetter}${positionNumber}`);
+		createSecond(`second ${sideLetter}${positionNumber}`, side);			
 }
 
 
 // addTitle() NEEDED FEATURES
-function createHandler(handlerId,side) {
+function createHandler(handlerId, side) {
 	newElement(
 		"div",
 		["list-group-item", "handle-function", "row"],
@@ -175,31 +192,31 @@ function createHandler(handlerId,side) {
 		)	
 }
 
-function createPosition(positionId,side) {
+function createPosition(positionId, sideLetter) {
 	newElement(
 		"span",
 		["position", "col-1"],
-		`handler ${positionNumber}`,
+		`handler ${sideLetter}${positionNumber}`,
 		positionId
 		)
 	a = document.getElementById(positionId)
-	a.textContent = `${side}${positionNumber}`
+	a.textContent = `${sideLetter}${positionNumber}`
 }
 
-function createIcon() {
+function createIcon(sideLetter) {
 	newElement(
 		"span",
 		["fa", "fa-arrows-alt", "handle", "col-1"],
-		`handler ${positionNumber}`,
+		`handler ${sideLetter}${positionNumber}`,
 		null
 		)
 }
 
-function createTitle(titleId) {
+function createTitle(titleId, sideLetter) {
 	newElement(
 		"input",
 		["title-input", "col-7"],
-		`handler ${positionNumber}`,
+		`handler ${sideLetter}${positionNumber}`,
 		titleId
 		)
 	document.getElementById(titleId).setAttribute("placeholder", "Enter Title...");
@@ -210,7 +227,7 @@ function createTimeWrapper(wrapperId) {
 	newElement(
 		"div",
 		["time-wrapper", "col-3"],
-		`handler ${positionNumber}`,
+		`handler ${sideLetter}${positionNumber}`,
 		wrapperId
 		)
 }
@@ -219,7 +236,7 @@ function createMinute(minuteId, side) {
 	newElement(
 		"input",
 		["minute-input"],
-		`timeWrapper ${positionNumber}`,
+		`timeWrapper ${sideLetter}${positionNumber}`,
 		minuteId
 		)
 	document.getElementById(minuteId).setAttribute("placeholder", "mm");
@@ -230,11 +247,11 @@ function createMinute(minuteId, side) {
 	document.getElementById(minuteId).addEventListener("input", event => length(side));
 }
 
-function createSecond(secondId, side) {
+function createSecond(secondId) {
 	newElement(
 		"input",
 		["second-input"],
-		`timeWrapper ${positionNumber}`,
+		`timeWrapper ${sideLetter}${positionNumber}`,
 		secondId
 		)
 	document.getElementById(secondId).setAttribute("placeholder", "ss");
@@ -250,7 +267,7 @@ function createSeparator(separatorId) {
 	newElement(
 		"span",
 		["time-separator"],
-		`timeWrapper ${positionNumber}`,
+		`timeWrapper ${sideLetter}${positionNumber}`,
 		separatorId
 		)
 	document.getElementById(separatorId).textContent = ":";
@@ -283,6 +300,7 @@ Sortable.create(sideA, {
 	swapClass: "highlight",
 	filter: ".not_sortable",
 });
+
 
 
 
