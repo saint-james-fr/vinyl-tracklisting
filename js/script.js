@@ -1,14 +1,4 @@
-Init("sideA")
 
-function Init(side) {
-updateNumberOfTracks(side);
-getSideLetter(side)
-// attach first event listeners
-document.getElementById("minute A1").addEventListener("input", event => length(side));
-document.getElementById("second A1").addEventListener("input", event => length(side));
-document.getElementById("second A1").addEventListener("input", event => formatSecond("second A1", side));
-length(side);
-}
 
 // window.onbeforeunload = function(){ return 'Do you want to reload the page?';} // cool security to add
 
@@ -25,6 +15,22 @@ var sumOfSideA;
 var sideLetter;
 
 
+// ************************* INIT  
+
+Init("sideA")
+Init("sideB")
+
+
+function Init(side) {
+updateNumberOfTracks(side);
+getSideLetter(side)
+// attach first event listeners
+document.getElementById(`minute ${sideLetter}1`).addEventListener("input", event => length(side));
+document.getElementById(`second ${sideLetter}1`).addEventListener("input", event => length(side));
+document.getElementById(`second ${sideLetter}1`).addEventListener("input", event => formatSecond(`second ${sideLetter}1`, side));
+length(side);
+}
+
 // ************************* DATA VALIDATION
 
 function formatSecond(id, side) {
@@ -40,9 +46,13 @@ function erase(id) {
 
 // ************************* EVENT HANDLER
 
+window.addEventListener("DOMContentLoaded", function() {
 var mutationObserver = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
-    updatePosition("sideA");
+  updatePosition("sideA");
+  updatePosition("sideB");
+  length("sideA");
+  length("sideB");
   });
 });
 mutationObserver.observe(document.documentElement, {
@@ -52,7 +62,9 @@ mutationObserver.observe(document.documentElement, {
   subtree: true,
   attributeOldValue: true,
   characterDataOldValue: true
-});
+});        
+    }, false);
+
 
 
 // ************************* LENGTH CALCUL 
@@ -89,27 +101,25 @@ return [minutes, seconds];
 }
 
 function sumMinutes(side) {
-updateNumberOfTracks(side);
-getSideLetter(side);
-	sumMinutesResults = {}
-		for (var i = 0; i < numberOfTracks; i++) {
-			id = `minute ${sideLetter}${i + 1}`;
-			sumMinutesResults[id] = Number(document.getElementById(id).value); 
-			// construction de l'objet	
-  }
+	updateNumberOfTracks(side);
+	sumMinutesResults = {};
+	a = document.querySelectorAll(`#${side} .minute-input`);
+		for (var i = 0; i < a.length; i++) {
+			let value = a[i].value
+			sumMinutesResults[i] = value;
+	}
   return sumObjValues(sumMinutesResults)
 }
 
 function sumSeconds(side) {
 	updateNumberOfTracks(side);
-	getSideLetter(side);
-	sumSecondsResults = {}
-		for (var i = 0; i < numberOfTracks; i++) {
-			id = `second ${sideLetter}${i + 1}`;
-			sumSecondsResults[id] = Number(document.getElementById(id).value); 
-			// construction de l'objet	
-  }
-  return sumObjValues(sumSecondsResults);
+	sumSecondsResults = {};
+	a = document.querySelectorAll(`#${side} .second-input`);
+		for (var i = 0; i < a.length; i++) {
+			let value = a[i].value
+			sumSecondsResults[i] = value;
+	}
+  return sumObjValues(sumSecondsResults)
 }
 
 function secondsToMinute(seconds) {
@@ -126,7 +136,7 @@ function sumObjValues(obj) {
 // ************************* NEW TITLES CREATION 
 
 
-// GET SIDE
+// GET SIDELETTER
 function getSideLetter(side){
 sideLetter = side.slice(4);
 return sideLetter;
@@ -153,12 +163,14 @@ function updateNumberOfTracks(side) {
 
 function updatePosition(side) {
 	getSideLetter(side);
-	positionElements = document.getElementsByClassName("position")
+	updateNumberOfTracks(side);
+	let positionElements = document.getElementById(side).children;
 	for (let i = 0; i < positionElements.length; i++) {
-		a = document.getElementById(positionElements[i].id);
-		newNumber = i + 1		
-		a.textContent = `${sideLetter}${newNumber}`		
+		a = document.getElementById(positionElements[i].children[0].id);
+		let index = i + 1;		
+		a.textContent = `${sideLetter}${index}`;
 	}
+	
 }
 
 // ADD TITLE
@@ -195,7 +207,7 @@ function createHandler(handlerId, side) {
 function createPosition(positionId, sideLetter) {
 	newElement(
 		"span",
-		["position", "col-1"],
+		[`position${sideLetter}`, "col-1"],
 		`handler ${sideLetter}${positionNumber}`,
 		positionId
 		)
@@ -247,7 +259,7 @@ function createMinute(minuteId, side) {
 	document.getElementById(minuteId).addEventListener("input", event => length(side));
 }
 
-function createSecond(secondId) {
+function createSecond(secondId, side) {
 	newElement(
 		"input",
 		["second-input"],
@@ -293,15 +305,18 @@ function removeTitle(side) {
 
 Sortable.create(sideA, {
 	animation: 150,
-	swapThreshold: 0.90,
 	handle: ".handle-function",
 	group: "shared",
-	swap : true,
-	swapClass: "highlight",
 	filter: ".not_sortable",
 });
 
-
+Sortable.create(sideB, {
+	animation: 150,
+	handle: ".handle-function",
+	group: "shared",
+	swap : true,
+	filter: ".not_sortable",
+});
 
 
 
