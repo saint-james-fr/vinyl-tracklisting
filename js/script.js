@@ -7,12 +7,15 @@
 // ************************* GLOBAL VARIABLES 
 
 
-var handlerNumber;
+
 var numberOfTracks;
+var handlerNumber;
 var positionNumber;
 var timeWrapperNumber;
-var sumOfSideA;
 var sideLetter;
+var counterA = 1 ;
+var counterB = 1;
+
 
 
 // ************************* INIT  
@@ -103,7 +106,7 @@ return [minutes, seconds];
 function sumMinutes(side) {
 	updateNumberOfTracks(side);
 	sumMinutesResults = {};
-	a = document.querySelectorAll(`#${side} .minute-input`);
+	let a = document.querySelectorAll(`#${side} .minute-input`);
 		for (var i = 0; i < a.length; i++) {
 			let value = a[i].value
 			sumMinutesResults[i] = value;
@@ -114,7 +117,7 @@ function sumMinutes(side) {
 function sumSeconds(side) {
 	updateNumberOfTracks(side);
 	sumSecondsResults = {};
-	a = document.querySelectorAll(`#${side} .second-input`);
+	let a = document.querySelectorAll(`#${side} .second-input`);
 		for (var i = 0; i < a.length; i++) {
 			let value = a[i].value
 			sumSecondsResults[i] = value;
@@ -154,16 +157,15 @@ function newElement(el, classes, sourceId, newId) {
 }
 
 
-
 function updateNumberOfTracks(side) {
-	numberOfTracks = document.getElementById(side).children.length;
+	numberOfTracks = document.getElementById(side).children.length;	
+	return numberOfTracks
 }
 
 // UPDATE POSITION
 
 function updatePosition(side) {
 	getSideLetter(side);
-	updateNumberOfTracks(side);
 	let positionElements = document.getElementById(side).children;
 	for (let i = 0; i < positionElements.length; i++) {
 		a = document.getElementById(positionElements[i].children[0].id);
@@ -177,23 +179,38 @@ function updatePosition(side) {
 
 
 function addTitle(side) {
+	if (side === "sideA") {
+		counterA++
+	}
+	if (side === "sideB") {
+		counterB++
+	}
+
 		getSideLetter(side);
-	  updateNumberOfTracks(side);
-	  numberOfTracks += 1;
-	  handlerNumber = numberOfTracks;	  	
-		createHandler(`handler ${sideLetter}${handlerNumber}`,side);
-		positionNumber = handlerNumber;
-		createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
-		createIcon(sideLetter);
-		createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
-		timeWrapperNumber = handlerNumber;
-		createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
-		createMinute(`minute ${sideLetter}${positionNumber}`, side)
-		createSeparator(`separator ${sideLetter}${positionNumber}`);
-		createSecond(`second ${sideLetter}${positionNumber}`, side);			
-}
-
-
+			if (side === "sideA") {
+				createHandler(`handler ${sideLetter}${counterA}`,side);
+				positionNumber = counterA;
+				createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
+				createIcon(sideLetter);
+				createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
+				createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
+				createMinute(`minute ${sideLetter}${positionNumber}`, side)
+				createSeparator(`separator ${sideLetter}${positionNumber}`);
+				createSecond(`second ${sideLetter}${positionNumber}`, side);
+				}
+			if (side === "sideB") {
+				createHandler(`handler ${sideLetter}${counterB}`,side);
+				positionNumber = counterB;
+				createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
+				createIcon(sideLetter);
+				createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
+				createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
+				createMinute(`minute ${sideLetter}${positionNumber}`, side)
+				createSeparator(`separator ${sideLetter}${positionNumber}`);
+				createSecond(`second ${sideLetter}${positionNumber}`, side);
+				}
+	}
+	
 // addTitle() NEEDED FEATURES
 function createHandler(handlerId, side) {
 	newElement(
@@ -302,20 +319,25 @@ function removeTitle(side) {
 // ************************* RELATIVE TO EXTERNAL LIBRARIES
 
 
-
 Sortable.create(sideA, {
-	animation: 150,
+	animation: 140,
+	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
-	filter: ".not_sortable",
+	multiDrag: true, 
+	selectedClass: 'highlight', 
+	fallbackTolerance: 3,
+	filter: '.not-sortable'
 });
 
 Sortable.create(sideB, {
-	animation: 150,
+	animation: 140,
+	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
-	swap : true,
-	filter: ".not_sortable",
+	multiDrag: true, 
+	selectedClass: 'highlight', 
+	fallbackTolerance: 3
 });
 
 
