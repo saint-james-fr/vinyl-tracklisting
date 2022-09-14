@@ -15,10 +15,13 @@ var timeWrapperNumber;
 var sideLetter;
 var counterA = 1 ;
 var counterB = 1;
+var dataSideA = [];
+var dataSideB = [];
+var totalLengthSideA;
+var totalLengthSideB;
 
 
-
-// ************************* INIT  
+// ************************* INITIALIZATION
 
 Init("sideA")
 Init("sideB")
@@ -47,6 +50,43 @@ function erase(id) {
 	document.getElementById(id).value = null;
 }
 
+// ************************* DATA COLLECTING
+
+
+function fillData(side) {
+	// dataSide Object remplissage
+	for (i = 0; i < document.getElementById(side).children.length; i++) {
+		let positionPDF;
+		let titlePDF;
+		let minutePDF;
+		let secondPDF;
+		positionPDF = document.getElementById(side).children[i].children[0].textContent;
+		titlePDF = document.getElementById(side).children[i].children[2].value;
+		minutePDF = document.getElementById(side).children[i].children[3].children[0].value;
+		secondPDF = document.getElementById(side).children[i].children[3].children[2].value;
+		if (side === "sideA") {
+			let object = {}
+			object["position"] = positionPDF;
+		  object["title"] = titlePDF;
+			object["minute"] = minutePDF;
+			object["second"] = secondPDF;
+			dataSideA.push(object)
+			totalLengthSideA = formatLength(sum(side))
+			}
+		if (side === "sideB") {
+			let object = {}
+			object["position"] = positionPDF;
+		  object["title"] = titlePDF;
+			object["minute"] = minutePDF;
+			object["second"] = secondPDF;
+			dataSideB.push(object)
+			totalLengthSideB = formatLength(sum(side))
+			}
+		}
+	}
+
+
+
 // ************************* EVENT HANDLER
 
 window.addEventListener("DOMContentLoaded", function() {
@@ -70,13 +110,17 @@ mutationObserver.observe(document.documentElement, {
 
 
 
-// ************************* LENGTH CALCUL 
+// ************************* LENGTH/SIDE CALCUL 
 
 
 function length(side){
-let value = sum(side);
+formatLength(sum(side));
 el = document.getElementById(`length ${side}`);
-// format 0m : 0s 
+el.textContent = `Durée Face ${getSideLetter(side)} --- ${result}`;
+}
+
+
+function formatLength(value){ // mm:ss
 	if (value[1] <10 & value[0] >=10) {
 	result = value[0] + " : 0" + value[1]
 	}
@@ -89,10 +133,8 @@ el = document.getElementById(`length ${side}`);
 	else {
 	result = value[0] + " : " + value[1];
 	}
-
-el.textContent = `Durée Face ${getSideLetter(side)} --- ${result}`;
+	return result;
 }
-
 
 function sum(side) {
 updateNumberOfTracks(side);
@@ -136,7 +178,7 @@ function sumObjValues(obj) {
   	return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);  // additionne les keys
 	};
 
-// ************************* NEW TITLES CREATION 
+// ************************* DOM MANIPULATION 
 
 
 // GET SIDELETTER
@@ -303,7 +345,7 @@ function createSeparator(separatorId) {
 }
 
 
-
+// REMOVE TITLE
 
 function removeTitle(side) {
 	updateNumberOfTracks(`${side}`)
@@ -316,7 +358,7 @@ function removeTitle(side) {
 }
 
 
-// ************************* RELATIVE TO EXTERNAL LIBRARIES
+// ************************* EXTERNAL LIBRARIES : JSSORTAbLE
 
 
 Sortable.create(sideA, {
@@ -342,7 +384,38 @@ Sortable.create(sideB, {
 
 
 
+// ************************* EXTERNAL LIBRARIES : JSPDF & JSPDF-AUTOTABLE
 
 
 
+function generatePDF() {
+	fillData("sideA");
+	fillData("sideB");
 
+  var doc = new jsPDF();
+  var col = ["Position","Title","min","sec"];
+  var rows = [];     
+   dataSideA.forEach(element => {      
+        let temp = [element.position,element.title,element.minute,element.second];
+        rows.push(temp);
+    		});        
+   dataSideB.forEach(element => {      
+        let temp = [element.position,element.title,element.minute,element.second];
+        rows.push(temp);
+    		}); 
+
+  doc.autoTable(col, rows, { 
+  	startY: 30, 
+  	cellWidth: "auto",
+  	columnStyles: {   //vise la colonne [0] de l'array
+     	0: { 
+      	fontStyle: 'bold' 
+      },
+    }
+  });
+
+  doc.setFontSize(12)
+  doc.text("Total Length Face A - " + totalLengthSideA, 10, 10)
+  doc.text("Total Length Face B - " + totalLengthSideB, 10, 20)
+  doc.save('Test.pdf');
+}
