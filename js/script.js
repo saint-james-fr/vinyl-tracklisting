@@ -1,6 +1,5 @@
 
 
-// window.onbeforeunload = function(){ return 'Do you want to reload the page?';} // cool security to add
 
 
 
@@ -49,6 +48,9 @@ function formatSecond(id, side) {
 function erase(id) {
 	document.getElementById(id).value = null;
 }
+
+
+window.onbeforeunload = function(){ return 'Do you want to reload the page?';}
 
 // ************************* DATA COLLECTING
 
@@ -116,7 +118,9 @@ mutationObserver.observe(document.documentElement, {
 function length(side){
 formatLength(sum(side));
 el = document.getElementById(`length ${side}`);
-el.textContent = `Durée Face ${getSideLetter(side)} --- ${result}`;
+// el.textContent = `Length Side ${getSideLetter(side)} --- ${result}`;
+el.textContent = `TOTAL --- ${result}`;
+
 }
 
 
@@ -366,7 +370,6 @@ Sortable.create(sideA, {
 	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
-	multiDrag: true, 
 	selectedClass: 'highlight', 
 	fallbackTolerance: 3,
 	filter: '.not-sortable'
@@ -377,7 +380,6 @@ Sortable.create(sideB, {
 	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
-	multiDrag: true, 
 	selectedClass: 'highlight', 
 	fallbackTolerance: 3
 });
@@ -389,8 +391,12 @@ Sortable.create(sideB, {
 
 
 function generatePDF() {
+
+if (document.getElementById("sideA").children.length > 0 && document.getElementById("sideB").children.length > 0) {
 	fillData("sideA");
 	fillData("sideB");
+
+	let catNr = window.prompt("Enter the catalogue number of your vinyl")
 
   var doc = new jsPDF();
   var col = ["Position","Title","min","sec"];
@@ -405,7 +411,7 @@ function generatePDF() {
     		}); 
 
   doc.autoTable(col, rows, { 
-  	startY: 30, 
+  	startY: 50, 
   	cellWidth: "auto",
   	columnStyles: {   //vise la colonne [0] de l'array
      	0: { 
@@ -415,7 +421,17 @@ function generatePDF() {
   });
 
   doc.setFontSize(12)
-  doc.text("Total Length Face A - " + totalLengthSideA, 10, 10)
-  doc.text("Total Length Face B - " + totalLengthSideB, 10, 20)
+  doc.text(catNr, 10, 10)
+  doc.text("Total Length Face A - " + totalLengthSideA, 10, 20)
+  doc.text("Total Length Face B - " + totalLengthSideB, 10, 30)  
   doc.save('Test.pdf');
+	}
+else {
+	if (document.getElementById("sideA").children.length === 0) {
+	alert("Side A is empty")
+	}
+	if (document.getElementById("sideB").children.length === 0) {
+	alert("Side B is empty")
+	}
+}
 }

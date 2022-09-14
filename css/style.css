@@ -1,5 +1,8 @@
 :root {
-	--font-size-1 : 16px;
+	--font-size-1: 16px;
+	--font-family-1:  Merriweather, Helvetica;
+  --font-family-2:  Oswald, Helvetica;
+
 }
 
 body {
@@ -9,37 +12,38 @@ body {
 	padding: 0;
 	margin: 0;
 	margin: auto;
+	background-color: #F7F9F9;
+
 }
 
 * {
 	box-sizing: border-box;
 }
 
-h1 {
+h2 {
 	text-align: center;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 25px;
+	font-family: var(--font-family-1);
 }
 
 btn:focus {
-  outline: none;
-  box-shadow: none;
+	outline: none;
+	box-shadow: none;
 }
 
 .side-container {
-	border: 1px solid black;
-	padding: 4vw;
+	padding: 1vh 2vw;
 }
 
 .highlight {
 	background-color: bisque;
 }
 
-.minute-input, 
-.second-input{
+.minute-input,
+.second-input {
 	width: 49%;
 }
-
 
 .handle {
 	text-align: center;
@@ -58,36 +62,36 @@ btn:focus {
 	justify-content: space-around;
 	align-items: center;
 	margin-bottom: 10px;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;	
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+		rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 	transition: 0.1s ease-in-out;
 	cursor: move;
 }
 
-.list-group-flush>.list-group-item.handle-function {
+.list-group-flush > .list-group-item.handle-function {
 	border-radius: 8px;
-	border:  0px;
-
+	border: 0px;
 }
 
 /* Chrome, Safari, Edge, Opera -----Remove arrows for input number */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 /* Firefox -----Remove arrows for input number */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+	-moz-appearance: textfield;
 }
 
 input:not(:placeholder-shown),
 minute-input:not(:placeholder-shown),
 seconde-input:not(:placeholder-shown) {
-  border-color: green;
-  border-style: solid;
-  border-width: 2px;
-  transition: 0.2s ease-in;
+	border-color: green;
+	border-style: solid;
+	border-width: 2px;
+	transition: 0.2s ease-in;
 }
 
 input:focus {
@@ -106,11 +110,10 @@ input {
 	text-align: center;
 }
 
-
 .handle-function:focus-within {
-	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 5px 0px, rgba(0, 0, 0, 0.6) 0px 0px 1px 0px;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 5px 0px,
+		rgba(0, 0, 0, 0.6) 0px 0px 1px 0px;
 	transition: 0.1s ease-in-out;
-
 }
 
 .time-wrapper {
@@ -119,16 +122,19 @@ input {
 	justify-content: center;
 }
 
-.positionA,.positionB {
+.positionA,
+.positionB {
 	text-align: right;
 }
 
 .result-length {
+	font-size: calc(1.3*var(--font-size-1));
 	display: flex;
-	justify-content: end;
+	justify-content: center;
 	font-weight: bold;
+	font-family: var(--font-family-1);
+	text-transform: uppercase;
 }
-
 
 .controls {
 	display: flex;
@@ -139,10 +145,41 @@ input {
 .controls button {
 	margin: 0 10px;
 	font-size: var(--font-size-1);
+	font-family: var(--font-family-2);
+	text-transform:  uppercase;
 }
 
 #generatePDF {
 	font-size: var(--font-size-1);
 	display: block;
 	margin: 2vh auto;
-	}
+}
+
+.intro {
+	margin: 2vh auto;
+	text-align: center;
+}
+
+.credits {
+	text-align: center;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.logo {
+	text-transform: uppercase;
+	text-align: center;
+	margin: 4vh auto;
+	font-family: var(--font-family-1);
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+}
+
+.vinyl-icon {
+	display: inline;
+	max-height: 40px;
+	margin: 0 40px;
+}
+
+

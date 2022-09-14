@@ -1,106 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinyl Tracklisting</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdn.rawgit.com/simonbengtsson/jsPDF/requirejs-fix-dist/dist/jspdf.debug.js"></script>
-  <script src="https://unpkg.com/jspdf-autotable@2.3.2"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vinyl Tracklisting</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/simonbengtsson/jsPDF/requirejs-fix-dist/dist/jspdf.debug.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@2.3.2"></script>
+  </head>
+  <body>
+    <div class="logo col-10"><img class="vinyl-icon" src="img/vinyl-icon.svg"><h1>vinyl tracklisting</h1><img class="vinyl-icon" src="img/vinyl-icon.svg"></div>
+    <div class="intro col-10">
+      <p>
+        Welcome to <strong>Vinyl Tracklisting</strong>! <br />
+        This tool is here to help you decide which tracks to put on which side
+        of your vinyl. This can be a hard choice to make a tracklist, don't
+        bother additioning minutes and seconds anymore, just drag and drop the
+        blocks after filling them with your infos. <br />
+        Once you are done, click below on "Generate PDF"
+      </p>
+    </div>
 
-</head>
-<body id="element-to-print">
-
-<div class="side-container">
-<h1>FACE A</h1>
-  <div class="controls">
-    <button class="btn btn-outline-success btn-lg" onclick="addTitle('sideA')">Add Track</button>
-    <button class="btn btn-outline-danger btn-lg" onclick="removeTitle('sideA')">Remove Track</button>
-  </div>
-
-  <div id="sideA" class="list-group list-group-flush container">
-    <div class="list-group-item handle-function row" id ="handler A1">
-      <span id="position A1" class="positionA col-1">A1</span>
-      <span class="fa fa-arrows-alt handle col-1"></span>
-      <input id="title A1" class="title-input col-7" type="text" placeholder="Enter Title...">
-      <div class="time-wrapper col-3">
-        <input 
-        id="minute A1"
-        class="minute-input" 
-        type="number" 
-        placeholder="mm"        
-        min="0"
-        max ="59" 
-        oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-        <span class="time-separator" id="separator 1">:</span>
-        <input 
-        id="second A1" 
-        class="second-input" 
-        type="number" 
-        placeholder="ss"       
-        min="0" 
-        max ="59"
-        oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+    <div class="side-container">
+      <h2>FACE A</h2>
+      <div class="controls">
+        <button
+          class="btn btn-outline-success btn-lg"
+          onclick="addTitle('sideA')"
+        >
+          Add Track
+        </button>
+        <button
+          class="btn btn-outline-danger btn-lg"
+          onclick="removeTitle('sideA')"
+        >
+          Remove Track
+        </button>
       </div>
-    </div>  
-  </div>
 
-  <div class="result-length" id="length sideA">
-  </div>
-</div>
-
-<div class="side-container">
-<h1>FACE B</h1>
-  <div class="controls">
-    <button class="btn btn-outline-success btn-lg" onclick="addTitle('sideB')">Add Track</button>
-    <button class="btn btn-outline-danger btn-lg" onclick="removeTitle('sideB')">Remove Track</button>
-  </div>
-
-
-<div id="sideB" class="list-group list-group-flush container">
-    <div class="list-group-item handle-function row" id ="handler B1">
-      <span id="position B1" class="positionB col-1">B1</span>
-      <span class="fa fa-arrows-alt handle col-1"></span>
-      <input id="title B1" class="title-input col-7" type="text" placeholder="Enter Title...">
-      <div class="time-wrapper col-3">
-        <input 
-        id="minute B1"
-        class="minute-input" 
-        type="number" 
-        placeholder="mm"        
-        min="0"
-        max ="59" 
-        oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-        <span class="time-separator" id="separator 01">:</span>
-        <input 
-        id="second B1" 
-        class="second-input" 
-        type="number" 
-        placeholder="ss"       
-        min="0" 
-        max ="59"
-        oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+      <div id="sideA" class="list-group list-group-flush container">
+        <div class="list-group-item handle-function row" id="handler A1">
+          <span id="position A1" class="positionA col-1">A1</span>
+          <span class="fa fa-arrows-alt handle col-1"></span>
+          <input
+            id="title A1"
+            class="title-input col-7"
+            type="text"
+            placeholder="Enter Title..."
+          />
+          <div class="time-wrapper col-3">
+            <input
+              id="minute A1"
+              class="minute-input"
+              type="number"
+              placeholder="mm"
+              min="0"
+              max="59"
+              oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+            />
+            <span class="time-separator" id="separator 1">:</span>
+            <input
+              id="second A1"
+              class="second-input"
+              type="number"
+              placeholder="ss"
+              min="0"
+              max="59"
+              oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+            />
+          </div>
+        </div>
       </div>
-    </div>  
-  </div>
 
-  <div class="result-length" id="length sideB">
-  </div>
-</div>
+      <div class="result-length" id="length sideA"></div>
+    </div>
 
-<button id = "generatePDF" class="btn btn-outline-success btn-lg" onclick="generatePDF()">Generate PDF</button>
+    <div class="side-container">
+      <h2>FACE B</h2>
+      <div class="controls">
+        <button
+          class="btn btn-outline-success btn-lg"
+          onclick="addTitle('sideB')"
+        >
+          Add Track
+        </button>
+        <button
+          class="btn btn-outline-danger btn-lg"
+          onclick="removeTitle('sideB')"
+        >
+          Remove Track
+        </button>
+      </div>
 
+      <div id="sideB" class="list-group list-group-flush container">
+        <div class="list-group-item handle-function row" id="handler B1">
+          <span id="position B1" class="positionB col-1">B1</span>
+          <span class="fa fa-arrows-alt handle col-1"></span>
+          <input
+            id="title B1"
+            class="title-input col-7"
+            type="text"
+            placeholder="Enter Title..."
+          />
+          <div class="time-wrapper col-3">
+            <input
+              id="minute B1"
+              class="minute-input"
+              type="number"
+              placeholder="mm"
+              min="0"
+              max="59"
+              oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+            />
+            <span class="time-separator" id="separator 01">:</span>
+            <input
+              id="second B1"
+              class="second-input"
+              type="number"
+              placeholder="ss"
+              min="0"
+              max="59"
+              oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="result-length" id="length sideB"></div>
+    </div>
+    <button
+      id="generatePDF"
+      class="btn btn-primary col-10"
+      onclick="generatePDF()"
+    >
+      Generate PDF
+    </button>
 
-
- 
-
-
-
- 
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<script src="js/script.js"></script>
-</body>
+    <div class="credits">
+      <p>© 2022 Concept: Mathieu Berthet / Dev: Maxence Robinet</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
