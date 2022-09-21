@@ -91,25 +91,6 @@ function fillData(side) {
 
 // ************************* EVENT HANDLER
 
-window.addEventListener("DOMContentLoaded", function() {
-var mutationObserver = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-  updatePosition("sideA");
-  updatePosition("sideB");
-  length("sideA");
-  length("sideB");
-  });
-});
-mutationObserver.observe(document.documentElement, {
-  attributes: true,
-  characterData: true,
-  childList: true,
-  subtree: true,
-  attributeOldValue: true,
-  characterDataOldValue: true
-});        
-    }, false);
-
 
 
 // ************************* LENGTH/SIDE CALCUL 
