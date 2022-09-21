@@ -92,23 +92,34 @@ function fillData(side) {
 // ************************* EVENT HANDLER
 
 window.addEventListener("DOMContentLoaded", function() {
-var mutationObserver = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-  updatePosition("sideA");
-  updatePosition("sideB");
-  length("sideA");
-  length("sideB");
-  });
+	var mutationObserver = new MutationObserver(function(mutations) {
+	  mutations.forEach(function(mutation) {
+	  updatePosition("sideA");
+	  updatePosition("sideB");
+	  length("sideA");
+	  length("sideB");
+	  console.log("test")
+	  });
+	});
+	let sideA = document.getElementById("sideA")
+	let sideB = document.getElementById("sideB")
+	mutationObserver.observe(sideA, {
+	  attributes: false,
+	  characterData: false,
+	  childList: true,
+	  subtree: false,
+	  attributeOldValue: false,
+	  characterDataOldValue: false
+	});  
+	mutationObserver.observe(sideB, {
+	  attributes: false,
+	  characterData: false,
+	  childList: true,
+	  subtree: false,
+	  attributeOldValue: false,
+	  characterDataOldValue: false
+	});      
 });
-mutationObserver.observe(document.documentElement, {
-  attributes: true,
-  characterData: true,
-  childList: true,
-  subtree: true,
-  attributeOldValue: true,
-  characterDataOldValue: true
-});        
-    }, false);
 
 
 
