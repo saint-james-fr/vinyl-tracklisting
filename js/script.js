@@ -94,10 +94,11 @@ function fillData(side) {
 window.addEventListener("DOMContentLoaded", function() {
 	var mutationObserver = new MutationObserver(function(mutations) {
 	  mutations.forEach(function(mutation) {
-	  updatePosition("sideA");
-	  updatePosition("sideB");
-	  length("sideA");
-	  length("sideB");
+	  //updatePosition("sideA");
+	  //updatePosition("sideB");
+	  //length("sideA");
+	  //length("sideB");
+	  console.log("test")
 	  });
 	});
 	let sideA = document.getElementById("sideA")
