@@ -100,14 +100,24 @@ window.addEventListener("DOMContentLoaded", function() {
 	  length("sideB");
 	  });
 	});
-	mutationObserver.observe(document.documentElement, {
+	let sideA = document.getElementById("sideA")
+	let sideB = document.getElementById("sideB")
+	mutationObserver.observe(sideA, {
 	  attributes: false,
 	  characterData: true,
 	  childList: true,
 	  subtree: true,
 	  attributeOldValue: false,
 	  characterDataOldValue: false
-	});        
+	});  
+	mutationObserver.observe(sideB, {
+	  attributes: false,
+	  characterData: true,
+	  childList: true,
+	  subtree: true,
+	  attributeOldValue: false,
+	  characterDataOldValue: false
+	});      
 });
 
 
