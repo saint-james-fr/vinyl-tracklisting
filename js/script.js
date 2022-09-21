@@ -105,17 +105,17 @@ window.addEventListener("DOMContentLoaded", function() {
 	let sideB = document.getElementById("sideB")
 	mutationObserver.observe(sideA, {
 	  attributes: false,
-	  characterData: true,
+	  characterData: false,
 	  childList: true,
-	  subtree: true,
+	  subtree: false,
 	  attributeOldValue: false,
 	  characterDataOldValue: false
 	});  
 	mutationObserver.observe(sideB, {
 	  attributes: false,
-	  characterData: true,
+	  characterData: false,
 	  childList: true,
-	  subtree: true,
+	  subtree: false,
 	  attributeOldValue: false,
 	  characterDataOldValue: false
 	});      
