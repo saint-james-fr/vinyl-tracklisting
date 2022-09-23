@@ -1,19 +1,329 @@
+/* RESET CSS */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	color: inherit;
+}
+
+
+
+/* NEW CSS */
+
+
+
+
+
+
+
+
+
+/* BASICS */
+
 :root {
-	--font-size-1: 16px;
-	--font-family-1:  Merriweather, Helvetica;
-  --font-family-2:  Oswald, Helvetica;
+	--color-white: #FFFFFF;
+	--color-gray-light: #EBEAEA;
+	--color-gray-dark: #474848;
+	--color-gray-strong: #757278;
+	--color-gray-dark-opacity: rgba(117, 114, 120, 0.9);
+	--color--gray-medium-opacity: rgba(235, 234, 234, 0.94);
+	--color-gray-light-opacity:rgba(217, 217, 217, 0.54);
+	--color-orange: #D07F33;
+	--color-orange-opacity: rgba(208, 127, 51, 0.81);;
+	--color-blue: #576883;
+
+
+	--font-size-1: 16px; /* paragraph */
+	--font-size-2: 26px; /* header */
+	--font-size-3: 20px; /* title */
+	--font-family-1: 'Kanit';
+	--font-family-2: 'Syne';
+
+	--number-pages: 2;
+}
+
+body, p, .block-title, .text {
+	font-family: var(--font-family-1);
+	font-weight: normal;
+	color:  var(--color-white);
+}
+
+
+
+.page__container {
+	display: block;
+	min-width: 100%;
+	height: 640px;
+	min-height: 100vh;
+	background-color: black;
+	border-bottom: 1px solid black;
 
 }
+
+section {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		max-width: 2000px;
+		background-color: darkred;
+}
+
+.content__container {
+	max-width: 82%;
+	height: 100%;
+	margin: auto;
+}
+
+.logo {
+	color: var(--color-white);
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	font-family: var(--font-family-2);
+}
+
+.block-title {
+	display: block;
+	text-transform: uppercase;
+	font-size: var(--font-size-3);
+	line-height: 1em;
+}
+
+.block-paragraph {
+	line-height: 1em;
+	font-size: var(--font-size-1)
+}
+
+.page-title {
+	text-align: center;
+	font-size: 35px;
+	display: block;
+	width: 50vw;
+	margin: auto;
+	padding: 0.8em;
+	background-color: var(--color-gray-light);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	
+}
+
+.half-hero {
+	height: 50%;
+}
+
+.two-columns > div {
+	display: flex;
+	justify-content: center
+}
+
+.two-columns > div > div {
+	width: 50%;
+}
+
+.radius {
+	border-radius: 10px;
+}
+
+/* HEADER */
+
+
+.header {
+	height: 56px;
+	background-color: black;
+	width: 100%;
+	position: fixed;
+}
+
+
+.header__container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav {
+	width: 38vw;
+}
+
+nav > ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > ul > li {
+	font-family: var(--font-family-1);
+	font-size: calc(0.7*var(--font-size-2)) ;
+	text-transform: uppercase;
+	color: var(--color-white);
+	display: inline-block;
+	list-style: none;	
+}
+
+.header .logo {
+	font-size: var(--font-size-2);
+}
+
+/* HOME */
+
+#section__home {
+	height: 100%;
+}
+
+#section__home .logo {
+	font-size: calc(2.9*var(--font-size-2));
+	display: block;
+	text-align: right;
+	padding-top: 100px;
+	padding-bottom: 50px;
+	margin-right: -0.4vw;
+}
+
+#section__home .content__container {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+}
+
+.home__infoblock {
+	background-color: var(--color-gray-dark-opacity);
+	display: block;
+	width: 33%;
+	height: 400px;
+
+}
+
+.home__infoblock__text {
+	padding: 1.5em;
+}
+
+.home__infoblock__text .block-title {
+	padding-bottom: 1.5em;
+}
+
+
+}
+.home__infoblock .paragraph{
+	padding: 1
+	padding-bottom: 1.5em;
+}
+
+
+
+/* TIMING */
+
+.half-content__container {
+	height: 50%;
+}
+
+
+.timing__cards {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+}
+
+
+.timing__card {
+	display: block;
+	background-color: var(--color-orange-opacity);
+	width: 25%;
+	height: auto;
+	padding: 1em;
+}
+
+.timing__card_title {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.timing__card_text {
+}
+
+#timing__hero-2 {
+	background-color: var(--color-gray-dark);
+	width: 100%;
+	height: 100%;
+}
+
+#timing__hero-2 > div > div {
+	padding: 3em;
+}
+
+
+
+
+/* TRACKLISTING */
+
+#section__tracklisting {
+	background-color: var(--color-gray-strong);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* OLD CSS */
 
 body {
 	font-family: Helvetica;
 	font-size: 16px;
-	max-width: 90%;
 	padding: 0;
 	margin: 0;
-	margin: auto;
-	background-color: #F7F9F9;
-
+	background-color: #f7f9f9;
 }
 
 * {
@@ -123,7 +433,7 @@ input {
 }
 
 .result-length {
-	font-size: calc(1.3*var(--font-size-1));
+	font-size: calc(1.3 * var(--font-size-1));
 	display: flex;
 	justify-content: center;
 	font-weight: bold;
@@ -141,7 +451,7 @@ input {
 	margin: 0 10px;
 	font-size: var(--font-size-1);
 	font-family: var(--font-family-2);
-	text-transform:  uppercase;
+	text-transform: uppercase;
 }
 
 #generatePDF {
@@ -150,17 +460,11 @@ input {
 	margin: 2vh auto;
 }
 
-.intro {
-	margin: 2vh auto;
-	text-align: center;
-}
-
 .credits {
 	text-align: center;
 	font-style: italic;
 	font-size: 12px;
 }
-
 .logo {
 	text-transform: uppercase;
 	text-align: center;
@@ -188,4 +492,5 @@ input {
 .flex {
 	display: flex;
 	justify-content: space-around;
+
 }

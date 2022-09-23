@@ -1,0 +1,290 @@
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-LightItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-ExtraBoldItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Light.woff2') format('woff2'),
+        url('Kanit/Kanit-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-ExtraLight.woff2') format('woff2'),
+        url('Kanit/Kanit-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-BlackItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Italic.woff2') format('woff2'),
+        url('Kanit/Kanit-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Medium.woff2') format('woff2'),
+        url('Kanit/Kanit-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-ExtraBold.woff2') format('woff2'),
+        url('Kanit/Kanit-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-BoldItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Black.woff2') format('woff2'),
+        url('Kanit/Kanit-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Bold.woff2') format('woff2'),
+        url('Kanit/Kanit-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-ExtraLightItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Thin.woff2') format('woff2'),
+        url('Kanit/Kanit-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-ThinItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-SemiBoldItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-Regular.woff2') format('woff2'),
+        url('Kanit/Kanit-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-MediumItalic.woff2') format('woff2'),
+        url('Kanit/Kanit-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('Kanit/Kanit-SemiBold.woff2') format('woff2'),
+        url('Kanit/Kanit-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('Syne/Syne-Medium.woff2') format('woff2'),
+        url('Syne/Syne-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('Syne/Syne-Bold.woff2') format('woff2'),
+        url('Syne/Syne-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('Syne/Syne-ExtraBold.woff2') format('woff2'),
+        url('Syne/Syne-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('Syne/Syne-Regular.woff2') format('woff2'),
+        url('Syne/Syne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('Syne/Syne-SemiBold.woff2') format('woff2'),
+        url('Syne/Syne-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Black.woff2') format('woff2'),
+        url('Inter/Inter-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-ExtraLight.woff2') format('woff2'),
+        url('Inter/Inter-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-SemiBold.woff2') format('woff2'),
+        url('Inter/Inter-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Regular.woff2') format('woff2'),
+        url('Inter/Inter-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Light.woff2') format('woff2'),
+        url('Inter/Inter-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Bold.woff2') format('woff2'),
+        url('Inter/Inter-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Medium.woff2') format('woff2'),
+        url('Inter/Inter-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-ExtraBold.woff2') format('woff2'),
+        url('Inter/Inter-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter/Inter-Thin.woff2') format('woff2'),
+        url('Inter/Inter-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+

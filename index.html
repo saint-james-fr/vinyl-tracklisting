@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vinyl Tracklisting</title>
+    <link rel="stylesheet" href="fonts/fonts.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,22 +25,124 @@
     <script src="https://cdn.rawgit.com/simonbengtsson/jsPDF/requirejs-fix-dist/dist/jspdf.debug.js"></script>
     <script src="https://unpkg.com/jspdf-autotable@2.3.2"></script>
   </head>
+
+
+
+
+
+
+
   <body>
-    <div class="logo col-10">
-      <img class="vinyl-icon" src="img/vinyl-icon.svg" />
-      <h1>vinyl tracklisting</h1>
-      <img class="vinyl-icon" src="img/vinyl-icon.svg" />
+    <div class="header" id="header__desktop">
+      <div class="header__container content__container">
+        <nav>
+          <ul>
+            <li><a href="#section__home">home</a></li>
+            <li><a href="#section__timing">timing</a></li>
+            <li><a href="#section__tracklisting">tracklisting</a></li>
+            <li><a href="#section__release-infos">infos</a></li>
+          </ul>
+        </nav>
+        <div class="logo">
+        <a href="#section__home">vinyl tracklisting</a>
+        </div>
+      </div>
     </div>
-    <div class="intro col-10">
-      <p>
-        Welcome to <strong>Vinyl Tracklisting</strong>! <br />
-        This tool is here to help you decide which tracks to put on which side
-        of your vinyl. This can be a hard choice to make a tracklist, don't
-        bother additioning minutes and seconds anymore, just drag and drop the
-        blocks after filling them with your infos. <br />
-        Once you are done, click below on "Generate PDF"
-      </p>
+
+    <div class="page__container">
+      <section id="section__home">
+        <div class="content__container">
+          <div class="logo">
+            vinyl tracklisting
+          </div>
+          <div class="home__infoblock radius">
+            <div class="home__infoblock__text">
+              <span class="block-title">Choose the best order for the tracklisting of your vinyl!</span>
+              <span class="block-paragraph">
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, aspernatur inventore tempore aperiam cum perspiciatis, minus fuga explicabo odit nobis dolorum architecto esse ab corrupti, sequi molestiae temporibus. Quibusdam, iste. <br><br>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, aspernatur inventore tempore aperiam cum perspiciatis, minus fuga explicabo odit nobis dolorum architecto esse ab corrupti, sequi molestiae temporibus. Quibusdam, iste.
+                </p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
+
+
+    <div class="page__container">
+      <section id="section__timing">
+        <div class="half-hero">
+          <div id="timing__hero-1">
+            <div class="content__container">
+              <div class="page-title logo radius">the best timing</div>
+              <div class="timing__cards">
+                <div class="timing__card">
+                  <div class="timing__card_title">33<span class="rpm">RPM</span></div>
+                  <div class="timing__card_separator">12inch < 20 min <span class="approx">approx.</span></div>
+                  <div class="timing__card_text">12inch < 20 min <span class="approx">approx.</span></div>
+                </div>
+                <div class="timing__card">
+                  <div class="timing__card_title">45<span class="rpm">RPM</span></div>
+                  <div class="timing__card_separator"></div>
+                  <div class="timing__card_text">12inch < 20 min <span class="approx">approx.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="half-hero">
+          <div id="timing__hero-2" class="two-columns">
+            <div class="content__container">
+              <div class="timing__motto">Defining the best timing for your tracklisting</div>
+              <div class="timing__infoblock">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, reiciendis expedita molestias, eveniet in maxime ipsum ea voluptatibus veniam quas iusto maiores ratione est distinctio repudiandae ipsa esse aspernatur nemo! <br> <br> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Distinctio tenetur iste cupiditate dolorum corrupti nesciunt maxime reiciendis, animi. Ex minus illum reiciendis harum id est excepturi facilis quod doloribus temporibus?</div>
+            </div>
+          </div>
+        </div>
+          
+      </section>
+    </div>
+
+    <div class="page__container">
+      <section id="section__tracklisting">
+        <div class="content__container">
+          <div class="page-title logo radius">create your tracklist</div>
+        </div>
+      </section>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="page__container">
+      <section id="section__release-infos">
+        <div class="content__container"></div>
+      </section>
+    </div>
+    <div class="page__container">
+      <section id="section__audio-infos">
+        <div class="content__container"></div>
+      </section>
+    </div>
+    <div class="page__container">
+      <section id="section__pdf">
+        <div class="content__container"></div>
+      </section>
+    </div>
+
+
+
+
+
+
+
+
+
 
     <div class="side-container">
       <h2>FACE A</h2>
@@ -193,6 +296,11 @@
     <div class="credits">
       <p>© 2022 Concept: Mathieu Berthet / Dev: Maxence Robinet</p>
     </div>
+
+
+
+    
+
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -203,4 +311,5 @@
     <script src="js/sorting.js" defer></script>
     <script src="js/external.js.js" defer></script>
   </body>
+
 </html>
