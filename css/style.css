@@ -97,14 +97,21 @@ body, p, .block-title, .text {
 
 
 
-.page__container {
+.page__container,
+.page__container-first {
 	display: block;
 	min-width: 100%;
 	height: 640px;
-	min-height: 100vh;
 	background-color: black;
 	border-bottom: 1px solid black;
+}
 
+.page__container {
+min-height: calc(100vh - 45px);
+}
+
+.page__container-first {
+	min-height: 100vh;
 }
 
 section {
@@ -174,7 +181,7 @@ section {
 
 
 .header {
-	height: 56px;
+	height: 45px;
 	background-color: black;
 	width: 100%;
 	position: fixed;
