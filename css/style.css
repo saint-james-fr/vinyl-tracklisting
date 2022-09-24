@@ -45,10 +45,6 @@ btn:focus {
 	width: 49%;
 }
 
-.handle {
-	text-align: center;
-}
-
 .time-separator {
 	text-align: center;
 	margin: 0 5px;
@@ -181,4 +177,10 @@ input {
 	margin: 0 40px;
 }
 
+.color-side-a {
+	background-color: blueviolet;
+}
+.color-side-b {
+	background-color: indianred;
+}
 
