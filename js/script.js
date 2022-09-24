@@ -49,7 +49,6 @@ function erase(id) {
 	document.getElementById(id).value = null;
 }
 
-
 window.onbeforeunload = function(){ return 'Do you want to reload the page?';}
 
 // ************************* DATA COLLECTING
@@ -129,7 +128,6 @@ window.addEventListener("DOMContentLoaded", function() {
 function length(side){
 formatLength(sum(side));
 el = document.getElementById(`length ${side}`);
-// el.textContent = `Length Side ${getSideLetter(side)} --- ${result}`;
 el.textContent = `TOTAL --- ${result}`;
 
 }
@@ -197,14 +195,17 @@ function sumObjValues(obj) {
 
 
 // GET SIDELETTER
+
 function getSideLetter(side){
 sideLetter = side.slice(4);
 return sideLetter;
 }
 
 
-// CREATE ELEMENT 
-function newElement(el, classes, sourceId, newId) {	
+// CREATE ELEMENTS
+
+
+function addElementWithID(el, classes, sourceId, newId) {	
 	el = document.createElement(el);
 	for (i =0; i < classes.length; i++) {
 		el.classList.add(classes[i]);
@@ -213,13 +214,21 @@ function newElement(el, classes, sourceId, newId) {
 	el.setAttribute("id", newId);
 }
 
+function addElementWithoutID(el, classes, sourceId) {	
+	el = document.createElement(el);
+	for (i =0; i < classes.length; i++) {
+		el.classList.add(classes[i]);
+	};
+	document.getElementById(sourceId).appendChild(el);
+}
+
+
+// UPDATE POSITION
 
 function updateNumberOfTracks(side) {
 	numberOfTracks = document.getElementById(side).children.length;	
 	return numberOfTracks
 }
-
-// UPDATE POSITION
 
 function updatePosition(side) {
 	getSideLetter(side);
@@ -248,7 +257,6 @@ function addTitle(side) {
 				createHandler(`handler ${sideLetter}${counterA}`,side);
 				positionNumber = counterA;
 				createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
-				createIcon(sideLetter);
 				createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
 				createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
 				createMinute(`minute ${sideLetter}${positionNumber}`, side)
@@ -259,7 +267,6 @@ function addTitle(side) {
 				createHandler(`handler ${sideLetter}${counterB}`,side);
 				positionNumber = counterB;
 				createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);		
-				createIcon(sideLetter);
 				createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
 				createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
 				createMinute(`minute ${sideLetter}${positionNumber}`, side)
@@ -269,8 +276,9 @@ function addTitle(side) {
 	}
 	
 // addTitle() NEEDED FEATURES
+
 function createHandler(handlerId, side) {
-	newElement(
+	addElementWithID(
 		"div",
 		["list-group-item", "handle-function", "row"],
 		side,
@@ -279,38 +287,30 @@ function createHandler(handlerId, side) {
 }
 
 function createPosition(positionId, sideLetter) {
-	newElement(
+	addElementWithID(
 		"span",
 		[`position${sideLetter}`, "col-1"],
 		`handler ${sideLetter}${positionNumber}`,
 		positionId
 		)
-	a = document.getElementById(positionId)
-	a.textContent = `${sideLetter}${positionNumber}`
-}
-
-function createIcon(sideLetter) {
-	newElement(
-		"span",
-		["fa", "fa-arrows-alt", "handle", "col-1"],
-		`handler ${sideLetter}${positionNumber}`,
-		null
-		)
+	el = document.getElementById(positionId)
+	el.textContent = `${sideLetter}${positionNumber}`
 }
 
 function createTitle(titleId, sideLetter) {
-	newElement(
+	addElementWithID(
 		"input",
 		["title-input", "col-7"],
 		`handler ${sideLetter}${positionNumber}`,
 		titleId
 		)
-	document.getElementById(titleId).setAttribute("placeholder", "Enter Title...");
-	document.getElementById(titleId).setAttribute("type", "text")
+	let el = document.getElementById(titleId)
+	el.setAttribute("placeholder", "Enter Title...");
+	el.setAttribute("type", "text")
 }
 
 function createTimeWrapper(wrapperId) {
-	newElement(
+	addElementWithID(
 		"div",
 		["time-wrapper", "col-3"],
 		`handler ${sideLetter}${positionNumber}`,
@@ -319,44 +319,47 @@ function createTimeWrapper(wrapperId) {
 }
 
 function createMinute(minuteId, side) {
-	newElement(
+	addElementWithID(
 		"input",
 		["minute-input"],
 		`timeWrapper ${sideLetter}${positionNumber}`,
 		minuteId
 		)
-	document.getElementById(minuteId).setAttribute("placeholder", "mm");
-	document.getElementById(minuteId).setAttribute("type", "number");
-	document.getElementById(minuteId).setAttribute("min", "0");
-	document.getElementById(minuteId).setAttribute("max", "59");
-	document.getElementById(minuteId).setAttribute("oninput", "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null");	
-	document.getElementById(minuteId).addEventListener("input", event => length(side));
+	el = document.getElementById(minuteId)
+	el.setAttribute("placeholder", "mm");
+	el.setAttribute("type", "number");
+	el.setAttribute("min", "0");
+	el.setAttribute("max", "59");
+	el.setAttribute("oninput", "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null");	
+	el.addEventListener("input", event => length(side));
 }
 
 function createSecond(secondId, side) {
-	newElement(
+	addElementWithID(
 		"input",
 		["second-input"],
 		`timeWrapper ${sideLetter}${positionNumber}`,
 		secondId
 		)
-	document.getElementById(secondId).setAttribute("placeholder", "ss");
-	document.getElementById(secondId).setAttribute("type", "number");
-	document.getElementById(secondId).setAttribute("min", "0");
-	document.getElementById(secondId).setAttribute("max", "59");
-	document.getElementById(secondId).setAttribute("oninput", "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null");
-	document.getElementById(secondId).addEventListener("input", event => length(side)); // calcul durée totale
-	document.getElementById(secondId).addEventListener("input", event => formatSecond(secondId, side));
+	let el = document.getElementById(secondId)
+	el.setAttribute("placeholder", "ss");
+	el.setAttribute("type", "number");
+	el.setAttribute("min", "0");
+	el.setAttribute("max", "59");
+	el.setAttribute("oninput", "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null");
+	el.addEventListener("input", event => length(side)); // calcul durée totale
+	el.addEventListener("input", event => formatSecond(secondId, side));
 }
 
 function createSeparator(separatorId) {
-	newElement(
+	addElementWithID(
 		"span",
 		["time-separator"],
 		`timeWrapper ${sideLetter}${positionNumber}`,
 		separatorId
 		)
-	document.getElementById(separatorId).textContent = ":";
+	let el = document.getElementById(separatorId)
+	el.textContent = ":";
 }
 
 
@@ -371,6 +374,31 @@ function removeTitle(side) {
 	length(side)
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ************************* EXTERNAL LIBRARIES : JSSORTAbLE
