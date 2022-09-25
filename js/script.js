@@ -19,16 +19,27 @@ var average;
 
 init("sideA");
 init("sideB");
+initSecondA();
+initSecondB();
 
 function init(side) {
 	updateNumberOfTracks(side);
 	getSideLetter(side);
 	// attach first event listeners
 	document.getElementById(`minute ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
-	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
-	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => formatSecond(`second ${sideLetter}1`, side));
+	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));	
 	updateLength(side);
 }
+
+function initSecondA() {
+	document.getElementById(`second A1`).addEventListener("input", (event) => formatSecond(`second A1`, "sideA"));	
+}
+
+function initSecondB() {
+	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, "sideA"));	
+}
+
+
 
 // ************************* DATA CHECK ************************* 
 
