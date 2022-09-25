@@ -383,7 +383,7 @@ function createMinute(minuteId, side) {
 		"oninput",
 		"this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
 	);
-	el.addEventListener("input", (event) => length(side));
+	el.addEventListener("input", (event) => updateLength(side));
 }
 
 function createSecond(secondId, side) {
@@ -402,7 +402,7 @@ function createSecond(secondId, side) {
 		"oninput",
 		"this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
 	);
-	el.addEventListener("input", (event) => length(side)); // calcul durée totale
+	el.addEventListener("input", (event) => updateLength(side)); // calcul durée totale
 	el.addEventListener("input", (event) => formatSecond(secondId, side));
 }
 
@@ -429,12 +429,66 @@ function removeTitle(side) {
 	}
 }
 
+// ************************* SHUFFLE
+
+function shuffle(array) {
+  let currentIndex = array.length
+  let randomIndex;
+
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+function shuffleTest() {
+fillData("sideA");
+fillData("sideB");
+let allData = dataSideA.concat(dataSideB)
+shuffle(allData);
+}
+
+// ************************* REBUILD AFTER SHUFFLE
+
+function destroySide(){
+	let sideA = document.getElementById("sideA")
+	let sideB = document.getElementById("sideB")
+	while (sideA.children.length >0) {sideA.lastElementChild.remove()}
+	while (sideB.children.length >0) {sideB.lastElementChild.remove()}	
+}
+
+function rebuildSide() {
+	for (let i = 0; i < dataSideA.length -1 ; i++) {
+	addTitle("sideA"); // Crée les lignes - gère le cas généré par preventNullTitle
+	}
+	let first;	
+	for (let i = 0; i < document.getElementById("sideA").children.length; i++) {
+		first = dataSideA.shift()
+		document.getElementById("sideA").children[i].children[1].value = first.title
+	}		
+}
 
 
+/*
+positionPDF =
+			document.getElementById(side).children[i].children[0].textContent;
+		titlePDF =
+			document.getElementById(side).children[i].children[1].value;
+		minutePDF =
+			document.getElementById(side).children[i].children[2].children[0]
+				.value;
+		secondPDF =
+			document.getElementById(side).children[i].children[2].children[2]
+				.value;
 
-
-
-
+*/
 
 
 
