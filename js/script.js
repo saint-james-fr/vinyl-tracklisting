@@ -1,4 +1,4 @@
-// ************************* GLOBAL VARIABLES
+// ************************* GLOBAL VARIABLES ************************* 
 
 var numberOfTracks;
 var handlerNumber;
@@ -13,8 +13,9 @@ var totalLengthSideA;
 var totalLengthSideB;
 var allData;
 var shuffledData;
+var average;
 
-// ************************* INITIALIZATION
+// ************************* INITIALIZATION ************************* 
 
 Init("sideA");
 Init("sideB");
@@ -37,7 +38,7 @@ function Init(side) {
 	updateLength(side);
 }
 
-// ************************* DATA VALIDATION
+// ************************* DATA CHECK ************************* 
 
 function formatSecond(id, side) {
 	if (document.getElementById(id).value > 60) {
@@ -54,48 +55,7 @@ window.onbeforeunload = function () {
 	return "Do you want to reload the page?";
 };
 
-// ************************* DATA COLLECTING
-
-function fillData(side) {
-	if (dataSideA.length === 0 || dataSideB.length === 0) {
-		for (i = 0; i < document.getElementById(side).children.length; i++) {
-			let position;
-			let title;
-			let minute;
-			let second;
-			position =
-				document.getElementById(side).children[i].children[0]
-					.textContent;
-			title =
-				document.getElementById(side).children[i].children[1].value;
-			minute =
-				document.getElementById(side).children[i].children[2].children[0]
-					.value;
-			second =
-				document.getElementById(side).children[i].children[2].children[2]
-					.value;
-			if (side === "sideA") {
-				let object = {};
-				object["position"] = position;
-				object["title"] = title;
-				object["minute"] = minute;
-				object["second"] = second;
-				dataSideA.push(object);
-				totalLengthSideA = formatLength(sum(side));
-			}
-			if (side === "sideB") {
-				let object = {};
-				object["position"] = position;
-				object["title"] = title;
-				object["minute"] = minute;
-				object["second"] = second;
-				dataSideB.push(object);
-				totalLengthSideB = formatLength(sum(side));
-			}
-		}
-	}
-}
-// ************************* EVENT HANDLER
+// ************************* EVENT HANDLER ************************* 
 
 window.addEventListener("DOMContentLoaded", function () {
 	var mutationObserver = new MutationObserver(function (mutations) {
@@ -130,7 +90,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-// ************************* PREVENT NULL TITLE
+// ************************* PREVENT NULL TITLE ************************* 
 
 function preventNullTitle(side) {
 	updateNumberOfTracks(side);
@@ -139,9 +99,7 @@ function preventNullTitle(side) {
 	}
 } 
 
-
-
-// ************************* CLASS CHANGER
+// ************************* CLASS UPDATE ************************* 
 
 function updateClassSideA() {
 	let children = document.getElementById("sideA").children;
@@ -180,12 +138,12 @@ function updateClassSideB() {
 }
 
 
-// ************************* LENGTH/SIDE CALCUL
+// ************************* LENGTH/SIDE CALCULATION ************************* 
 
 function updateLength(side) {
 	formatLength(sum(side));
 	el = document.getElementById(`length ${side}`);
-	el.textContent = `TOTAL --- ${result}`;
+	return el.textContent = `TOTAL --- ${result}`;
 }
 
 function formatLength(value) {
@@ -247,7 +205,7 @@ function sumObjValues(obj) {
 	); // additionne les keys
 }
 
-// ************************* DOM MANIPULATION
+// ************************* DOM MANIPULATION ************************* 
 
 // GET SIDELETTER
 
@@ -275,7 +233,7 @@ function addElementWithoutID(el, classes, sourceId) {
 	document.getElementById(sourceId).appendChild(el);
 }
 
-// UPDATE POSITION
+// UPDATE POSITION NUMBER OF TRACKS 
 
 function updateNumberOfTracks(side) {
 	numberOfTracks = document.getElementById(side).children.length;
@@ -428,10 +386,71 @@ function removeTitle(side) {
 	if (lastPosition > 1) {
 		lastTitle.remove();
 		updateLength(side);
+		if (side === "sideA" && dataSideA.length > 0) {
+		resetAndFillData(side)
+		}
+		if (side === "sideB" && dataSideB.length > 0) {
+		resetAndFillData(side)
+		}
 	}
 }
 
-// ************************* SHUFFLE DATA
+// ************************* DATA COLLECTING ************************* 
+
+/*
+function fillDataOnce(side) {
+	if (dataSideA.length === 0 || dataSideB.length === 0) { //fill data ONCE
+		resetAndFillData(side)
+	}
+}
+*/
+
+function resetAndFillData(side) {
+	if (side === "sideA") { // reset A
+		dataSideA = [];
+	}
+	if (side === "sideB") { // reset B
+		dataSideB = [];
+	}
+	for (i = 0; i < document.getElementById(side).children.length; i++) {
+		let position;
+		let title;
+		let minute;
+		let second;
+		position =
+			document.getElementById(side).children[i].children[0]
+				.textContent;
+		title =
+			document.getElementById(side).children[i].children[1].value;
+		minute =
+			document.getElementById(side).children[i].children[2].children[0]
+				.value;
+		second =
+			document.getElementById(side).children[i].children[2].children[2]
+				.value;
+		if (side === "sideA") {
+			let object = {};
+			object["position"] = position;
+			object["title"] = title;
+			object["minute"] = minute;
+			object["second"] = second;
+			dataSideA.push(object);
+			totalLengthSideA = formatLength(sum(side));
+		}
+		if (side === "sideB") {			
+			let object = {};
+			object["position"] = position;
+			object["title"] = title;
+			object["minute"] = minute;
+			object["second"] = second;
+			dataSideB.push(object);
+			totalLengthSideB = formatLength(sum(side));
+		}
+	}
+}
+
+
+// ************************* SHUFFLE DATA ************************* 
 
 function shuffleAlgo(array) {
   let currentIndex = array.length
@@ -451,8 +470,8 @@ function shuffleAlgo(array) {
 }
 
 function getAllData() {
-fillData("sideA");
-fillData("sideB");
+resetAndFillData("sideA");
+resetAndFillData("sideB");
 allData = dataSideA.concat(dataSideB)
 }
 
@@ -461,8 +480,7 @@ function shuffleData() {
 shuffledData = shuffleAlgo(allData);
 }
 
-// ************************* RANDOM & REBUILD 
-
+// ************************* RANDOM & REBUILD ************************* 
 
 
 function random() {	
@@ -484,7 +502,6 @@ function destroy(){
 function rebuildSide(oldSource, newSource, side) {
 	for (let i = 0; i < oldSource.length ; i++) {
 	addTitle(side); // Crée les lignes 
-	console.log("new line")
 	}
 	let first;	
 	for (let i = 0; i < document.getElementById(side).children.length; i++) {
@@ -498,9 +515,39 @@ function rebuildSide(oldSource, newSource, side) {
 }
 
 
+// ************************* ALGORITHM SORTING
+
+
+function average() {
+	let sumA = sum("sideA");
+	let sumB = sum("sideB");
+	avr = [];
+	let integer;
+	avr[0] = Math.trunc((sumA[0] + sumB[0])/2); // get integer part of minutes
+	integer = avr[0] 
+	let decimal = ((sumA[0] + sumB[0])/2) - integer; // get floating part of minutes
+	additionalSeconds = decimal*60
+	avr[1] = parseInt(((sumA[1] + sumB[1])/2) + additionalSeconds);
+	return avr;
+}
+
+function sort() {
+	random()
+	average()
+	let sumA = sum("sideA");
+	let sumB = sum("sideB");
+	console.log(sumA, sumB, avr)
+	if (sumA[0] > avr[0]) {
+		sort()
+	}
+	
+}
 
 
 
+
+
+ 
 
 
 
@@ -538,8 +585,8 @@ function generatePDF() {
 		document.getElementById("sideA").children.length > 0 &&
 		document.getElementById("sideB").children.length > 0
 	) {
-		fillData("sideA");
-		fillData("sideB");
+		resetAndFillData("sideA");
+		resetAndFillData("sideB");
 		let catNr = window.prompt("Enter the catalogue number of your vinyl");
 		var doc = new jsPDF();
 		var col = ["Position", "Title", "min", "sec"];
