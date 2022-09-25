@@ -17,24 +17,16 @@ var average;
 
 // ************************* INITIALIZATION ************************* 
 
-Init("sideA");
-Init("sideB");
+init("sideA");
+init("sideB");
 
-function Init(side) {
+function init(side) {
 	updateNumberOfTracks(side);
 	getSideLetter(side);
 	// attach first event listeners
-	document
-		.getElementById(`minute ${sideLetter}1`)
-		.addEventListener("input", (event) => updateLength(side));
-	document
-		.getElementById(`second ${sideLetter}1`)
-		.addEventListener("input", (event) => updateLength(side));
-	document
-		.getElementById(`second ${sideLetter}1`)
-		.addEventListener("input", (event) =>
-			formatSecond(`second ${sideLetter}1`, side)
-		);
+	document.getElementById(`minute ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
+	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
+	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => formatSecond(`second ${sideLetter}1`, side));
 	updateLength(side);
 }
 
@@ -207,14 +199,14 @@ function sumObjValues(obj) {
 
 // ************************* DOM MANIPULATION ************************* 
 
-// GET SIDELETTER
+/////////// GET SIDELETTER ///////////
 
 function getSideLetter(side) {
 	sideLetter = side.slice(4);
 	return sideLetter;
 }
 
-// CREATE ELEMENTS
+/////////// CREATE ELEMENTS ///////////
 
 function addElementWithID(el, classes, sourceId, newId) {
 	el = document.createElement(el);
@@ -233,7 +225,7 @@ function addElementWithoutID(el, classes, sourceId) {
 	document.getElementById(sourceId).appendChild(el);
 }
 
-// UPDATE POSITION NUMBER OF TRACKS 
+/////////// UPDATE POSITION NUMBER OF TRACKS ///////////
 
 function updateNumberOfTracks(side) {
 	numberOfTracks = document.getElementById(side).children.length;
@@ -250,7 +242,7 @@ function updatePosition(side) {
 	}
 }
 
-// ADD TITLE
+/////////// ADD TITLE ///////////
 
 function addTitle(side) {
 	if (side === "sideA") {
@@ -283,7 +275,7 @@ function addTitle(side) {
 	}
 }
 
-// addTitle() NEEDED FEATURES
+/////////// addTitle() NEEDED FEATURES ///////////
 
 function createHandler(handlerId, side) {
 	addElementWithID(
@@ -377,7 +369,7 @@ function createSeparator(separatorId) {
 	el.textContent = ":";
 }
 
-// REMOVE TITLE
+/////////// REMOVE TITLE ///////////
 
 function removeTitle(side) {
 	updateNumberOfTracks(`${side}`);
@@ -519,28 +511,40 @@ function rebuildSide(oldSource, newSource, side) {
 
 
 function average() {
-	let sumA = sum("sideA");
-	let sumB = sum("sideB");
+	totalLengthSideA = sum("sideA");
+	totalLengthSideB = sum("sideB");
 	avr = [];
 	let integer;
-	avr[0] = Math.trunc((sumA[0] + sumB[0])/2); // get integer part of minutes
+	avr[0] = Math.trunc((totalLengthSideA[0] + totalLengthSideB[0])/2); // get integer part of minutes
 	integer = avr[0] 
-	let decimal = ((sumA[0] + sumB[0])/2) - integer; // get floating part of minutes
+	let decimal = ((totalLengthSideA[0] + totalLengthSideB[0])/2) - integer; // get floating part of minutes
 	additionalSeconds = decimal*60
-	avr[1] = parseInt(((sumA[1] + sumB[1])/2) + additionalSeconds);
+	avr[1] = parseInt(((totalLengthSideA[1] + totalLengthSideB[1])/2) + additionalSeconds);
 	return avr;
 }
 
 function sort() {
-	random()
-	average()
-	let sumA = sum("sideA");
-	let sumB = sum("sideB");
-	console.log(sumA, sumB, avr)
-	if (sumA[0] > avr[0]) {
+	totalLengthSideA = sum("sideA");
+	totalLengthSideB = sum("sideB");
+	let initialDifference = [
+		Math.abs(totalLengthSideB[0]-totalLengthSideA[0]),
+		Math.abs(totalLengthSideB[1]-totalLengthSideA[1])];
+	console.log(initialDifference);
+	random();
+	totalLengthSideA = sum("sideA");
+	totalLengthSideB = sum("sideB");		
+	let newDifference = [
+		Math.abs(totalLengthSideB[0]-totalLengthSideA[0]),
+		Math.abs(totalLengthSideB[1]-totalLengthSideA[1])];
+	console.log(newDifference);
+	if (newDifference[0] > initialDifference[0]) {
 		sort()
 	}
-	
+	if (newDifference[0] <= initialDifference[0]) {
+		if (newDifference[1] > initialDifference[1]){
+			sort()
+		}
+	}
 }
 
 
