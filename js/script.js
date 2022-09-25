@@ -431,7 +431,7 @@ function removeTitle(side) {
 	}
 }
 
-// ************************* SHUFFLE
+// ************************* SHUFFLE DATA
 
 function shuffleAlgo(array) {
   let currentIndex = array.length
