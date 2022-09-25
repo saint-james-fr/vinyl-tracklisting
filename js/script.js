@@ -65,12 +65,12 @@ function fillData(side) {
 			document.getElementById(side).children[i].children[0]
 				.textContent;
 		titlePDF =
-			document.getElementById(side).children[i].children[2].value;
+			document.getElementById(side).children[i].children[1].value;
 		minutePDF =
-			document.getElementById(side).children[i].children[3].children[0]
+			document.getElementById(side).children[i].children[2].children[0]
 				.value;
 		secondPDF =
-			document.getElementById(side).children[i].children[3].children[2]
+			document.getElementById(side).children[i].children[2].children[2]
 				.value;
 		if (side === "sideA") {
 			let object = {};
