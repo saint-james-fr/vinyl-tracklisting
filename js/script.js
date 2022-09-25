@@ -469,8 +469,8 @@ function random() {
 	getAllData()
 	shuffleData()
 	destroy()
-	rebuildSideA(dataSideA,shuffledData)
-	rebuildSideB(dataSideB,shuffledData)
+	rebuildSide(dataSideA,shuffledData, "sideA")
+	rebuildSide(dataSideB,shuffledData, "sideB")
 }
 
 
@@ -481,47 +481,23 @@ function destroy(){
 	while (sideB.children.length >0) {sideB.lastElementChild.remove()}	
 }
 
-function rebuildSideA(oldSource,newSource) {
+function rebuildSide(oldSource, newSource, side) {
 	for (let i = 0; i < oldSource.length ; i++) {
-	addTitle("sideA"); // Crée les lignes 
+	addTitle(side); // Crée les lignes 
 	console.log("new line")
 	}
 	let first;	
-	for (let i = 0; i < document.getElementById("sideA").children.length; i++) {
+	for (let i = 0; i < document.getElementById(side).children.length; i++) {
 		first = newSource.shift()
-		newSource.push(first);
-		document.getElementById("sideA").children[i].children[1].value = first.title
-	}		
-}
-function rebuildSideB(oldSource,newSource) {
-	for (let i = 0; i < oldSource.length ; i++) {
-	addTitle("sideB"); // Crée les lignes
-	console.log("new line")
-	}
-	let first;	
-	for (let i = 0; i < document.getElementById("sideB").children.length; i++) {
-		first = newSource.shift()
-		newSource.push(first);
-		document.getElementById("sideB").children[i].children[1].value = first.title
+		newSource.push(first); // avoid empty array of Data
+		// gets infos from objects
+		document.getElementById(side).children[i].children[1].value = first.title 
+		document.getElementById(side).children[i].children[2].children[0].value = first.minute 
+		document.getElementById(side).children[i].children[2].children[2].value = first.second
 	}		
 }
 
 
-
-
-/*
-positionPDF =
-			document.getElementById(side).children[i].children[0].textContent;
-		titlePDF =
-			document.getElementById(side).children[i].children[1].value;
-		minutePDF =
-			document.getElementById(side).children[i].children[2].children[0]
-				.value;
-		secondPDF =
-			document.getElementById(side).children[i].children[2].children[2]
-				.value;
-
-*/
 
 
 
