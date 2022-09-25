@@ -11,6 +11,8 @@ var dataSideA = [];
 var dataSideB = [];
 var totalLengthSideA;
 var totalLengthSideB;
+var allData;
+var shuffledData;
 
 // ************************* INITIALIZATION
 
@@ -55,44 +57,44 @@ window.onbeforeunload = function () {
 // ************************* DATA COLLECTING
 
 function fillData(side) {
-	// dataSide Object remplissage
-	for (i = 0; i < document.getElementById(side).children.length; i++) {
-		let positionPDF;
-		let titlePDF;
-		let minutePDF;
-		let secondPDF;
-		positionPDF =
-			document.getElementById(side).children[i].children[0]
-				.textContent;
-		titlePDF =
-			document.getElementById(side).children[i].children[1].value;
-		minutePDF =
-			document.getElementById(side).children[i].children[2].children[0]
-				.value;
-		secondPDF =
-			document.getElementById(side).children[i].children[2].children[2]
-				.value;
-		if (side === "sideA") {
-			let object = {};
-			object["position"] = positionPDF;
-			object["title"] = titlePDF;
-			object["minute"] = minutePDF;
-			object["second"] = secondPDF;
-			dataSideA.push(object);
-			totalLengthSideA = formatLength(sum(side));
-		}
-		if (side === "sideB") {
-			let object = {};
-			object["position"] = positionPDF;
-			object["title"] = titlePDF;
-			object["minute"] = minutePDF;
-			object["second"] = secondPDF;
-			dataSideB.push(object);
-			totalLengthSideB = formatLength(sum(side));
+	if (dataSideA.length === 0 || dataSideB.length === 0) {
+		for (i = 0; i < document.getElementById(side).children.length; i++) {
+			let position;
+			let title;
+			let minute;
+			let second;
+			position =
+				document.getElementById(side).children[i].children[0]
+					.textContent;
+			title =
+				document.getElementById(side).children[i].children[1].value;
+			minute =
+				document.getElementById(side).children[i].children[2].children[0]
+					.value;
+			second =
+				document.getElementById(side).children[i].children[2].children[2]
+					.value;
+			if (side === "sideA") {
+				let object = {};
+				object["position"] = position;
+				object["title"] = title;
+				object["minute"] = minute;
+				object["second"] = second;
+				dataSideA.push(object);
+				totalLengthSideA = formatLength(sum(side));
+			}
+			if (side === "sideB") {
+				let object = {};
+				object["position"] = position;
+				object["title"] = title;
+				object["minute"] = minute;
+				object["second"] = second;
+				dataSideB.push(object);
+				totalLengthSideB = formatLength(sum(side));
+			}
 		}
 	}
 }
-
 // ************************* EVENT HANDLER
 
 window.addEventListener("DOMContentLoaded", function () {
@@ -431,7 +433,7 @@ function removeTitle(side) {
 
 // ************************* SHUFFLE
 
-function shuffle(array) {
+function shuffleAlgo(array) {
   let currentIndex = array.length
   let randomIndex;
 
@@ -448,32 +450,63 @@ function shuffle(array) {
   return array;
 }
 
-function shuffleTest() {
+function getAllData() {
 fillData("sideA");
 fillData("sideB");
-let allData = dataSideA.concat(dataSideB)
-shuffle(allData);
+allData = dataSideA.concat(dataSideB)
 }
 
-// ************************* REBUILD AFTER SHUFFLE
 
-function destroySide(){
+function shuffleData() {
+shuffledData = shuffleAlgo(allData);
+}
+
+// ************************* RANDOM & REBUILD 
+
+
+
+function random() {	
+	getAllData()
+	shuffleData()
+	destroy()
+	rebuildSideA(dataSideA,shuffledData)
+	rebuildSideB(dataSideB,shuffledData)
+}
+
+
+function destroy(){
 	let sideA = document.getElementById("sideA")
 	let sideB = document.getElementById("sideB")
 	while (sideA.children.length >0) {sideA.lastElementChild.remove()}
 	while (sideB.children.length >0) {sideB.lastElementChild.remove()}	
 }
 
-function rebuildSide() {
-	for (let i = 0; i < dataSideA.length -1 ; i++) {
-	addTitle("sideA"); // Crée les lignes - gère le cas généré par preventNullTitle
+function rebuildSideA(oldSource,newSource) {
+	for (let i = 0; i < oldSource.length ; i++) {
+	addTitle("sideA"); // Crée les lignes 
+	console.log("new line")
 	}
 	let first;	
 	for (let i = 0; i < document.getElementById("sideA").children.length; i++) {
-		first = dataSideA.shift()
+		first = newSource.shift()
+		newSource.push(first);
 		document.getElementById("sideA").children[i].children[1].value = first.title
 	}		
 }
+function rebuildSideB(oldSource,newSource) {
+	for (let i = 0; i < oldSource.length ; i++) {
+	addTitle("sideB"); // Crée les lignes
+	console.log("new line")
+	}
+	let first;	
+	for (let i = 0; i < document.getElementById("sideB").children.length; i++) {
+		first = newSource.shift()
+		newSource.push(first);
+		document.getElementById("sideB").children[i].children[1].value = first.title
+	}		
+}
+
+
 
 
 /*
