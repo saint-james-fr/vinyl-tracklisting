@@ -13,7 +13,22 @@ var totalLengthSideA;
 var totalLengthSideB;
 var allData;
 var shuffledData;
-var average;
+let dataSideASortedByMinutes;
+let dataSideBSortedByMinutes;
+let allDataSortedByMinutes;
+let calculValAbs0 = () => {
+		totalLengthSideA = sum("sideA")
+		totalLengthSideB = sum("sideB")
+		return Math.abs(totalLengthSideB[0] - totalLengthSideA[0])
+	};
+  let calculValAbs1 = () => {
+  	totalLengthSideA = sum("sideA")
+		totalLengthSideB = sum("sideB")
+  	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1])
+  };
+var t0LengthDifference = [undefined,undefined];
+var t1LengthDifference = [undefined,undefined];
+let randomNumber = () => Math.floor(Math.random() * 6); 
 
 // ************************* INITIALIZATION ************************* 
 
@@ -398,6 +413,9 @@ function removeTitle(side) {
 	}
 }
 
+// ************************* RESET AND FILL DATA ************************* 
+
+
 
 function resetAndFillData(side) {
 	if (side === "sideA") { // reset A
@@ -428,6 +446,7 @@ function resetAndFillData(side) {
 			object["title"] = title;
 			object["minute"] = minute;
 			object["second"] = second;
+			object["timeArray"] = [minute, second];
 			dataSideA.push(object);
 			totalLengthSideA = formatLength(sum(side));
 		}
@@ -437,10 +456,20 @@ function resetAndFillData(side) {
 			object["title"] = title;
 			object["minute"] = minute;
 			object["second"] = second;
+			object["timeArray"] = [this.minute, this.second];
 			dataSideB.push(object);
 			totalLengthSideB = formatLength(sum(side));
 		}
 	}
+}
+
+// ************************* GET ALLDATA ************************* 
+
+
+function getAllData() {
+resetAndFillData("sideA");
+resetAndFillData("sideB");
+allData = dataSideA.concat(dataSideB)
 }
 
 
@@ -463,28 +492,13 @@ function shuffleAlgo(array) {
   return array;
 }
 
-function getAllData() {
-resetAndFillData("sideA");
-resetAndFillData("sideB");
-allData = dataSideA.concat(dataSideB)
-}
-
 
 function shuffleData() {
 shuffledData = shuffleAlgo(allData);
 }
 
-// ************************* RANDOM & REBUILD ************************* 
 
-
-function random() {	
-	getAllData()
-	shuffleData()
-	destroy()
-	rebuildSide(dataSideA,shuffledData, "sideA")
-	rebuildSide(dataSideB,shuffledData, "sideB")
-}
-
+// ************************* DESTROY & REBUILD TOOLS ************************* 
 
 function destroy(){
 	let sideA = document.getElementById("sideA")
@@ -493,23 +507,211 @@ function destroy(){
 	while (sideB.children.length >0) {sideB.lastElementChild.remove()}	
 }
 
-function rebuildSide(oldSource, newSource, side) {
+function rebuildSide(oldSource, dataSource, side) {
 	for (let i = 0; i < oldSource.length ; i++) {
 	addTitle(side); // Crée les lignes 
 	}
-	let first;	
+	let firstElement;	
 	for (let i = 0; i < document.getElementById(side).children.length; i++) {
-		first = newSource.shift()
-		newSource.push(first); // avoid empty array of Data
+		firstElement = dataSource.shift()
+		dataSource.push(firstElement); // avoid empty array of Data
 		// gets infos from objects
-		document.getElementById(side).children[i].children[1].value = first.title 
-		document.getElementById(side).children[i].children[2].children[0].value = first.minute 
-		document.getElementById(side).children[i].children[2].children[2].value = first.second
+		document.getElementById(side).children[i].children[1].value = firstElement.title 
+		document.getElementById(side).children[i].children[2].children[0].value = firstElement.minute 
+		document.getElementById(side).children[i].children[2].children[2].value = firstElement.second
 	}		
 }
 
+function rebuildBothSides(firstSide, secondSide, dataSource)  {
 
-// ************************* ALGORITHM SORTING
+	let index = dataSource.length;
+	let counterA = 0;
+	let counterB = 0;
+	let firstElement;	
+
+	if (index >2) {  // TODO : il faut gérer le cas où =2
+		while (index > 0) {	
+			addTitle(firstSide)
+			index--;			
+			firstElement = dataSource.shift()
+			dataSource.push(firstElement); // avoid empty array of Data
+			document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title
+			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute
+			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second
+			counterA++;
+
+			if(counterA + counterB < dataSource.length){
+				addTitle(secondSide)
+				index--
+				firstElement = dataSource.shift()
+				dataSource.push(firstElement); // avoid empty array of Data
+				document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title
+				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute
+				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second
+				counterB++				
+			}
+		}
+	}
+	if (index = 2) {
+		//side A
+		document.getElementById(firstSide).children[0].children[1].value = dataSource[0].title
+		document.getElementById(firstSide).children[0].children[2].children[0].value = dataSource[0].minute
+		document.getElementById(firstSide).children[0].children[2].children[2].value = dataSource[0].second
+		// side B
+		document.getElementById(secondSide).children[0].children[1].value = dataSource[1].title
+		document.getElementById(secondSide).children[0].children[2].children[0].value = dataSource[1].minute
+		document.getElementById(secondSide).children[0].children[2].children[2].value = dataSource[1].second
+	}	
+}
+
+// ************************* ALGORITHM V2
+
+function sortWithDescending() {
+resetAndFillData("sideA");
+resetAndFillData("sideB");
+dataSideASortedByMinutes = dataSideA.sort((a,b) => b.minute - a.minute);
+dataSideBSortedByMinutes = dataSideB.sort((a,b) => b.minute - a.minute);
+let assemblage = dataSideASortedByMinutes.concat(dataSideBSortedByMinutes)
+allDataSortedByMinutes =  assemblage.sort((a,b) => b.minute - a.minute);
+destroy()
+rebuildBothSides("sideA", "sideB", allDataSortedByMinutes)
+
+// test 
+totalLengthSideA = sum("sideA");
+totalLengthSideB = sum("sideB")
+t1LengthDifference = [
+		calculValAbs0(),
+		calculValAbs1()];
+return t1LengthDifference
+}
+
+
+// ************************* SHUFFLE & SORTWITHSHUFFLE ************************* 
+
+
+function shuffle() {	
+	getAllData()
+	shuffleData()
+	destroy()
+	rebuildSide(dataSideA,shuffledData, "sideA")
+	rebuildSide(dataSideB,shuffledData, "sideB")
+}
+
+
+function sortWithShuffle() {	
+
+		// tests to avoid stupid or abusive recursions
+
+	if (t0LengthDifference[0] ===  t1LengthDifference[0]
+		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
+		&& t1LengthDifference[0] !== undefined
+		&& t1LengthDifference[1] !== undefined) {
+		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
+	}
+	if (t1LengthDifference[0] === 0) {
+		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
+	}
+
+	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
+	console.log(t0LengthDifference)
+
+	shuffle(); 
+	console.log("let's shuffle bitch!");
+
+	totalLengthSideA = sum("sideA");
+	totalLengthSideB = sum("sideB");		
+	t1LengthDifference = [calculValAbs0(),calculValAbs1()];	
+	//recursion
+	if (t1LengthDifference[0] > t0LengthDifference[0]) {
+		sortWithShuffle()
+	}
+	else {
+	//test
+		return t1LengthDifference
+	}
+}
+
+
+// ************************* GET RANDOM VALUES FOR TEST 
+
+function getRandomLines() {
+	let randomnNumberOfLines = randomNumber();
+	let randomSide;
+	let randomSideOpposite
+	if ( Math.random() > .5 ){
+	  randomSide = "sideA";
+	  randomSideOpposite = "sideB";
+	} else {
+	  randomSide = "sideB";  
+	  randomSideOpposite = "sideA"
+	}
+	for (let i = 0 ; i < randomnNumberOfLines; i++){
+		addTitle(randomSide)
+	}
+	for (let i = 0 ; i < randomnNumberOfLines+ 1; i++){
+		addTitle(randomSideOpposite)
+	}
+}
+
+function getRandomValues() {	
+	let totalLength =  document.getElementById('sideA').children.length + document.getElementById('sideB').children.length
+	for (let i = 0; i < totalLength ; i++) {
+		let obj = {}		
+		if (i%2 ==0){
+		obj.minute = randomNumber();
+		obj.second = randomNumber();
+		dataSideA.push(obj);
+		}
+		else {
+		obj.minute = randomNumber();
+		obj.second = randomNumber();
+		dataSideB.push(obj);
+		};
+	}
+}
+
+function writeRandomValues() {
+	allData = dataSideA.concat(dataSideB);
+	rebuildBothSides("sideA","sideB", allData);	
+}
+
+function removeEmptyTitles(side) {
+	for (let i = 0; i < document.getElementById(side).children.length; i++ ) {
+		if (document.getElementById(side).children[i].children[2].children[0].value === "") {
+			document.getElementById(side).children[i].remove()
+		}
+	}
+}
+
+
+// ************************* ALGO TEST
+
+function algoTestShuffle() {
+	getRandomLines()
+	getRandomValues();
+	writeRandomValues();
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	sortWithShuffle();
+}
+
+function algoTestSort() {
+	getRandomLines()
+	getRandomValues();
+	writeRandomValues();
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideB");
+	sortWithDescending();
+}
+
+
+// ************************* AVERAGE
 
 
 function average() {
@@ -518,42 +720,12 @@ function average() {
 	avr = [];
 	let integer;
 	avr[0] = Math.trunc((totalLengthSideA[0] + totalLengthSideB[0])/2); // get integer part of minutes
-	integer = avr[0] 
+	integer = avr[0];
 	let decimal = ((totalLengthSideA[0] + totalLengthSideB[0])/2) - integer; // get floating part of minutes
-	additionalSeconds = decimal*60
+	additionalSeconds = decimal*60;
 	avr[1] = parseInt(((totalLengthSideA[1] + totalLengthSideB[1])/2) + additionalSeconds);
 	return avr;
 }
-
-function sort() {
-	totalLengthSideA = sum("sideA");
-	totalLengthSideB = sum("sideB");
-	let initialDifference = [
-		Math.abs(totalLengthSideB[0]-totalLengthSideA[0]),
-		Math.abs(totalLengthSideB[1]-totalLengthSideA[1])];
-	console.log(initialDifference);
-	random();
-	totalLengthSideA = sum("sideA");
-	totalLengthSideB = sum("sideB");		
-	let newDifference = [
-		Math.abs(totalLengthSideB[0]-totalLengthSideA[0]),
-		Math.abs(totalLengthSideB[1]-totalLengthSideA[1])];
-	console.log(newDifference);
-	if (newDifference[0] > initialDifference[0]) {
-		sort()
-	}
-	if (newDifference[0] <= initialDifference[0]) {
-		if (newDifference[1] > initialDifference[1]){
-			sort()
-		}
-	}
-}
-
-
-
-
-
- 
 
 
 
