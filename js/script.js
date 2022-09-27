@@ -398,15 +398,6 @@ function removeTitle(side) {
 	}
 }
 
-// ************************* DATA COLLECTING ************************* 
-
-/*
-function fillDataOnce(side) {
-	if (dataSideA.length === 0 || dataSideB.length === 0) { //fill data ONCE
-		resetAndFillData(side)
-	}
-}
-*/
 
 function resetAndFillData(side) {
 	if (side === "sideA") { // reset A
