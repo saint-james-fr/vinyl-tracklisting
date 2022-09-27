@@ -7,6 +7,7 @@ var timeWrapperNumber;
 var sideLetter;
 var counterA = 1;
 var counterB = 1;
+var counterRecursion = 0;
 var dataSideA = [];
 var dataSideB = [];
 var totalLengthSideA;
@@ -17,18 +18,17 @@ let dataSideASortedByMinutes;
 let dataSideBSortedByMinutes;
 let allDataSortedByMinutes;
 let calculValAbs0 = () => {
-		totalLengthSideA = sum("sideA")
-		totalLengthSideB = sum("sideB")
-		return Math.abs(totalLengthSideB[0] - totalLengthSideA[0])
-	};
+		totalLengthSideA = sum("sideA");
+		totalLengthSideB = sum("sideB");
+		return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);};
   let calculValAbs1 = () => {
-  	totalLengthSideA = sum("sideA")
-		totalLengthSideB = sum("sideB")
-  	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1])
-  };
+  	totalLengthSideA = sum("sideA");
+		totalLengthSideB = sum("sideB");
+  	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);};
 var t0LengthDifference = [undefined,undefined];
 var t1LengthDifference = [undefined,undefined];
 let randomNumber = () => Math.floor(Math.random() * 6); 
+var combinations = [];
 
 // ************************* INITIALIZATION ************************* 
 
@@ -69,9 +69,12 @@ function erase(id) {
 	document.getElementById(id).value = null;
 }
 
+/* // "ARE YOU SURE YOU WANT TO REFRESH?"" 
+
 window.onbeforeunload = function () {
 	return "Do you want to reload the page?";
 };
+*/
 
 // ************************* EVENT HANDLER ************************* 
 
@@ -160,7 +163,7 @@ function updateClassSideB() {
 
 function updateLength(side) {
 	formatLength(sum(side));
-	el = document.getElementById(`length ${side}`);
+	let el = document.getElementById(`length ${side}`);
 	return el.textContent = `TOTAL --- ${result}`;
 }
 
@@ -180,8 +183,8 @@ function formatLength(value) {
 
 function sum(side) {
 	updateNumberOfTracks(side);
-	seconds = sumSeconds(side);
-	minutes = sumMinutes(side);
+	let seconds = sumSeconds(side);
+	let minutes = sumMinutes(side);
 	minutes += secondsToMinute(seconds)[0];
 	seconds = secondsToMinute(seconds)[1];
 	return [minutes, seconds];
@@ -189,7 +192,7 @@ function sum(side) {
 
 function sumMinutes(side) {
 	updateNumberOfTracks(side);
-	sumMinutesResults = {};
+	let sumMinutesResults = {};
 	let el = document.querySelectorAll(`#${side} .minute-input`);
 	for (var i = 0; i < el.length; i++) {
 		let value = el[i].value;
@@ -200,7 +203,7 @@ function sumMinutes(side) {
 
 function sumSeconds(side) {
 	updateNumberOfTracks(side);
-	sumSecondsResults = {};
+	let sumSecondsResults = {};
 	let el = document.querySelectorAll(`#${side} .second-input`);
 	for (var i = 0; i < el.length; i++) {
 		let value = el[i].value;
@@ -262,7 +265,7 @@ function updatePosition(side) {
 	getSideLetter(side);
 	let positionElements = document.getElementById(side).children;
 	for (let i = 0; i < positionElements.length; i++) {
-		el = document.getElementById(positionElements[i].children[0].id);
+		let el = document.getElementById(positionElements[i].children[0].id);
 		let index = i + 1;
 		el.textContent = `${sideLetter}${index}`;
 	}
@@ -310,7 +313,7 @@ function createHandler(handlerId, side) {
 		side,
 		handlerId
 	);
-	el = document.getElementById(handlerId);
+	let el = document.getElementById(handlerId);
 }
 
 function createPosition(positionId, sideLetter) {
@@ -320,7 +323,7 @@ function createPosition(positionId, sideLetter) {
 		`handler ${sideLetter}${positionNumber}`,
 		positionId
 	);
-	el = document.getElementById(positionId);
+	let el = document.getElementById(positionId);
 	el.textContent = `${sideLetter}${positionNumber}`;
 }
 
@@ -352,7 +355,7 @@ function createMinute(minuteId, side) {
 		`timeWrapper ${sideLetter}${positionNumber}`,
 		minuteId
 	);
-	el = document.getElementById(minuteId);
+	let el = document.getElementById(minuteId);
 	el.setAttribute("placeholder", "mm");
 	el.setAttribute("type", "number");
 	el.setAttribute("min", "0");
@@ -469,14 +472,14 @@ function resetAndFillData(side) {
 function getAllData() {
 resetAndFillData("sideA");
 resetAndFillData("sideB");
-allData = dataSideA.concat(dataSideB)
+allData = dataSideA.concat(dataSideB);
 }
 
 
 // ************************* SHUFFLE DATA ************************* 
 
 function shuffleAlgo(array) {
-  let currentIndex = array.length
+  let currentIndex = array.length;
   let randomIndex;
 
   while (currentIndex != 0) {
@@ -501,10 +504,10 @@ shuffledData = shuffleAlgo(allData);
 // ************************* DESTROY & REBUILD TOOLS ************************* 
 
 function destroy(){
-	let sideA = document.getElementById("sideA")
-	let sideB = document.getElementById("sideB")
-	while (sideA.children.length >0) {sideA.lastElementChild.remove()}
-	while (sideB.children.length >0) {sideB.lastElementChild.remove()}	
+	let sideA = document.getElementById("sideA");
+	let sideB = document.getElementById("sideB");
+	while (sideA.children.length >0) {sideA.lastElementChild.remove();}
+	while (sideB.children.length >0) {sideB.lastElementChild.remove();}	
 }
 
 function rebuildSide(oldSource, dataSource, side) {
@@ -513,12 +516,12 @@ function rebuildSide(oldSource, dataSource, side) {
 	}
 	let firstElement;	
 	for (let i = 0; i < document.getElementById(side).children.length; i++) {
-		firstElement = dataSource.shift()
+		firstElement = dataSource.shift();
 		dataSource.push(firstElement); // avoid empty array of Data
 		// gets infos from objects
-		document.getElementById(side).children[i].children[1].value = firstElement.title 
-		document.getElementById(side).children[i].children[2].children[0].value = firstElement.minute 
-		document.getElementById(side).children[i].children[2].children[2].value = firstElement.second
+		document.getElementById(side).children[i].children[1].value = firstElement.title;
+		document.getElementById(side).children[i].children[2].children[0].value = firstElement.minute;
+		document.getElementById(side).children[i].children[2].children[2].value = firstElement.second;
 	}		
 }
 
@@ -531,36 +534,36 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 
 	if (index >2) {  // TODO : il faut gérer le cas où =2
 		while (index > 0) {	
-			addTitle(firstSide)
+			addTitle(firstSide);
 			index--;			
 			firstElement = dataSource.shift()
 			dataSource.push(firstElement); // avoid empty array of Data
-			document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title
-			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute
-			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second
+			document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title;
+			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute;
+			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second;
 			counterA++;
 
 			if(counterA + counterB < dataSource.length){
-				addTitle(secondSide)
-				index--
-				firstElement = dataSource.shift()
+				addTitle(secondSide);
+				index--;
+				firstElement = dataSource.shift();
 				dataSource.push(firstElement); // avoid empty array of Data
-				document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title
-				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute
-				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second
-				counterB++				
+				document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title;
+				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute;
+				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second;
+				counterB++;
 			}
 		}
 	}
-	if (index = 2) {
+	if (index === 2) {
 		//side A
-		document.getElementById(firstSide).children[0].children[1].value = dataSource[0].title
-		document.getElementById(firstSide).children[0].children[2].children[0].value = dataSource[0].minute
-		document.getElementById(firstSide).children[0].children[2].children[2].value = dataSource[0].second
+		document.getElementById(firstSide).children[0].children[1].value = dataSource[0].title;
+		document.getElementById(firstSide).children[0].children[2].children[0].value = dataSource[0].minute;
+		document.getElementById(firstSide).children[0].children[2].children[2].value = dataSource[0].second;
 		// side B
-		document.getElementById(secondSide).children[0].children[1].value = dataSource[1].title
-		document.getElementById(secondSide).children[0].children[2].children[0].value = dataSource[1].minute
-		document.getElementById(secondSide).children[0].children[2].children[2].value = dataSource[1].second
+		document.getElementById(secondSide).children[0].children[1].value = dataSource[1].title;
+		document.getElementById(secondSide).children[0].children[2].children[0].value = dataSource[1].minute;
+		document.getElementById(secondSide).children[0].children[2].children[2].value = dataSource[1].second;
 	}	
 }
 
@@ -573,16 +576,17 @@ dataSideASortedByMinutes = dataSideA.sort((a,b) => b.minute - a.minute);
 dataSideBSortedByMinutes = dataSideB.sort((a,b) => b.minute - a.minute);
 let assemblage = dataSideASortedByMinutes.concat(dataSideBSortedByMinutes)
 allDataSortedByMinutes =  assemblage.sort((a,b) => b.minute - a.minute);
-destroy()
-rebuildBothSides("sideA", "sideB", allDataSortedByMinutes)
+destroy();
+rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
 
 // test 
 totalLengthSideA = sum("sideA");
-totalLengthSideB = sum("sideB")
+totalLengthSideB = sum("sideB");
 t1LengthDifference = [
 		calculValAbs0(),
 		calculValAbs1()];
-return t1LengthDifference
+combinations.push(t1LengthDifference);
+return console.log(combinations);
 }
 
 
@@ -602,33 +606,68 @@ function sortWithShuffle() {
 
 		// tests to avoid stupid or abusive recursions
 
+
 	if (t0LengthDifference[0] ===  t1LengthDifference[0]
 		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
 		&& t1LengthDifference[0] !== undefined
 		&& t1LengthDifference[1] !== undefined) {
 		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
 	}
-	if (t1LengthDifference[0] === 0) {
+	
+	if (t1LengthDifference[0] === 0 
+		&& t0LengthDifference[1] > t1LengthDifference[1]) {
 		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
 	}
-
 	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
-	console.log(t0LengthDifference)
+	console.log(t0LengthDifference);
 
 	shuffle(); 
 	console.log("let's shuffle bitch!");
-
-	totalLengthSideA = sum("sideA");
-	totalLengthSideB = sum("sideB");		
 	t1LengthDifference = [calculValAbs0(),calculValAbs1()];	
+	console.log(t1LengthDifference);
 	//recursion
-	if (t1LengthDifference[0] > t0LengthDifference[0]) {
-		sortWithShuffle()
+	if (t1LengthDifference[0] = 0 && t1LengthDifference[1] > t0LengthDifference[1] ) {
+		{
+			console.log("let's do a recursion");
+		sortWithShuffle();
+		}
+	}
+}
+
+function sortWithShuffle2() {	
+
+if (t0LengthDifference[0] ===  t1LengthDifference[0]
+		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
+		&& t1LengthDifference[0] !== undefined
+		&& t1LengthDifference[1] !== undefined) {
+		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
+	}
+	
+	if (t1LengthDifference[0] === 0 
+		&& t0LengthDifference[1] > t1LengthDifference[1]) {
+		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
+	}
+
+
+	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
+	console.log(t0LengthDifference);
+	shuffle(); 
+	counterRecursion++;
+	console.log(counterRecursion);
+	console.log("let's shuffle bitch!");
+	t1LengthDifference = [calculValAbs0(),calculValAbs1()];
+	console.log(t1LengthDifference)
+
+	if ( t0LengthDifference[0] + (t0LengthDifference[1]/60) > t1LengthDifference[0] + (t1LengthDifference[1]/60) )
+		{combinations.push(t1LengthDifference)}
+	if ( t1LengthDifference[0] === 0 )
+		{combinations.push(t1LengthDifference)}
+	if (counterRecursion >= 40) {
+		sortWithDescending();
 	}
 	else {
-	//test
-		return t1LengthDifference
-	}
+		console.log("let's do a recursion motherfucker!");
+		sortWithShuffle2()};
 }
 
 
@@ -698,14 +737,26 @@ function algoTestShuffle() {
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
-	sortWithShuffle();
+	sortWithShuffle2()
+	if(counterRecursion<40){
+	sortWithShuffle2()
+	sortWithShuffle2()
+	sortWithShuffle2()
+	}
+	console.log(combinations)
 }
 
-function algoTestSort() {
+function algoTestDescending() {
 	getRandomLines()
 	getRandomValues();
 	writeRandomValues();
 	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
 	sortWithDescending();
 }

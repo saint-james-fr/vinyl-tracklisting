@@ -184,3 +184,8 @@ input {
 	background-color: indianred;
 }
 
+
+.flex {
+	display: flex;
+	justify-content: space-around;
+}
