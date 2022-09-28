@@ -27,7 +27,7 @@ let calculValAbs0 = () => {
   	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);};
 var t0LengthDifference = [undefined,undefined];
 var t1LengthDifference = [undefined,undefined];
-let randomNumber = () => Math.floor(Math.random() * 6);
+let randomNumberMin = () => Math.floor(Math.random() * 10);
 let randomNumberSec = () => Math.floor(Math.random() * 60); 
 var combinations = [];
 
@@ -539,8 +539,13 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 			index--;			
 			firstElement = dataSource.shift()
 			dataSource.push(firstElement); // avoid empty array of Data
-			document.getElementById(firstSide).children[counterA].children[1].value = `Track ${counterA + 1}`;
-			firstElement.title = `Track ${counterA}`;
+			if (firstElement.title === undefined) {
+					document.getElementById(firstSide).children[counterA].children[1].value = `Track A${counterA +  1}`; 
+					firstElement.title = `Track A${counterA + 1}`
+				}
+				else {
+					document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title
+				};
 			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute;
 			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second;
 			counterA++;
@@ -550,8 +555,13 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 				index--;
 				firstElement = dataSource.shift();
 				dataSource.push(firstElement); // avoid empty array of Data
-				document.getElementById(secondSide).children[counterB].children[1].value = `Track ${counterB + 1}`;
-				firstElement.title = `Track ${counterB}`;
+				if (firstElement.title === undefined) {
+					document.getElementById(secondSide).children[counterB].children[1].value = `Track B${counterB + 1}`; 
+					firstElement.title = `Track B${counterB + 1}`
+				}
+				else {
+					document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title
+				};
 				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute;
 				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second;
 				counterB++;
@@ -678,7 +688,7 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 // ************************* GET RANDOM VALUES FOR TEST 
 
 function getRandomLines() {
-	let randomnNumberOfLines = randomNumber();
+	let randomnNumberOfLines = randomNumberMin();
 	let randomSide;
 	let randomSideOpposite
 	if ( Math.random() > .5 ){
@@ -701,12 +711,12 @@ function getRandomValues() {
 	for (let i = 0; i < totalLength ; i++) {
 		let obj = {}		
 		if (i%2 ==0){
-		obj.minute = randomNumber();
+		obj.minute = randomNumberMin();
 		obj.second = randomNumberSec();
 		dataSideA.push(obj);
 		}
 		else {
-		obj.minute = randomNumber();
+		obj.minute = randomNumberMin();
 		obj.second = randomNumberSec();
 		dataSideB.push(obj);
 		};
