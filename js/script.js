@@ -27,7 +27,8 @@ let calculValAbs0 = () => {
   	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);};
 var t0LengthDifference = [undefined,undefined];
 var t1LengthDifference = [undefined,undefined];
-let randomNumber = () => Math.floor(Math.random() * 6); 
+let randomNumber = () => Math.floor(Math.random() * 6);
+let randomNumberSec = () => Math.floor(Math.random() * 60); 
 var combinations = [];
 
 // ************************* INITIALIZATION ************************* 
@@ -538,7 +539,8 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 			index--;			
 			firstElement = dataSource.shift()
 			dataSource.push(firstElement); // avoid empty array of Data
-			document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title;
+			document.getElementById(firstSide).children[counterA].children[1].value = `Track ${counterA + 1}`;
+			firstElement.title = `Track ${counterA}`;
 			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute;
 			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second;
 			counterA++;
@@ -548,7 +550,8 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 				index--;
 				firstElement = dataSource.shift();
 				dataSource.push(firstElement); // avoid empty array of Data
-				document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title;
+				document.getElementById(secondSide).children[counterB].children[1].value = `Track ${counterB + 1}`;
+				firstElement.title = `Track ${counterB}`;
 				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute;
 				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second;
 				counterB++;
@@ -636,13 +639,14 @@ function sortWithShuffle() {
 
 function sortWithShuffle2() {	
 
+/*
 if (t0LengthDifference[0] ===  t1LengthDifference[0]
 		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
 		&& t1LengthDifference[0] !== undefined
 		&& t1LengthDifference[1] !== undefined) {
 		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
 	}
-	
+*/	
 	if (t1LengthDifference[0] === 0 
 		&& t0LengthDifference[1] > t1LengthDifference[1]) {
 		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
@@ -662,7 +666,7 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 		{combinations.push(t1LengthDifference)}
 	if ( t1LengthDifference[0] === 0 )
 		{combinations.push(t1LengthDifference)}
-	if (counterRecursion >= 40) {
+	if (counterRecursion >= 5) {
 		sortWithDescending();
 	}
 	else {
@@ -698,12 +702,12 @@ function getRandomValues() {
 		let obj = {}		
 		if (i%2 ==0){
 		obj.minute = randomNumber();
-		obj.second = randomNumber();
+		obj.second = randomNumberSec();
 		dataSideA.push(obj);
 		}
 		else {
 		obj.minute = randomNumber();
-		obj.second = randomNumber();
+		obj.second = randomNumberSec();
 		dataSideB.push(obj);
 		};
 	}
@@ -725,6 +729,20 @@ function removeEmptyTitles(side) {
 
 // ************************* ALGO TEST
 
+function populate() {
+	getRandomLines()
+	getRandomValues();
+	writeRandomValues();
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideA");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+	removeEmptyTitles("sideB");
+}
+
 function algoTestShuffle() {
 	getRandomLines()
 	getRandomValues();
@@ -737,11 +755,11 @@ function algoTestShuffle() {
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
-	sortWithShuffle2()
-	if(counterRecursion<40){
-	sortWithShuffle2()
-	sortWithShuffle2()
-	sortWithShuffle2()
+	sortWithShuffle2();
+	if(counterRecursion<3){
+	sortWithShuffle2();
+	sortWithShuffle2();
+	sortWithShuffle2();
 	}
 	console.log(combinations)
 }
@@ -761,6 +779,16 @@ function algoTestDescending() {
 	sortWithDescending();
 }
 
+function algoTestBoth() {
+	sortWithDescending()
+	sortWithShuffle2();
+	if(counterRecursion<40){
+	sortWithShuffle2();
+	sortWithShuffle2();
+	sortWithShuffle2();
+	}
+	console.log(combinations)
+}
 
 // ************************* AVERAGE
 
