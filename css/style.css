@@ -1,4 +1,4 @@
-/*--------------------- RESET CSS ---------------------*/
+/*---------------------------- RESET CSS ----------------------------*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -60,7 +60,7 @@ a:hover {
 }
 
 
-/* ---------------------BASICS--------------------- */
+/* ---------------------------- BASICS ---------------------------- */
 
 :root {
 	/*------- COLORS -------*/
@@ -91,10 +91,37 @@ body, p, .block-title, .text {
 	color:  var(--color-white);
 }
 
+button {
+	display: block;
+	margin: auto;
+	outline: none;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+	border-radius: 500px;
+	transition-property: background-color,border-color,color,box-shadow,filter;
+	transition-duration: .2s;
+	border: 1px solid transparent;
+	letter-spacing: 2px;
+	min-width: 160px;
+	text-transform: uppercase;
+	white-space: normal;
+	font-weight: 700;
+	text-align: center;
+	padding: 16px 14px 18px;
+	color: var(--color-white);
+	box-shadow: inset 0 0 0 2px var(--color-white);
+	background-color: transparent;
+	height: 48px;            
+}
+
+button:hover {
+	    color: #616467;
+	    background-color: var(--color-white) ;
+	}
 
 
-.page__container,
-.page__container-first {
+.page__container-basics {
 	display: block;
 	min-width: 100%;
 	height: 640px;
@@ -102,11 +129,11 @@ body, p, .block-title, .text {
 	border-bottom: 1px solid black;
 }
 
-.page__container {
+/*.page__container {
 min-height: calc(100vh - 45px);
-}
+}*/
 
-.page__container-first {
+.page__container-first, .page__container-basics  {
 	min-height: 100vh;
 }
 
@@ -138,22 +165,23 @@ section {
 	line-height: 1em;
 }
 
-.block-paragraph {
-	line-height: 1em;
-	font-size: var(--font-size-1)
-}
+
 
 .page-title {
 	text-align: center;
 	font-size: 35px;
 	display: block;
-	width: 50vw;
+	width: 40%;
 	margin: auto;
-	padding: 0.8em;
+	padding: 1em;
 	background-color: var(--color-gray-light);
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	
+}
+
+.page-title.logo {
+	font-size: calc(0.8*var(--font-size-2));
 }
 
 .half-hero {
@@ -173,7 +201,13 @@ section {
 	border-radius: 10px;
 }
 
-/*------- HEADER -------*/
+@media screen and (max-width: 890px) {
+	.page-title {
+		width: 100%;
+		max-width: 400px;
+	}
+}
+/*---------------------------- HEADER ----------------------------*/
 
 
 .header {
@@ -192,6 +226,7 @@ section {
 
 nav {
 	width: 38vw;
+	margin-top: 15px;
 }
 
 nav > ul {
@@ -213,14 +248,20 @@ nav > ul > li {
 	font-size: var(--font-size-2);
 }
 
-/*------- HOME -------*/
+@media screen and (max-width: 890px) {
+	.header {
+		display: none;
+	}
+}
+
+/*---------------------------- HOME ----------------------------*/
 
 #section__home {
 	height: 100%;
 }
 
 #section__home .logo {
-	font-size: calc(2.9*var(--font-size-2));
+	font-size: calc(2*var(--font-size-2));
 	display: block;
 	text-align: right;
 	padding-top: 100px;
@@ -236,89 +277,226 @@ nav > ul > li {
 
 .home__infoblock {
 	background-color: var(--color-gray-dark-opacity);
-	display: block;
-	width: 33%;
-	height: 400px;
-
-}
-
-.home__infoblock__text {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around ;
+	align-items: center;
+	width: 350px;
+	height: 60vh;
 	padding: 1.5em;
 }
 
+
 .home__infoblock__text .block-title {
-	padding-bottom: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+@media screen and (max-width: 890px) {
+	.header {
+		display: none;
+	}
+
+	.home__infoblock {
+		width: 100%;
+		max-width: 500px;
+		height: auto;
+}
+	#section__home .content__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#section__home .logo {
+		font-size: calc(var(--font-size-2));
+		display: block;
+		text-align: center;
+	}
+} 
+
+@media screen and (min-width: 1200px) {
+	.home__infoblock {
+	width: 33%;
+	} 
 }
 
 
-}
-.home__infoblock .paragraph{
-	padding: 1
-	padding-bottom: 1.5em;
-}
 
 
+/*---------------------------- TIMING----------------------------*/
 
-/*------- TIMING -------*/
-
-.half-content__container {
-	height: 50%;
-}
-
-
-.timing__cards {
+#timing__hero-1 .content__container {
 	display: flex;
-	justify-content: space-between;
-	align-items: start;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
-
-.timing__card {
-	display: block;
-	background-color: var(--color-orange-opacity);
-	width: 25%;
-	height: auto;
-	padding: 1em;
-}
-
-.timing__card_title {
-	text-transform: uppercase;
-	text-align: center;
-}
-
-.timing__card_text {
+#timing__hero-1 {
+	width: 100%;
+	height:  50%;
 }
 
 #timing__hero-2 {
 	background-color: var(--color-gray-dark);
 	width: 100%;
+	height:  50%;
+}
+
+#timing__hero-2 > div {
 	height: 100%;
 }
 
-#timing__hero-2 > div > div {
-	padding: 3em;
+
+.timing__cards {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: auto 0;
+}
+
+.timing__card {
+	display: block;
+	background-color: var(--color-orange-opacity);
+	width: 30%;
+	height: 100%;
+	min-height: 170px;
+	padding: 1em;
+}
+
+.timing__card_title {
+	text-transform: uppercase;
+	font-weight: 900;
+	text-align: center;
+	font-size: calc(2*var(--font-size-1));
+}
+
+.indice-rpm {
+	font-size: calc(1.5*var(--font-size-1));
+}
+
+.timing__card_separator:after {
+	content: "";
+	display: block;
+	border-bottom: 2px solid var(--color-white);
+	padding-bottom: .5rem;
+	margin-bottom: 0.5rem;
+}
+
+.timing__card_text {
+	margin-left: 10%;
+}
+
+.timing__card_text {
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 3px 0;
+	font-size: calc(1.1*var(--font-size-1))
+}
+
+.indice-min {
+	font-size: calc(0.8*var(--font-size-1));
+}
+
+.approx {
+	font-size: calc(0.7*var(--font-size-1));
 }
 
 
+.timing__motto {
+	display: block;
+	font-size: calc(2.2*var(--font-size-1));
+	text-transform: uppercase;
+	padding: 1em;
+}
 
-/*-------------- TRACKLISTING------- */
+.timing__infoblock {
+	padding: 1em;
+}
+
+.centrer {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width:890px) {
+	#timing__hero-1 {
+		width: 100%;
+		height:  50%;
+	}
+
+	#timing__hero-2 {
+		width: 100%;
+		height:  50%;
+	}
+
+	.timing__cards {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: auto 0;
+	}
+
+	.timing__card {
+		display: block;
+		background-color: var(--color-orange-opacity);
+		width: 45%;
+		margin-bottom: 40px;
+	}
+	.page__container-second {
+		height: 200vh;
+	}
+}
+
+
+/*---------------------------- TRACKLISTING ---------------------------- */
 
 #section__tracklisting {
 	background-color: var(--color-gray-strong);
 }
 
+#section__tracklisting .content__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.app__container {
+	min-height: auto;
+}
+
+
+/*---------------------------- RELEASE INFORMATIONS ---------------------------- */
+
+#section__release-infos .content__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
 
 
 
+/*---------------------------- AUDIO INFORMATIONS ---------------------------- */
+
+#section__audio-infos .content__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
 
 
+/*---------------------------- GENERATE PDF ---------------------------- */
+
+#section__pdf .content__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
 
 
-
-
-
-
-/*--------------------- OLD CSS ---------------------*/
+/*---------------------------- OLD CSS ----------------------------*/
 
 body {
 	font-family: Helvetica;
