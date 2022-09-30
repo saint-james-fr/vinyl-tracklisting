@@ -53,7 +53,7 @@ function rebuildSide(oldSource, dataSource, side) {
 		// gets infos from objects
 		document.getElementById(side).children[i].children[1].value = firstElement.title;
 		document.getElementById(side).children[i].children[2].children[0].value = firstElement.minute;
-		document.getElementById(side).children[i].children[2].children[2].value = firstElement.second;
+		document.getElementById(side).children[i].children[2].children[1].value = firstElement.second;
 	}		
 }
 
@@ -78,7 +78,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 					document.getElementById(firstSide).children[counterA].children[1].value = firstElement.title
 				};
 			document.getElementById(firstSide).children[counterA].children[2].children[0].value = firstElement.minute;
-			document.getElementById(firstSide).children[counterA].children[2].children[2].value = firstElement.second;
+			document.getElementById(firstSide).children[counterA].children[2].children[1].value = firstElement.second;
 			counterA++;
 
 			if(counterA + counterB < dataSource.length){
@@ -94,7 +94,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 					document.getElementById(secondSide).children[counterB].children[1].value = firstElement.title
 				};
 				document.getElementById(secondSide).children[counterB].children[2].children[0].value = firstElement.minute;
-				document.getElementById(secondSide).children[counterB].children[2].children[2].value = firstElement.second;
+				document.getElementById(secondSide).children[counterB].children[2].children[1].value = firstElement.second;
 				counterB++;
 			}
 		}
@@ -103,11 +103,11 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 		//side A
 		document.getElementById(firstSide).children[0].children[1].value = dataSource[0].title;
 		document.getElementById(firstSide).children[0].children[2].children[0].value = dataSource[0].minute;
-		document.getElementById(firstSide).children[0].children[2].children[2].value = dataSource[0].second;
+		document.getElementById(firstSide).children[0].children[2].children[1].value = dataSource[0].second;
 		// side B
 		document.getElementById(secondSide).children[0].children[1].value = dataSource[1].title;
 		document.getElementById(secondSide).children[0].children[2].children[0].value = dataSource[1].minute;
-		document.getElementById(secondSide).children[0].children[2].children[2].value = dataSource[1].second;
+		document.getElementById(secondSide).children[0].children[2].children[1].value = dataSource[1].second;
 	}	
 }
 

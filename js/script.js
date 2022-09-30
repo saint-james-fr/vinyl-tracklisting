@@ -165,7 +165,7 @@ function updateClassSideB() {
 function updateLength(side) {
 	formatLength(sum(side));
 	let el = document.getElementById(`length ${side}`);
-	return el.textContent = `TOTAL --- ${result}`;
+	return el.textContent = `${result}`;
 }
 
 function formatLength(value) {
@@ -290,7 +290,6 @@ function addTitle(side) {
 		createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
 		createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
 		createMinute(`minute ${sideLetter}${positionNumber}`, side);
-		createSeparator(`separator ${sideLetter}${positionNumber}`);
 		createSecond(`second ${sideLetter}${positionNumber}`, side);
 	}
 	if (side === "sideB") {
@@ -300,7 +299,6 @@ function addTitle(side) {
 		createTitle(`title ${sideLetter}${positionNumber}`, sideLetter);
 		createTimeWrapper(`timeWrapper ${sideLetter}${positionNumber}`);
 		createMinute(`minute ${sideLetter}${positionNumber}`, side);
-		createSeparator(`separator ${sideLetter}${positionNumber}`);
 		createSecond(`second ${sideLetter}${positionNumber}`, side);
 	}
 }
@@ -320,7 +318,7 @@ function createHandler(handlerId, side) {
 function createPosition(positionId, sideLetter) {
 	addElementWithID(
 		"span",
-		[`position${sideLetter}`, "col-1"],
+		[`position${sideLetter}`],
 		`handler ${sideLetter}${positionNumber}`,
 		positionId
 	);
@@ -331,7 +329,7 @@ function createPosition(positionId, sideLetter) {
 function createTitle(titleId, sideLetter) {
 	addElementWithID(
 		"input",
-		["title-input", "col-7"],
+		["title-input"],
 		`handler ${sideLetter}${positionNumber}`,
 		titleId
 	);
@@ -343,7 +341,7 @@ function createTitle(titleId, sideLetter) {
 function createTimeWrapper(wrapperId) {
 	addElementWithID(
 		"div",
-		["time-wrapper", "col-3"],
+		["time-wrapper"],
 		`handler ${sideLetter}${positionNumber}`,
 		wrapperId
 	);
@@ -388,16 +386,7 @@ function createSecond(secondId, side) {
 	el.addEventListener("input", (event) => formatSecond(secondId, side));
 }
 
-function createSeparator(separatorId) {
-	addElementWithID(
-		"span",
-		["time-separator"],
-		`timeWrapper ${sideLetter}${positionNumber}`,
-		separatorId
-	);
-	let el = document.getElementById(separatorId);
-	el.textContent = ":";
-}
+
 
 /////////// REMOVE TITLE ///////////
 
@@ -442,7 +431,7 @@ function resetAndFillData(side) {
 			document.getElementById(side).children[i].children[2].children[0]
 				.value;
 		second =
-			document.getElementById(side).children[i].children[2].children[2]
+			document.getElementById(side).children[i].children[2].children[1]
 				.value;
 		if (side === "sideA") {
 			let object = {};

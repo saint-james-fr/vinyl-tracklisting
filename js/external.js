@@ -8,6 +8,7 @@ Sortable.create(sideA, {
 	selectedClass: "highlight",
 	fallbackTolerance: 3,
 	filter: ".not-sortable",
+	direction: 'horizontal',
 });
 
 Sortable.create(sideB, {
@@ -17,6 +18,7 @@ Sortable.create(sideB, {
 	group: "shared",
 	selectedClass: "highlight",
 	fallbackTolerance: 3,
+	direction: 'horizontal',
 });
 
 
