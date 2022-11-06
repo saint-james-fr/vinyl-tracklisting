@@ -368,7 +368,10 @@ nav > ul > li {
 		width: 100%;
 		max-width: 500px;
 		height: auto;
-}
+		position: relative;
+		top: 12vh;
+	}
+
 	#section__home .content__container {
 		display: flex;
 		flex-direction: column;
@@ -385,7 +388,7 @@ nav > ul > li {
 @media screen and (min-width: 1200px) {
 	.home__infoblock {
 	width: 33%;
-	} 
+	}
 }
 
 
@@ -496,8 +499,22 @@ nav > ul > li {
 
 	#timing__hero-2 {
 		width: 100%;
-		height:  50%;
+		height: 50%;
 	}
+
+	#timing__hero-2 .content__container {
+		margin: auto;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    flex-wrap: wrap;
+	}
+
+	.two-columns > div > div {
+		margin: auto;
+		width: 90vw;
+	}
+	
 
 	.timing__cards {
 		flex-direction: column;
@@ -509,9 +526,23 @@ nav > ul > li {
 	.timing__card {
 		display: block;
 		background-color: var(--color-orange-opacity);
-		width: 45%;
+		width: 70%;
 		margin-bottom: 40px;
 	}
+
+	.timing__card_texts {
+		text-align: center;
+	}
+	
+	.timing__motto {
+		text-align: center;
+	}
+
+
+	.timing__card_text{
+		margin-left: 0;
+	}
+
 	.page__container-second {
 		height: 200vh;
 	}
@@ -524,10 +555,15 @@ nav > ul > li {
 	background-color: var(--color-gray-strong);
 }
 
+#section__tracklisting .page-title {
+	margin: 0 auto;
+
+}
+
 #section__tracklisting .content__container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 
 
