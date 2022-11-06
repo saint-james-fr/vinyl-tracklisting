@@ -122,10 +122,12 @@
           <div class="app__container">            
             <div class="side__container radius">              
                 <div class="controls">
-                  <button class="btn btn-outline-success btn-lg" onclick="addTitle('sideA')">+</button>
-                  <h2>FACE A</h2>
-                  <div class="result-length" id="length sideA"></div>
-                  <button class="btn btn-outline-danger btn-lg" onclick="removeTitle('sideA')">-</button>
+                  <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideA')">+</button>
+                  <div class="controls-flex">
+                    <div>FACE A &nbsp;</div>
+                    <div class="result-length" id="length sideA"></div>
+                  </div>
+                  <button class="btn btn-outline-danger btn-lg btn-minus" onclick="removeTitle('sideA')">-</button>
                 </div>
 
                 <div id="sideA" class="list-group list-group-flush container">
@@ -144,10 +146,12 @@
               <div class="side__container radius">
                 
                 <div class="controls">
-                  <button class="btn btn-outline-success btn-lg" onclick="addTitle('sideB')">+</button>
-                  <h2>FACE B</h2>
-                  <div class="result-length" id="length sideB"></div>                              
-                  <button class="btn btn-outline-danger btn-lg" onclick="removeTitle('sideB')">-</button>
+                  <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideB')">+</button>
+                  <div class="controls-flex">
+                    <h2>FACE B&nbsp;</h2>
+                    <div class="result-length" id="length sideB"></div>                              
+                  </div>
+                  <button class="btn btn-outline-danger btn-lg btn-minus" onclick="removeTitle('sideB')">-</button>
                 </div>
 
                 <div id="sideB" class="list-group list-group-flush container">

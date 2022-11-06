@@ -271,7 +271,10 @@ input {
 	}
 }
 
-
+.flex {
+	display: flex;
+	justify-content: space-around;
+}
 
 
 /*---------------------------- HEADER ----------------------------*/
@@ -578,9 +581,12 @@ nav > ul > li {
 .side__container {
 	margin: 20px;
 	min-width: 30vw;
-	border: solid 1px var(--color-white);
+	border: solid 1px #EEEEEE;
 	background-color: var(--color-gray-light-opacity);
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
 }
+
+
 
 .handle-function {
 	display: flex;
@@ -602,9 +608,22 @@ nav > ul > li {
 	background-color: var(--color-blue);
 }
 
+.color-side-a,
+.color-side-b {
+	transition: 150ms ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.color-side-a:hover,
+.color-side-b:hover {
+	filter: brightness(1.1);
+}
+
+
 .controls {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	margin: 10px 10px;
 }
 
@@ -613,16 +632,34 @@ nav > ul > li {
 	padding-right: 10px;
 }
 
-
-
-
-
-
-
-.flex {
-	display: flex;
-	justify-content: space-around;
+.title-background {
+	background-color: darkred;
+	position: relative;
+	top: 0;
+	width: 100%;
 }
+
+.btn-plus, .btn-minus {
+	min-width: 50px;
+	min-height: 50px;
+}
+
+.minute-input,
+.second-input {
+	width: 35px;
+}
+
+.second-input {
+	margin-right: 5px;
+}
+
+@media screen and (max-width: 890px) {
+	.app__container {
+		display: block;
+	}
+}
+
+
 
 /*---------------------------- RELEASE INFORMATIONS ---------------------------- */
 
@@ -661,13 +698,6 @@ nav > ul > li {
 /*---------------------------- OLD CSS ----------------------------*/
 
 
-body {
-	font-family: Helvetica;
-	font-size: 16px;
-	padding: 0;
-	margin: 0;
-	background-color: #f7f9f9;
-}
 
 
 
@@ -681,12 +711,4 @@ body {
 	justify-content: center;
 }
 
-.minute-input,
-.second-input {
-	width: 35px;
-}
-
-.second-input {
-	margin-right: 5px;
-}
 
