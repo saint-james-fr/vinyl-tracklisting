@@ -390,6 +390,10 @@ nav > ul > li {
 		display: block;
 		text-align: center;
 	}
+
+	.home__button {
+		margin-top: 4vh;
+	}
 } 
 
 @media screen and (min-width: 1200px) {
@@ -651,6 +655,14 @@ nav > ul > li {
 .btn-plus, .btn-minus {
 	min-width: 50px;
 	min-height: 50px;
+}
+
+.btn-plus:hover {
+	color: #4E8D50;
+}
+
+.btn-minus:hover {
+	color: #4D4652;
 }
 
 .minute-input,
