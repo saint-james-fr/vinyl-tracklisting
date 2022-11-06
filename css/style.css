@@ -276,6 +276,10 @@ input {
 	justify-content: space-around;
 }
 
+.box-shadow {
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+}
+
 
 /*---------------------------- HEADER ----------------------------*/
 
@@ -580,10 +584,9 @@ nav > ul > li {
 
 .side__container {
 	margin: 20px;
-	min-width: 30vw;
+	min-width: 32vw;
 	border: solid 1px #EEEEEE;
 	background-color: var(--color-gray-light-opacity);
-	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
 }
 
 
@@ -610,13 +613,19 @@ nav > ul > li {
 
 .color-side-a,
 .color-side-b {
-	transition: 150ms ease-in-out;
+	transition: 150ms ease-in-out;	
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
 }
 
-.color-side-a:hover,
+.color-side-a:hover {
+	filter: brightness(1.05);
+	box-shadow: none;
+}
+
 .color-side-b:hover {
-	filter: brightness(1.1);
+	filter: brightness(1.15);
+	box-shadow: none;
 }
 
 

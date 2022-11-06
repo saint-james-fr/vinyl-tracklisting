@@ -120,7 +120,7 @@
         <div class="content__container">
           <div class="page-title logo radius">Create your tracklist</div>
           <div class="app__container">            
-            <div class="side__container radius">              
+            <div class="side__container radius box-shadow">              
                 <div class="controls">
                   <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideA')">+</button>
                   <div class="controls-flex">
@@ -136,14 +136,13 @@
                     <input id="title A1" class="title-input" type="text" placeholder="Enter Title..."/>
                     <div class="time-wrapper">
                       <input id="minute A1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
-                      <!-- <span class="time-separator" id="separator 1">:</span> -->
                       <input id="second A1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
                     </div>
                   </div>
                 </div>                
               </div>
 
-              <div class="side__container radius">
+              <div class="side__container radius box-shadow">
                 
                 <div class="controls">
                   <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideB')">+</button>
@@ -160,7 +159,6 @@
                     <input id="title B1" class="title-input" type="text" placeholder="Enter Title..."/>
                     <div class="time-wrapper">
                       <input id="minute B1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
-                      <!-- <span class="time-separator" id="separator 01">:</span> -->
                       <input id="second B1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
                     </div>
                   </div>
