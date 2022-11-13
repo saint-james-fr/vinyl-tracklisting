@@ -35,7 +35,7 @@ shuffledData = shuffleAlgo(allData);
 
 // ************************* DESTROY & REBUILD TOOLS ************************* 
 
-function destroy(){
+function destroy() {
 	let sideA = document.getElementById("sideA");
 	let sideB = document.getElementById("sideB");
 	while (sideA.children.length >0) {sideA.lastElementChild.remove();}

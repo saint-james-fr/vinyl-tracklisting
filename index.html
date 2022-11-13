@@ -121,12 +121,12 @@
           <div class="app__container">            
             <div class="side__container radius box-shadow">              
                 <div class="controls">
-                  <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideA')">+</button>
+                  <button class="btn-plus" onclick="addTitle('sideA')">+</button>
                   <div class="controls-flex">
                     <div>FACE A &nbsp;</div>
                     <div class="result-length" id="length sideA"></div>
                   </div>
-                  <button class="btn btn-outline-danger btn-lg btn-minus" onclick="removeTitle('sideA')">-</button>
+                  <button class="btn-minus" onclick="removeTitle('sideA')">-</button>
                 </div>
 
                 <div id="sideA" class="list-group list-group-flush container">
@@ -144,12 +144,12 @@
               <div class="side__container radius box-shadow">
                 
                 <div class="controls">
-                  <button class="btn btn-outline-success btn-lg btn-plus" onclick="addTitle('sideB')">+</button>
+                  <button class="btn-plus" onclick="addTitle('sideB')">+</button>
                   <div class="controls-flex">
                     <h2>FACE B&nbsp;</h2>
                     <div class="result-length" id="length sideB"></div>                              
                   </div>
-                  <button class="btn btn-outline-danger btn-lg btn-minus" onclick="removeTitle('sideB')">-</button>
+                  <button class="btn-minus" onclick="removeTitle('sideB')">-</button>
                 </div>
 
                 <div id="sideB" class="list-group list-group-flush container">
@@ -219,20 +219,20 @@
           <form id="form_page_one">
             <div class="form__container">
               <label for="catalogue-number" class="form__label">Catalogue Number</label>
-              <input type="text" placeholder="TEST-001" class="input-border">
+              <input id="catnumber" type="text" placeholder="TEST-001" class="input-border">
               <label for="artist" class="form__label">Artist
               </label>
-              <input type="text" placeholder="JOHN LENNON" class="input-border">
+              <input id="artist" type="text" placeholder="JOHN LENNON" class="input-border">
               <label for="title" class="form__label">Title</label>
-              <input type="text" placeholder="COMPLETE WORKS" class="input-border">
+              <input id="title" type="text" placeholder="COMPLETE WORKS" class="input-border">
               <div class="radio__container">
                 <div class="form__label form_label-checkbox form-min-width">
                     Format
                 </div>
                 <div class="radio__container__sub">
-                  <label for='LP/12"' class="form__label"><input type="radio" checked name="format">LP/12"</label>
-                  <label for='10"' class="form__label"><input type="radio" name="format">10"</label>
-                  <label for='12"' class="form__label"><input type="radio" name="format">7"</label>
+                  <label for='LP/12"' class="form__label"><input type="radio" name="format" value = 'LP/12"'>LP/12"</label>
+                  <label for='10"' class="form__label"><input type="radio" name="format" value = '10"'>10"</label>
+                  <label for='12"' class="form__label"><input type="radio" name="format" value = '7"'>7"</label>
                 </div>  
               </div>          
               <div class="radio__container">
@@ -240,8 +240,8 @@
                     Speed
                 </div>
                 <div class="radio__container__sub">
-                  <label for="33RPM" class="form__label"><input type="radio" checked name="speed">33RPM"</label>
-                  <label for="45RPM" class="form__label"><input type="radio" name="speed">45RPM</label>
+                  <label for="33RPM" class="form__label"><input type="radio" name="speed" value = '33RPM'>33RPM</label>
+                  <label for="45RPM" class="form__label"><input type="radio" name="speed" value = '45RPM'>45RPM</label>
                 </div>
               </div>                      
             </div>
@@ -271,10 +271,10 @@
                     Bitrate
                 </div>
                 <div class="radio__container__sub">
-                  <label for="44.1kHz" class="form__label"><input type="radio" checked name="bitrate">44.1kHz</label>
-                  <label for="48kHz" class="form__label"><input type="radio" name="bitrate">48kHz</label>
-                  <label for="88.3kHz" class="form__label"><input type="radio" name="bitrate">88.3kHz</label>
-                  <label for="96kHz" class="form__label"><input type="radio" name="bitrate">96kHz</label>
+                  <label for="44.1kHz" class="form__label"><input type="radio" name="bitrate" value = '44.1kHz'>44.1kHz</label>
+                  <label for="48kHz" class="form__label"><input type="radio" name="bitrate" value = '48kHz'>48kHz</label>
+                  <label for="88.3kHz" class="form__label"><input type="radio" name="bitrate" value = '88.2kHz'>88.2kHz</label>
+                  <label for="96kHz" class="form__label"><input type="radio" name="bitrate" value = '96kHz'>96kHz</label>
                 </div>  
               </div>          
               <div class="radio__container">
@@ -282,16 +282,16 @@
                     Bit Depth
                 </div>
                 <div class="radio__container__sub">
-                  <label for="16bits" class="form__label"><input type="radio" checked name="bits">16Bits</label>
-                  <label for="24bits" class="form__label"><input type="radio" name="bits">24Bits</label>
-                  <label for="32bits" class="form__label"><input type="radio" name="bits">24Bits</label>
+                  <label for="16bits" class="form__label"><input type="radio" name="bits" value = '16bits'>16Bits</label>
+                  <label for="24bits" class="form__label"><input type="radio" name="bits" value = '24Bits'>24Bits</label>
+                  <label for="32bits" class="form__label"><input type="radio" name="bits" value = '32Bits'>24Bits</label>
                 </div>
               </div> 
               <div class="comments-container">
                 <div class="form__label form_label-checkbox form-min-width">
                     Comments
                 </div>
-                <textarea name="comments" id="" cols="30" rows="7"></textarea>
+                <textarea id="comments" name="comments" id="" cols="30" rows="7"></textarea>
               </div>                     
             </div>
           </form>
@@ -320,14 +320,13 @@
           </button>
           <div class="pdf__infoblock radius box-shadow">
               <div class="home__infoblock__text">
-                None of your infos are saved on our server! 
-                We dynamically generate your pdf but we don't save any of your data.
-                Once you close the page, data are lost! <br> &ensp;
+                None of your infos are saved on our server! <br>                
+                We dynamically generate your pdf but we don't save any of your data.<br>
+                Once you close the page, data are lost! <br>
                 <br>
-                <span class="text-align-center">
-                Website by <a href="https://www.maxencerobinet.fr">Maxence Robinet</a> <br> &ensp;
+                Website by <a href="https://www.maxencerobinet.fr">Maxence Robinet</a> <br>
                 <br>
-                Original concept by Mathieu Berthet & Maxence Robinet</span>
+                Original concept by Mathieu Berthet & Maxence Robinet
               </div>
             </div>
         </div>
