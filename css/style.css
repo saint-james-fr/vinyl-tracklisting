@@ -1,5 +1,6 @@
 /*---------------------------- RESET CSS ----------------------------*/
 
+
 * {
 	box-sizing: border-box;
 }
@@ -154,10 +155,17 @@ button:hover {
 min-height: calc(100vh - 45px);
 }*/
 
+
 .page__container-first, .page__container-basics  {
 	min-height: 100vh;
 }
 
+
+@media screen and (min-width: 890px) {
+	.page__container-basics-not-first {
+		min-height: calc(100vh - 45px);
+	}
+}
 section {
 		width: 100%;
 		height: 100%;
@@ -223,54 +231,7 @@ section {
 	border-radius: 10px;
 }
 
-input {
 
-	border: 0;
-	appearance: none;
-	width: 100%;
-	position: relative;
-	line-height: 1.4;
-	transition: all .2s ease;	       
-    color: var(--color-cream);
-    letter-spacing: .009375em;
-    text-decoration: inherit;
-    text-transform: inherit;
-    align-self: flex-start;
-    box-sizing: border-box;
-    border: none;
-    height: 30px;
-    background: transparent;
-}
-
-input:hover{
-    
-    }
-
-input:focus {
-	outline: none;
-	outline: 0;
-}
-
-input::placeholder {
-	text-align: center;
-	color: var(--color-cream);
-}
-
-input:focus::placeholder {
-	color: transparent;
-}
-
-input {
-	text-align: center;
-}
-
-
-@media screen and (max-width: 890px) {
-	.page-title {
-		width: 100%;
-		max-width: 400px;
-	}
-}
 
 .flex {
 	display: flex;
@@ -281,7 +242,23 @@ input {
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
 }
 
+.scroll-margin-top {
+	scroll-margin-top: 45px;
+}
 
+@media screen and (max-width: 890px) {
+	.page-title {
+		width: 100%;
+		max-width: 400px;
+	}
+	.scroll-margin-top {
+	scroll-margin-top: 0px;
+	}
+}
+
+.text-align-center {
+	text-align: center;
+}
 /*---------------------------- HEADER ----------------------------*/
 
 
@@ -590,7 +567,7 @@ nav > ul > li {
 .side__container {
 	margin: 20px;
 	min-width: 32vw;
-	border: solid 1px #EEEEEE;
+	border: solid 1px #888787b3;
 	background-color: var(--color-gray-light-opacity);
 }
 
@@ -604,7 +581,7 @@ nav > ul > li {
 	margin-bottom: 10px;
 	margin-left: 2vw;
 	margin-right: 2vw;
-	cursor: move;
+	cursor: grab;
 	border-radius: 25px;
 	padding: 2px 2px 2px 20px
 	}
@@ -641,9 +618,34 @@ nav > ul > li {
 	margin: 10px 10px;
 }
 
+.row input {
+	border: 0;
+    appearance: none;
+    width: 66%;
+    transition: all .2s ease;
+    color: var(--color-cream);
+    text-transform: inherit;
+    box-sizing: border-box;
+    border: none;
+    height: 16px;
+    background: #0000;
+    color: #000;
+    font-weight: lighter;
+    text-align: left;
+    font-size: 16px;
+}
+
+.row input,
+.row input::placeholder {
+	color: white;
+	font-weight: 200;
+	font-family: 'Kanit';
+}	
+
 .positionA, 
 .positionB {
 	padding-right: 10px;
+	min-width: 31px;
 }
 
 .title-background {
@@ -695,7 +697,102 @@ nav > ul > li {
 	justify-content: space-around;
 }
 
+#form_page_one,
+#form_page_two {
+	width: min(460px, 80vw);
+	margin: 0 auto;
 
+	background: rgba(235, 234, 234, 0.94);
+	border-radius: 10px;
+}
+
+.form__label {
+	font-family: 'Kanit';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 30px;
+	letter-spacing: 0.03em;
+	color: black;
+	text-transform: uppercase;
+}
+
+.form__container {
+	margin: 5%;
+}
+
+.form__container {
+	font-style: normal;
+	font-weight: 250;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+.form__container input {
+	border: 0;
+	appearance: none;
+	width: 100%;
+	transition: all .2s ease;	       
+    color: var(--color-cream);
+    text-transform: inherit;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    color: black;
+    font-weight: lighter;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.radio__container input{
+	appearance: auto;
+	width: auto;
+}
+
+.radio__container {
+	display: flex;
+}
+
+.radio__container__sub {
+	display: flex;
+	flex-grow: 0.5;
+	justify-content: space-between;
+	max-width: ;
+}
+
+.input-border {
+	border-bottom: 1px solid;
+}
+
+.form-min-width {
+	min-width: 140px;
+}
+
+input:hover{
+    
+    }
+
+input:focus {
+	outline: none;
+	outline: 0;
+}
+
+input::placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
+input:focus::placeholder {
+	color: transparent;
+}
+
+
+.section__infos_next_button {
+	margin: 2vh 0 2vh 0;
+}
 
 /*---------------------------- AUDIO INFORMATIONS ---------------------------- */
 
@@ -705,7 +802,31 @@ nav > ul > li {
 	justify-content: space-around;
 }
 
+#section__audio-infos .radio__container__sub {
+	flex-wrap: wrap;
+}
 
+
+#form-speed {
+	justify-content: flex-end;
+}
+
+
+textarea {
+	margin: auto;
+    border: none;
+    width: 100%;
+    background-color: initial;
+    font-family: inherit;
+	line-height: 3ch;
+	background-image: linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
+	background-size: 100% 3ch;
+}
+
+textarea:focus {
+	border: none;
+	outline: none;
+}
 /*---------------------------- GENERATE PDF ---------------------------- */
 
 #section__pdf .content__container {
@@ -717,7 +838,15 @@ nav > ul > li {
 #generatePDF {
 	font-size: var(--font-size-1);
 	display: block;
-	margin: 2vh auto;
+}
+
+.pdf__infoblock {
+	background-color: var(--color-gray-dark-opacity);
+	width: 350px;
+	height: auto;
+	margin: 0 auto;
+	margin-bottom: 5vh;
+	padding: 1.5em;
 }
 
 
