@@ -45,6 +45,8 @@ function init(side) {
 	document.getElementById(`minute ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
 	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));	
 	updateLength(side);
+
+
 }
 
 function initSecondA() {
@@ -55,6 +57,14 @@ function initSecondB() {
 	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, "sideA"));	
 }
 
+// ************************* CSS MANIPULATION ************************* 
+
+function adjustTracklistingSectionHeight(side) {
+	if (document.getElementById(side).children.length > 6) {
+    document.getElementById("page-container-tracklisting").style.height = "auto";
+    document.getElementById("section__tracklisting").style.height = "auto";
+	}
+}
 
 
 // ************************* DATA CHECK ************************* 
@@ -301,6 +311,7 @@ function addTitle(side) {
 		createMinute(`minute ${sideLetter}${positionNumber}`, side);
 		createSecond(`second ${sideLetter}${positionNumber}`, side);
 	}
+	adjustTracklistingSectionHeight(side);
 }
 
 /////////// addTitle() NEEDED FEATURES ///////////
@@ -455,8 +466,3 @@ function resetAndFillData(side) {
 		}
 	}
 }
-
-
-
-
-

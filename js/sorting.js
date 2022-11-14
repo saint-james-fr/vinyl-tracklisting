@@ -7,7 +7,6 @@ resetAndFillData("sideB");
 allData = dataSideA.concat(dataSideB);
 }
 
-
 // ************************* SHUFFLE DATA ************************* 
 
 function shuffleAlgo(array) {
@@ -26,7 +25,6 @@ function shuffleAlgo(array) {
   }
   return array;
 }
-
 
 function shuffleData() {
 shuffledData = shuffleAlgo(allData);
@@ -114,23 +112,39 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 // ************************* ALGORITHM V2
 
 function sortWithDescending() {
-resetAndFillData("sideA");
-resetAndFillData("sideB");
-dataSideASortedByMinutes = dataSideA.sort((a,b) => b.minute - a.minute);
-dataSideBSortedByMinutes = dataSideB.sort((a,b) => b.minute - a.minute);
-let assemblage = dataSideASortedByMinutes.concat(dataSideBSortedByMinutes)
-allDataSortedByMinutes =  assemblage.sort((a,b) => b.minute - a.minute);
-destroy();
-rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
+	resetAndFillData("sideA");
+	resetAndFillData("sideB");
+	dataSideASortedByMinutes = dataSideA.sort((a,b) => b.minute - a.minute);
+	dataSideBSortedByMinutes = dataSideB.sort((a,b) => b.minute - a.minute);
+	let assemblage;
+	assemblage = dataSideASortedByMinutes.concat(dataSideBSortedByMinutes);
+	allDataSortedByMinutes =  assemblage.sort((a,b) => b.minute - a.minute);
+	destroy();
+	rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
 
-// test 
-totalLengthSideA = sum("sideA");
-totalLengthSideB = sum("sideB");
-t1LengthDifference = [
+	// test 
+	totalLengthSideA = sum("sideA");
+	totalLengthSideB = sum("sideB");
+	calculateT1LengthDifference();
+	while (testLengthThreshold(t1LengthDifference) && counterRecursion < 8) {
+		destroy();
+		rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
+		console.log("I've made " + counterRecursion + " iterations :).");
+		counterRecursion += 1;
+		calculateT1LengthDifference();
+		console.log(t1LengthDifference)
+	}
+	combinations.push(t1LengthDifference);
+}
+
+let testLengthThreshold = (arrayMinSec) => {
+	return (arrayMinSec[0] > 3 || (arrayMinSec[0] > 2 &&  arrayMinSec[1] > 30)) 
+};
+
+function calculateT1LengthDifference() {
+	return t1LengthDifference = [
 		calculValAbs0(),
 		calculValAbs1()];
-combinations.push(t1LengthDifference);
-return console.log(combinations);
 }
 
 
@@ -155,24 +169,24 @@ function sortWithShuffle() {
 		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
 		&& t1LengthDifference[0] !== undefined
 		&& t1LengthDifference[1] !== undefined) {
-		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
+		return //console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
 	}
 	
 	if (t1LengthDifference[0] === 0 
 		&& t0LengthDifference[1] > t1LengthDifference[1]) {
-		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
+		return //console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
 	}
 	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
-	console.log(t0LengthDifference);
+	//console.log(t0LengthDifference);
 
 	shuffle(); 
-	console.log("let's shuffle bitch!");
+	//console.log("let's shuffle bitch!");
 	t1LengthDifference = [calculValAbs0(),calculValAbs1()];	
-	console.log(t1LengthDifference);
+	//console.log(t1LengthDifference);
 	//recursion
 	if (t1LengthDifference[0] = 0 && t1LengthDifference[1] > t0LengthDifference[1] ) {
 		{
-			console.log("let's do a recursion");
+			//console.log("let's do a recursion");
 		sortWithShuffle();
 		}
 	}
@@ -190,18 +204,18 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 */	
 	if (t1LengthDifference[0] === 0 
 		&& t0LengthDifference[1] > t1LengthDifference[1]) {
-		return console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
+		return //console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
 	}
 
 
 	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
-	console.log(t0LengthDifference);
+	//console.log(t0LengthDifference);
 	shuffle(); 
 	counterRecursion++;
-	console.log(counterRecursion);
-	console.log("let's shuffle bitch!");
+	//console.log(counterRecursion);
+	//console.log("let's shuffle bitch!");
 	t1LengthDifference = [calculValAbs0(),calculValAbs1()];
-	console.log(t1LengthDifference)
+	// console.log(t1LengthDifference)
 
 	if ( t0LengthDifference[0] + (t0LengthDifference[1]/60) > t1LengthDifference[0] + (t1LengthDifference[1]/60) )
 		{combinations.push(t1LengthDifference)}
@@ -211,7 +225,7 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 		sortWithDescending();
 	}
 	else {
-		console.log("let's do a recursion motherfucker!");
+	// 	console.log("let's do a recursion motherfucker!");
 		sortWithShuffle2()};
 }
 
@@ -284,7 +298,7 @@ function populate() {
 	removeEmptyTitles("sideB");
 }
 
-function algoTestShuffle() {
+/*function algoTestShuffle() {
 	getRandomLines()
 	getRandomValues();
 	writeRandomValues();
@@ -303,9 +317,9 @@ function algoTestShuffle() {
 	sortWithShuffle2();
 	}
 	console.log(combinations)
-}
+}*/
 
-function algoTestDescending() {
+/*function algoTestDescending() {
 	getRandomLines()
 	getRandomValues();
 	writeRandomValues();
@@ -318,17 +332,17 @@ function algoTestDescending() {
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
 	sortWithDescending();
-}
+}*/
 
 function algoTestBoth() {
 	sortWithDescending()
-	sortWithShuffle2();
-	if(counterRecursion<40){
-	sortWithShuffle2();
-	sortWithShuffle2();
-	sortWithShuffle2();
-	}
-	console.log(combinations)
+	//sortWithShuffle2();
+	//if(counterRecursion<40){
+	//sortWithShuffle2();
+	//sortWithShuffle2();
+	//sortWithShuffle2();
+	//}
+	// console.log(combinations)
 }
 
 // ************************* AVERAGE

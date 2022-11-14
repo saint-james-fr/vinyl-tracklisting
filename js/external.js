@@ -1,7 +1,7 @@
 // ************************* EXTERNAL LIBRARIES : JSSORTAbLE
 
 Sortable.create(sideA, {
-	animation: 140,
+	animation: 150,
 	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
@@ -9,16 +9,18 @@ Sortable.create(sideA, {
 	fallbackTolerance: 3,
 	filter: ".not-sortable",
 	direction: 'horizontal',
+	ghostClass: 'sortable-ghost'
 });
 
 Sortable.create(sideB, {
-	animation: 140,
+	animation: 150,
 	swapThreshold: 1,
 	handle: ".handle-function",
 	group: "shared",
 	selectedClass: "highlight",
 	fallbackTolerance: 3,
 	direction: 'horizontal',
+	ghostClass: 'sortable-ghost'
 });
 
 

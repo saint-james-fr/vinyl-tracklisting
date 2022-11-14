@@ -40,6 +40,10 @@ ol, ul {
 	list-style: none;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 blockquote, q {
 	quotes: none;
 }
@@ -166,11 +170,16 @@ min-height: calc(100vh - 45px);
 		min-height: calc(100vh - 45px);
 	}
 }
+
 section {
 		width: 100%;
 		height: 100%;
 		margin: auto;
 		max-width: 2000px;
+}
+
+.sortable-ghost {
+	opacity: 0.4;
 }
 
 .content__container {
@@ -200,12 +209,12 @@ section {
 	font-size: 35px;
 	display: block;
 	width: 40%;
-	margin: auto;
 	padding: 1em;
 	background-color: var(--color-gray-light-opacity);
 	text-transform: lowercase;
 	letter-spacing: 0.05em;
 	line-height: 1.1;
+	margin: 40px auto 20px auto;
 	
 }
 
@@ -257,6 +266,10 @@ section {
 
 .text-align-center {
 	text-align: center;
+}
+
+.bolder {
+	font-weight: bolder;
 }
 /*---------------------------- HEADER ----------------------------*/
 
@@ -565,10 +578,6 @@ nav > ul > li a:hover,
 	background-color: var(--color-gray-strong);
 }
 
-#section__tracklisting .page-title {
-	margin: 0 auto;
-
-}
 
 #section__tracklisting .content__container {
 	display: flex;
@@ -604,8 +613,14 @@ nav > ul > li a:hover,
 	margin-right: 2vw;
 	cursor: grab;
 	border-radius: 25px;
-	padding: 2px 2px 2px 20px
+	padding: 2px 2px 2px 20px;
 	}
+
+@media screen and (min-width:890px) {
+	.handle-function {
+		height: 30px;
+	}
+}
 
 .color-side-a {
 	background-color: var(--color-orange);
@@ -709,6 +724,7 @@ nav > ul > li a:hover,
 	position: relative;
 	top: 3vh;
 	background-color: indianred;
+	margin-bottom: min(1vh);
 }
 
 .btn-random:hover {
