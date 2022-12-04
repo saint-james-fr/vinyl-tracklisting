@@ -1,4 +1,4 @@
-// ************************* GLOBAL VARIABLES ************************* 
+// ************************* GLOBAL VARIABLES *************************
 
 var numberOfTracks;
 var handlerNumber;
@@ -28,10 +28,9 @@ let calculValAbs0 = () => {
 var t0LengthDifference = [undefined,undefined];
 var t1LengthDifference = [undefined,undefined];
 let randomNumberMin = () => Math.floor(Math.random() * 10);
-let randomNumberSec = () => Math.floor(Math.random() * 60); 
-var combinations = [];
+let randomNumberSec = () => Math.floor(Math.random() * 60);
 
-// ************************* INITIALIZATION ************************* 
+// ************************* INITIALIZATION *************************
 
 init("sideA");
 init("sideB");
@@ -43,21 +42,21 @@ function init(side) {
 	getSideLetter(side);
 	// attach first event listeners
 	document.getElementById(`minute ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
-	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));	
+	document.getElementById(`second ${sideLetter}1`).addEventListener("input", (event) => updateLength(side));
 	updateLength(side);
 
 
 }
 
 function initSecondA() {
-	document.getElementById(`second A1`).addEventListener("input", (event) => formatSecond(`second A1`, "sideA"));	
+	document.getElementById(`second A1`).addEventListener("input", (event) => formatSecond(`second A1`, "sideA"));
 }
 
 function initSecondB() {
-	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, "sideA"));	
+	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, "sideA"));
 }
 
-// ************************* CSS MANIPULATION ************************* 
+// ************************* CSS MANIPULATION *************************
 
 function adjustTracklistingSectionHeight(side) {
 	if (document.getElementById(side).children.length > 6) {
@@ -67,7 +66,7 @@ function adjustTracklistingSectionHeight(side) {
 }
 
 
-// ************************* DATA CHECK ************************* 
+// ************************* DATA CHECK *************************
 
 function formatSecond(id, side) {
 	if (document.getElementById(id).value > 60) {
@@ -80,20 +79,20 @@ function erase(id) {
 	document.getElementById(id).value = null;
 }
 
-/* // "ARE YOU SURE YOU WANT TO REFRESH?"" 
+/* // "ARE YOU SURE YOU WANT TO REFRESH?""
 
 window.onbeforeunload = function () {
 	return "Do you want to reload the page?";
 };
 */
 
-// ************************* EVENT HANDLER ************************* 
+// ************************* EVENT HANDLER *************************
 
 window.addEventListener("DOMContentLoaded", function () {
 	var mutationObserver = new MutationObserver(function (mutations) {
 		mutations.forEach(function (mutation) {
 			updatePosition("sideA");
-			updatePosition("sideB");			
+			updatePosition("sideB");
 			updateLength("sideA");
 			updateLength("sideB");
 			updateClassSideA();
@@ -122,55 +121,55 @@ window.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-// ************************* PREVENT NULL TITLE ************************* 
+// ************************* PREVENT NULL TITLE *************************
 
 function preventNullTitle(side) {
 	updateNumberOfTracks(side);
 	if (numberOfTracks === 0) {
 		addTitle(side)
 	}
-} 
+}
 
-// ************************* CLASS UPDATE ************************* 
+// ************************* CLASS UPDATE *************************
 
 function updateClassSideA() {
 	let children = document.getElementById("sideA").children;
 	let arrayChildren = Array.from(children);
-	arrayChildren.forEach(element => {		
-		let arrayClass = Array.from(element.classList)	
+	arrayChildren.forEach(element => {
+		let arrayClass = Array.from(element.classList)
 		if (arrayClass.includes("color-side-a")) {
 			return
 		}
 		if (arrayClass.includes("color-side-b")) {
 			element.classList.remove("color-side-b")
 			element.classList.add("color-side-a")
-		}					
+		}
 		else {
 			element.classList.add("color-side-a")
-		}			
+		}
 	})
 }
 
 function updateClassSideB() {
 	let children = document.getElementById("sideB").children;
 	let arrayChildren = Array.from(children);
-	arrayChildren.forEach(element => {		
-		let arrayClass = Array.from(element.classList)	
+	arrayChildren.forEach(element => {
+		let arrayClass = Array.from(element.classList)
 		if (arrayClass.includes("color-side-b")) {
 			return
 		}
 		if (arrayClass.includes("color-side-a")) {
 			element.classList.remove("color-side-a")
 			element.classList.add("color-side-b")
-		}					
+		}
 		else {
 			element.classList.add("color-side-b")
-		}			
+		}
 	})
 }
 
 
-// ************************* LENGTH/SIDE CALCULATION ************************* 
+// ************************* LENGTH/SIDE CALCULATION *************************
 
 function updateLength(side) {
 	formatLength(sum(side));
@@ -237,7 +236,7 @@ function sumObjValues(obj) {
 	); // additionne les keys
 }
 
-// ************************* DOM MANIPULATION ************************* 
+// ************************* DOM MANIPULATION *************************
 
 /////////// GET SIDELETTER ///////////
 
@@ -417,7 +416,7 @@ function removeTitle(side) {
 	}
 }
 
-// ************************* RESET AND FILL DATA ************************* 
+// ************************* RESET AND FILL DATA *************************
 
 
 
@@ -454,7 +453,7 @@ function resetAndFillData(side) {
 			dataSideA.push(object);
 			totalLengthSideA = formatLength(sum(side));
 		}
-		if (side === "sideB") {			
+		if (side === "sideB") {
 			let object = {};
 			object["position"] = position;
 			object["title"] = title;

@@ -1,4 +1,4 @@
-// ************************* GET ALLDATA ************************* 
+// ************************* GET ALLDATA *************************
 
 
 function getAllData() {
@@ -7,7 +7,7 @@ resetAndFillData("sideB");
 allData = dataSideA.concat(dataSideB);
 }
 
-// ************************* SHUFFLE DATA ************************* 
+// ************************* SHUFFLE DATA *************************
 
 function shuffleAlgo(array) {
   let currentIndex = array.length;
@@ -31,20 +31,20 @@ shuffledData = shuffleAlgo(allData);
 }
 
 
-// ************************* DESTROY & REBUILD TOOLS ************************* 
+// ************************* DESTROY & REBUILD TOOLS *************************
 
 function destroy() {
 	let sideA = document.getElementById("sideA");
 	let sideB = document.getElementById("sideB");
 	while (sideA.children.length >0) {sideA.lastElementChild.remove();}
-	while (sideB.children.length >0) {sideB.lastElementChild.remove();}	
+	while (sideB.children.length >0) {sideB.lastElementChild.remove();}
 }
 
 function rebuildSide(oldSource, dataSource, side) {
 	for (let i = 0; i < oldSource.length ; i++) {
-	addTitle(side); // Crée les lignes 
+	addTitle(side); // Crée les lignes
 	}
-	let firstElement;	
+	let firstElement;
 	for (let i = 0; i < document.getElementById(side).children.length; i++) {
 		firstElement = dataSource.shift();
 		dataSource.push(firstElement); // avoid empty array of Data
@@ -52,7 +52,7 @@ function rebuildSide(oldSource, dataSource, side) {
 		document.getElementById(side).children[i].children[1].value = firstElement.title;
 		document.getElementById(side).children[i].children[2].children[0].value = firstElement.minute;
 		document.getElementById(side).children[i].children[2].children[1].value = firstElement.second;
-	}		
+	}
 }
 
 function rebuildBothSides(firstSide, secondSide, dataSource)  {
@@ -60,16 +60,16 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 	let index = dataSource.length;
 	let counterA = 0;
 	let counterB = 0;
-	let firstElement;	
+	let firstElement;
 
 	if (index >2) {  // TODO : il faut gérer le cas où =2
-		while (index > 0) {	
+		while (index > 0) {
 			addTitle(firstSide);
-			index--;			
+			index--;
 			firstElement = dataSource.shift()
 			dataSource.push(firstElement); // avoid empty array of Data
 			if (firstElement.title === undefined) {
-					document.getElementById(firstSide).children[counterA].children[1].value = `Track A${counterA +  1}`; 
+					document.getElementById(firstSide).children[counterA].children[1].value = `Track A${counterA +  1}`;
 					firstElement.title = `Track A${counterA + 1}`
 				}
 				else {
@@ -85,7 +85,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 				firstElement = dataSource.shift();
 				dataSource.push(firstElement); // avoid empty array of Data
 				if (firstElement.title === undefined) {
-					document.getElementById(secondSide).children[counterB].children[1].value = `Track B${counterB + 1}`; 
+					document.getElementById(secondSide).children[counterB].children[1].value = `Track B${counterB + 1}`;
 					firstElement.title = `Track B${counterB + 1}`
 				}
 				else {
@@ -106,7 +106,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 		document.getElementById(secondSide).children[0].children[1].value = dataSource[1].title;
 		document.getElementById(secondSide).children[0].children[2].children[0].value = dataSource[1].minute;
 		document.getElementById(secondSide).children[0].children[2].children[1].value = dataSource[1].second;
-	}	
+	}
 }
 
 // ************************* ALGORITHM V2
@@ -114,44 +114,46 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 function sortWithDescending() {
 	resetAndFillData("sideA");
 	resetAndFillData("sideB");
-	dataSideASortedByMinutes = dataSideA.sort((a,b) => b.minute - a.minute);
-	dataSideBSortedByMinutes = dataSideB.sort((a,b) => b.minute - a.minute);
-	let assemblage;
-	assemblage = dataSideASortedByMinutes.concat(dataSideBSortedByMinutes);
-	allDataSortedByMinutes =  assemblage.sort((a,b) => b.minute - a.minute);
+	allDataSortedByMinutes =  dataSideA.concat(dataSideB).sort((a,b) => b.minute - a.minute);
+  console.log('allDataSortedByMinutes', allDataSortedByMinutes)
 	destroy();
 	rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
 
-	// test 
+	// test
 	totalLengthSideA = sum("sideA");
+  console.log("totalLengthSideA", totalLengthSideA);
 	totalLengthSideB = sum("sideB");
-	calculateT1LengthDifference();
-	while (testLengthThreshold(t1LengthDifference) && counterRecursion < 8) {
+  console.log("totalLengthSideB", totalLengthSideB);
+	lengthDifference();
+  console.log("lengthDifference", lengthDifference)
+  console.log('threshold(lengthDifference)', threshold(lengthDifference))
+
+  // Recurstion
+	while (threshold(lengthDifference) && counterRecursion < 30) {
 		destroy();
 		rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
 		console.log("I've made " + counterRecursion + " iterations :).");
 		counterRecursion += 1;
-		calculateT1LengthDifference();
-		console.log(t1LengthDifference)
+		lengthDifference();
+		console.log("lengthDifference", lengthDifference)
 	}
-	combinations.push(t1LengthDifference);
 }
 
-let testLengthThreshold = (arrayMinSec) => {
-	return (arrayMinSec[0] > 3 || (arrayMinSec[0] > 2 &&  arrayMinSec[1] > 30)) 
+let threshold = (arrayMinSec) => {
+	return (arrayMinSec[0] > 2 || (arrayMinSec[0] > 1 &&  arrayMinSec[1] > 30))
 };
 
-function calculateT1LengthDifference() {
-	return t1LengthDifference = [
+function lengthDifference() {
+	return lengthDifference = [
 		calculValAbs0(),
 		calculValAbs1()];
 }
 
 
-// ************************* SHUFFLE & SORTWITHSHUFFLE ************************* 
+// ************************* SHUFFLE & SORTWITHSHUFFLE *************************
 
 
-function shuffle() {	
+function shuffle() {
 	getAllData()
 	shuffleData()
 	destroy()
@@ -160,28 +162,28 @@ function shuffle() {
 }
 
 
-function sortWithShuffle() {	
+function sortWithShuffle() {
 
 		// tests to avoid stupid or abusive recursions
 
 
 	if (t0LengthDifference[0] ===  t1LengthDifference[0]
-		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
+		&& t0LengthDifference[1] ===  t1LengthDifference[1]
 		&& t1LengthDifference[0] !== undefined
 		&& t1LengthDifference[1] !== undefined) {
 		return //console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
 	}
-	
-	if (t1LengthDifference[0] === 0 
+
+	if (t1LengthDifference[0] === 0
 		&& t0LengthDifference[1] > t1LengthDifference[1]) {
 		return //console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
 	}
 	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
 	//console.log(t0LengthDifference);
 
-	shuffle(); 
+	shuffle();
 	//console.log("let's shuffle bitch!");
-	t1LengthDifference = [calculValAbs0(),calculValAbs1()];	
+	t1LengthDifference = [calculValAbs0(),calculValAbs1()];
 	//console.log(t1LengthDifference);
 	//recursion
 	if (t1LengthDifference[0] = 0 && t1LengthDifference[1] > t0LengthDifference[1] ) {
@@ -192,17 +194,17 @@ function sortWithShuffle() {
 	}
 }
 
-function sortWithShuffle2() {	
+function sortWithShuffle2() {
 
 /*
 if (t0LengthDifference[0] ===  t1LengthDifference[0]
-		&& t0LengthDifference[1] ===  t1LengthDifference[1] 
+		&& t0LengthDifference[1] ===  t1LengthDifference[1]
 		&& t1LengthDifference[0] !== undefined
 		&& t1LengthDifference[1] !== undefined) {
 		return console.log("test1", t1LengthDifference);  // test: test already happened + same value obtained than inital value after this first test
 	}
-*/	
-	if (t1LengthDifference[0] === 0 
+*/
+	if (t1LengthDifference[0] === 0
 		&& t0LengthDifference[1] > t1LengthDifference[1]) {
 		return //console.log("test2", t1LengthDifference); // test: if diff in minutes = 0 don't run the test
 	}
@@ -210,17 +212,17 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 
 	t0LengthDifference = [calculValAbs0(),calculValAbs1()];
 	//console.log(t0LengthDifference);
-	shuffle(); 
+	shuffle();
 	counterRecursion++;
 	//console.log(counterRecursion);
 	//console.log("let's shuffle bitch!");
 	t1LengthDifference = [calculValAbs0(),calculValAbs1()];
 	// console.log(t1LengthDifference)
 
-	if ( t0LengthDifference[0] + (t0LengthDifference[1]/60) > t1LengthDifference[0] + (t1LengthDifference[1]/60) )
-		{combinations.push(t1LengthDifference)}
-	if ( t1LengthDifference[0] === 0 )
-		{combinations.push(t1LengthDifference)}
+	//if ( t0LengthDifference[0] + (t0LengthDifference[1]/60) > t1LengthDifference[0] + (t1LengthDifference[1]/60) )
+		//{combinations.push(t1LengthDifference)}
+	//if ( t1LengthDifference[0] === 0 )
+		//{combinations.push(t1LengthDifference)}
 	if (counterRecursion >= 5) {
 		sortWithDescending();
 	}
@@ -230,7 +232,7 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
 }
 
 
-// ************************* GET RANDOM VALUES FOR TEST 
+// ************************* GET RANDOM VALUES FOR TEST
 
 function getRandomLines() {
 	let randomnNumberOfLines = randomNumberMin();
@@ -240,7 +242,7 @@ function getRandomLines() {
 	  randomSide = "sideA";
 	  randomSideOpposite = "sideB";
 	} else {
-	  randomSide = "sideB";  
+	  randomSide = "sideB";
 	  randomSideOpposite = "sideA"
 	}
 	for (let i = 0 ; i < randomnNumberOfLines; i++){
@@ -251,10 +253,10 @@ function getRandomLines() {
 	}
 }
 
-function getRandomValues() {	
+function getRandomValues() {
 	let totalLength =  document.getElementById('sideA').children.length + document.getElementById('sideB').children.length
 	for (let i = 0; i < totalLength ; i++) {
-		let obj = {}		
+		let obj = {}
 		if (i%2 ==0){
 		obj.minute = randomNumberMin();
 		obj.second = randomNumberSec();
@@ -270,7 +272,7 @@ function getRandomValues() {
 
 function writeRandomValues() {
 	allData = dataSideA.concat(dataSideB);
-	rebuildBothSides("sideA","sideB", allData);	
+	rebuildBothSides("sideA","sideB", allData);
 }
 
 function removeEmptyTitles(side) {
@@ -316,7 +318,6 @@ function populate() {
 	sortWithShuffle2();
 	sortWithShuffle2();
 	}
-	console.log(combinations)
 }*/
 
 /*function algoTestDescending() {
@@ -342,7 +343,6 @@ function algoTestBoth() {
 	//sortWithShuffle2();
 	//sortWithShuffle2();
 	//}
-	// console.log(combinations)
 }
 
 // ************************* AVERAGE
@@ -360,3 +360,7 @@ function average() {
 	avr[1] = parseInt(((totalLengthSideA[1] + totalLengthSideB[1])/2) + additionalSeconds);
 	return avr;
 }
+
+setTimeout(() => {
+  populate();
+}, 1000);
