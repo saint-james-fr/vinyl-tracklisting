@@ -18,22 +18,22 @@ let dataSideASortedByMinutes;
 let dataSideBSortedByMinutes;
 let allDataSortedByMinutes;
 let calculValAbs0 = () => {
-		totalLengthSideA = sum("sideA");
-		totalLengthSideB = sum("sideB");
+		totalLengthSideA = sum('sideA');
+		totalLengthSideB = sum('sideB');
 		return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);};
   let calculValAbs1 = () => {
-  	totalLengthSideA = sum("sideA");
-		totalLengthSideB = sum("sideB");
+  	totalLengthSideA = sum('sideA');
+		totalLengthSideB = sum('sideB');
   	return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);};
 var t0LengthDifference = [undefined,undefined];
 var t1LengthDifference = [undefined,undefined];
-let randomNumberMin = () => Math.floor(Math.random() * 10);
+let randomNumberMin = () => Math.floor(Math.random() * 6);
 let randomNumberSec = () => Math.floor(Math.random() * 60);
 
 // ************************* INITIALIZATION *************************
 
-init("sideA");
-init("sideB");
+init('sideA');
+init('sideB');
 initSecondA();
 initSecondB();
 
@@ -49,11 +49,11 @@ function init(side) {
 }
 
 function initSecondA() {
-	document.getElementById(`second A1`).addEventListener("input", (event) => formatSecond(`second A1`, "sideA"));
+	document.getElementById(`second A1`).addEventListener("input", (event) => formatSecond(`second A1`, 'sideA'));
 }
 
 function initSecondB() {
-	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, "sideA"));
+	document.getElementById(`second B1`).addEventListener("input", (event) => formatSecond(`second B1`, 'sideA'));
 }
 
 // ************************* CSS MANIPULATION *************************
@@ -91,18 +91,18 @@ window.onbeforeunload = function () {
 window.addEventListener("DOMContentLoaded", function () {
 	var mutationObserver = new MutationObserver(function (mutations) {
 		mutations.forEach(function (mutation) {
-			updatePosition("sideA");
-			updatePosition("sideB");
-			updateLength("sideA");
-			updateLength("sideB");
+			updatePosition('sideA');
+			updatePosition('sideB');
+			updateLength('sideA');
+			updateLength('sideB');
 			updateClassSideA();
 			updateClassSideB();
-			preventNullTitle("sideA")
-			preventNullTitle("sideB")
+			preventNullTitle('sideA')
+			preventNullTitle('sideB')
 		});
 	});
-	let sideA = document.getElementById("sideA");
-	let sideB = document.getElementById("sideB");
+	let sideA = document.getElementById('sideA');
+	let sideB = document.getElementById('sideB');
 	mutationObserver.observe(sideA, {
 		attributes: false,
 		characterData: false,
@@ -133,7 +133,7 @@ function preventNullTitle(side) {
 // ************************* CLASS UPDATE *************************
 
 function updateClassSideA() {
-	let children = document.getElementById("sideA").children;
+	let children = document.getElementById('sideA').children;
 	let arrayChildren = Array.from(children);
 	arrayChildren.forEach(element => {
 		let arrayClass = Array.from(element.classList)
@@ -151,7 +151,7 @@ function updateClassSideA() {
 }
 
 function updateClassSideB() {
-	let children = document.getElementById("sideB").children;
+	let children = document.getElementById('sideB').children;
 	let arrayChildren = Array.from(children);
 	arrayChildren.forEach(element => {
 		let arrayClass = Array.from(element.classList)
@@ -284,15 +284,15 @@ function updatePosition(side) {
 /////////// ADD TITLE ///////////
 
 function addTitle(side) {
-	if (side === "sideA") {
+	if (side === 'sideA') {
 		counterA++;
 	}
-	if (side === "sideB") {
+	if (side === 'sideB') {
 		counterB++;
 	}
 
 	getSideLetter(side);
-	if (side === "sideA") {
+	if (side === 'sideA') {
 		createHandler(`handler ${sideLetter}${counterA}`, side);
 		positionNumber = counterA;
 		createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);
@@ -301,7 +301,7 @@ function addTitle(side) {
 		createMinute(`minute ${sideLetter}${positionNumber}`, side);
 		createSecond(`second ${sideLetter}${positionNumber}`, side);
 	}
-	if (side === "sideB") {
+	if (side === 'sideB') {
 		createHandler(`handler ${sideLetter}${counterB}`, side);
 		positionNumber = counterB;
 		createPosition(`position ${sideLetter}${positionNumber}`, sideLetter);
@@ -407,24 +407,40 @@ function removeTitle(side) {
 	if (lastPosition > 1) {
 		lastTitle.remove();
 		updateLength(side);
-		if (side === "sideA" && dataSideA.length > 0) {
+		if (side === 'sideA' && dataSideA.length > 0) {
 		resetAndFillData(side)
 		}
-		if (side === "sideB" && dataSideB.length > 0) {
+		if (side === 'sideB' && dataSideB.length > 0) {
 		resetAndFillData(side)
 		}
 	}
 }
 
+// ------ SWAP TITLE ------ //
+
+function swapTitle(sideFrom, sideTo) {
+  title = document.getElementById(sideFrom).lastChild
+  addTitle(sideTo);
+  newTitle = document.getElementById(sideTo).lastChild
+  // swap data
+  newTitle.children[1].value = title.children[1].value;
+  newTitle.children[2].children[0].value = title.children[2].children[0].value
+  newTitle.children[2].children[1].value = title.children[2].children[1].value
+    //remove swapped title
+    removeTitle(sideFrom);
+  // reinitialize data calcul
+  //resetAndFillData(sideFrom);
+  //resetAndFillData(sideTo);
+}
+
+
 // ************************* RESET AND FILL DATA *************************
 
-
-
 function resetAndFillData(side) {
-	if (side === "sideA") { // reset A
+	if (side === 'sideA') { // reset A
 		dataSideA = [];
 	}
-	if (side === "sideB") { // reset B
+	if (side === 'sideB') { // reset B
 		dataSideB = [];
 	}
 	for (i = 0; i < document.getElementById(side).children.length; i++) {
@@ -443,7 +459,7 @@ function resetAndFillData(side) {
 		second =
 			document.getElementById(side).children[i].children[2].children[1]
 				.value;
-		if (side === "sideA") {
+		if (side === 'sideA') {
 			let object = {};
 			object["position"] = position;
 			object["title"] = title;
@@ -453,7 +469,7 @@ function resetAndFillData(side) {
 			dataSideA.push(object);
 			totalLengthSideA = formatLength(sum(side));
 		}
-		if (side === "sideB") {
+		if (side === 'sideB') {
 			let object = {};
 			object["position"] = position;
 			object["title"] = title;
