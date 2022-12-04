@@ -79,12 +79,12 @@ function erase(id) {
 	document.getElementById(id).value = null;
 }
 
-/* // "ARE YOU SURE YOU WANT TO REFRESH?""
+// "ARE YOU SURE YOU WANT TO REFRESH?""
 
 window.onbeforeunload = function () {
 	return "Do you want to reload the page?";
 };
-*/
+
 
 // ************************* EVENT HANDLER *************************
 

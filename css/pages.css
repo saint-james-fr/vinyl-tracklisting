@@ -69,6 +69,10 @@
 	.home__button {
 		margin-top: 4vh;
 	}
+
+  #section__home {
+    min-height: 100vh;
+  }
 }
 
 @media screen and (min-width: 1200px) {
