@@ -1,0 +1,26 @@
+:root {
+	/*------- COLORS -------*/
+	--color-white: #FFFFFF;
+	--color-gray-light: #EBEAEA;
+	--color-gray-dark: #474848;
+	--color-gray-strong: #757278;
+	--color-gray-dark-opacity: rgba(117, 114, 120, 0.9);
+	--color--gray-medium-opacity: rgba(235, 234, 234, 0.94);
+	--color-gray-light-opacity:rgba(217, 217, 217, 0.54);
+	--color-gray-tracklisting: #D9D9D9;
+	--color-gray-slightly-cream: #D3D3D3;
+	--color-orange: #D07F33;
+	--color-orange-opacity: rgba(208, 127, 51, 0.81);;
+	--color-blue: #576883;
+	--color-cream: #F3EEE0;
+	--color-black: black;
+
+	/*------- FONTS -------*/
+	--font-size-1: 16px; /* paragraph */
+	--font-size-2: 26px; /* header */
+	--font-size-3: 20px; /* title */
+	--font-family-1: 'Kanit';
+	--font-family-2: 'Syne';
+
+	--number-pages: 2;
+}

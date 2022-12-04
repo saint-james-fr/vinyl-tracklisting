@@ -1,0 +1,161 @@
+body, p, .block-title, .text {
+	font-family: var(--font-family-1);
+	font-weight: 200;
+	color:  var(--color-cream);
+}
+
+button {
+	display: block;
+	margin: auto;
+	outline: none;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+	border-radius: 500px;
+	transition-property: background-color,border-color,color,box-shadow,filter;
+	transition-duration: .2s;
+	border: 1px solid transparent;
+	letter-spacing: 2px;
+	min-width: 160px;
+	text-transform: uppercase;
+	white-space: normal;
+	font-weight: 700;
+	text-align: center;
+	padding: 16px 14px 18px;
+	color: var(--color-cream);
+	box-shadow: inset 0 0 0 2px var(--color-cream);
+	background-color: transparent;
+	height: 48px;
+}
+
+button:hover {
+	    color: #616467;
+	    background-color: var(--color-cream) ;
+	}
+
+::placeholder {
+	color: var(--color-black);
+}
+
+.page__container-basics {
+	display: block;
+	min-width: 100%;
+	height: 640px;
+	background-color: var(--color-black);
+}
+
+.page__container-first, .page__container-basics  {
+	min-height: 100vh;
+}
+
+
+@media screen and (min-width: 890px) {
+	.page__container-basics-not-first {
+		min-height: calc(100vh - 45px);
+	}
+}
+
+@media screen and (max-width: 600px) {
+  .page__container-first, .page__container-basics {
+  min-height: 500px;
+  } /* * fix for mobile issue with keyboard  */
+}
+
+section {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		max-width: 2000px;
+}
+
+.sortable-ghost {
+	opacity: 0.4;
+}
+
+.content__container {
+	max-width: 82%;
+	height: 100%;
+	margin: auto;
+}
+
+.logo {
+	color: var(--color-cream);
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	font-family: var(--font-family-2);
+}
+
+.block-title {
+	display: block;
+	text-transform: uppercase;
+	font-size: var(--font-size-3);
+	line-height: 1em;
+}
+
+
+
+.page-title {
+	text-align: center;
+	font-size: 35px;
+	display: block;
+	width: 40%;
+	padding: 1em;
+	background-color: var(--color-gray-light-opacity);
+	text-transform: lowercase;
+	letter-spacing: 0.05em;
+	line-height: 1.1;
+	margin: 40px auto 20px auto;
+
+}
+
+.page-title.logo {
+	font-size: calc(0.8*var(--font-size-2));
+}
+
+.half-hero {
+	height: 50%;
+}
+
+.two-columns > div {
+	display: flex;
+	justify-content: center
+}
+
+.two-columns > div > div {
+	width: 50%;
+}
+
+.radius {
+	border-radius: 10px;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-around;
+}
+
+.box-shadow {
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+}
+
+.scroll-margin-top {
+	scroll-margin-top: 45px;
+}
+
+@media screen and (max-width: 890px) {
+	.page-title {
+		width: 100%;
+		max-width: 400px;
+	}
+	.scroll-margin-top {
+	scroll-margin-top: 0px;
+	}
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.bolder {
+	font-weight: bolder;
+}
