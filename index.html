@@ -211,21 +211,25 @@
           <div class="page-title logo radius">Release Informations</div>
           <form id="form_page_one">
             <div class="form__container">
-              <label for="catalogue-number" class="form__label">Catalogue Number</label>
-              <input id="catnumber" type="text" placeholder="TEST-001" class="input-border">
-              <label for="artist" class="form__label">Artist
+              <label for="catnumber" class="form__label">Catalogue Number
+                <input id="catnumber" type="text" placeholder="TEST-001" class="input-border">
               </label>
-              <input id="artist" type="text" placeholder="JOHN LENNON" class="input-border">
-              <label for="title" class="form__label">Title</label>
-              <input id="title" type="text" placeholder="COMPLETE WORKS" class="input-border">
+              <label for="artist" class="form__label">Artist
+                <input id="artist" type="text" placeholder="JOHN LENNON" class="input-border">
+              </label>
+              <label for="title" class="form__label">Title
+                <input id="title" type="text" placeholder="COMPLETE WORKS" class="input-border">
+              </label>
               <div class="radio__container">
                 <div class="form__label form_label-checkbox form-min-width">
                     Format
                 </div>
                 <div class="radio__container__sub">
-                  <label for='LP/12"' class="form__label"><input type="radio" name="format" value = 'LP/12"'>LP/12"</label>
-                  <label for='10"' class="form__label"><input type="radio" name="format" value = '10"'>10"</label>
-                  <label for='12"' class="form__label"><input type="radio" name="format" value = '7"'>7"</label>
+                  <label class="form__label">
+                    <input type="radio" name="format" value = 'LP/12"'>LP/12"
+                  </label>
+                  <label class="form__label"><input type="radio" name="format" value = '10"'>10"</label>
+                  <label class="form__label"><input type="radio" name="format" value = '7"'>7"</label>
                 </div>
               </div>
               <div class="radio__container">
@@ -233,8 +237,8 @@
                     Speed
                 </div>
                 <div class="radio__container__sub">
-                  <label for="33RPM" class="form__label"><input type="radio" name="speed" value = '33RPM'>33RPM</label>
-                  <label for="45RPM" class="form__label"><input type="radio" name="speed" value = '45RPM'>45RPM</label>
+                  <label class="form__label"><input type="radio" name="speed" value = '33RPM'>33RPM</label>
+                  <label class="form__label"><input type="radio" name="speed" value = '45RPM'>45RPM</label>
                 </div>
               </div>
             </div>
@@ -264,10 +268,10 @@
                     Bitrate
                 </div>
                 <div class="radio__container__sub">
-                  <label for="44.1kHz" class="form__label"><input type="radio" name="bitrate" value = '44.1kHz'>44.1kHz</label>
-                  <label for="48kHz" class="form__label"><input type="radio" name="bitrate" value = '48kHz'>48kHz</label>
-                  <label for="88.3kHz" class="form__label"><input type="radio" name="bitrate" value = '88.2kHz'>88.2kHz</label>
-                  <label for="96kHz" class="form__label"><input type="radio" name="bitrate" value = '96kHz'>96kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '44.1kHz'>44.1kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '48kHz'>48kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '88.2kHz'>88.2kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '96kHz'>96kHz</label>
                 </div>
               </div>
               <div class="radio__container">
@@ -275,17 +279,19 @@
                     Bit Depth
                 </div>
                 <div class="radio__container__sub">
-                  <label for="16bits" class="form__label"><input type="radio" name="bits" value = '16bits'>16Bits</label>
-                  <label for="24bits" class="form__label"><input type="radio" name="bits" value = '24Bits'>24Bits</label>
-                  <label for="32bits" class="form__label"><input type="radio" name="bits" value = '32Bits'>24Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '16bits'>16Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '24Bits'>24Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '32Bits'>24Bits</label>
                 </div>
               </div>
               <div class="comments-container">
-                <div class="form__label form_label-checkbox form-min-width">
-                    Comments
+                <label>
+                  <div class="form__label form_label-checkbox form-min-width">
+                      Comments
+                  </div>
+                  <textarea id="comments" name="comments" id="" cols="30" rows="6"></textarea>
                 </div>
-                <textarea id="comments" name="comments" id="" cols="30" rows="6"></textarea>
-              </div>
+              </label>
             </div>
           </form>
           <div class="section__infos_next_button">
