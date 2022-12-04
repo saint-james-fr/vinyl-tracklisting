@@ -428,9 +428,6 @@ function swapTitle(sideFrom, sideTo) {
   newTitle.children[2].children[1].value = title.children[2].children[1].value
     //remove swapped title
     removeTitle(sideFrom);
-  // reinitialize data calcul
-  //resetAndFillData(sideFrom);
-  //resetAndFillData(sideTo);
 }
 
 

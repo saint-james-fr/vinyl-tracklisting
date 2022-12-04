@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vinyl Tracklisting</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
@@ -19,10 +20,10 @@
       <div class="header__container content__container">
         <nav>
           <ul>
-            <li><a href="#section__home">home</a></li>
-            <li><a href="#section__timing">timing</a></li>
-            <li><a href="#section__tracklisting">tracklisting</a></li>
-            <li><a href="#section__release-infos">infos</a></li>
+            <li><a href="#anchor__home">home</a></li>
+            <li><a href="#anchor__timing">timing</a></li>
+            <li><a href="#anchor__tracklisting">tracklisting</a></li>
+            <li><a href="#anchor__release-infos">infos</a></li>
           </ul>
         </nav>
         <div class="logo">
@@ -35,6 +36,7 @@
 
 
     <div class="page__container-first page__container-basics">
+      <a id="anchor__home" class="anchor-offset"></a>
       <section id="section__home" class="scroll-margin-top">
         <div class="content__container">
           <div class="logo">
@@ -58,6 +60,7 @@
 <!------------------------------------ SECTION TIMING ------------------------------------->
 
     <div class="page__container-second page__container-basics page__container-basics-not-first">
+      <a id="anchor__timing" class="anchor-offset"></a>
       <section id="section__timing" class="scroll-margin-top">
         <div class="half-hero" id="timing__hero-1">
           <div class="content__container">
@@ -98,6 +101,7 @@
 <!------------------------------------ SECTION APP:  TRACKLISTING ------------------------------------->
 
     <div class="page__container-third page__container-basics page__container-basics-not-first" id="page-container-tracklisting">
+      <a id="anchor__tracklisting" class="anchor-offset"></a>
       <section id="section__tracklisting" class="scroll-margin-top">
         <div class="content__container">
           <div>
@@ -109,12 +113,12 @@
           <div class="app__container">
             <div class="side__container radius box-shadow">
                 <div class="controls">
-                  <button class="btn-plus" onclick="addTitle('sideA')">+</button>
+                  <button class="btn-plus" onclick="addTitle('sideA')"><i class="fa-solid fa-plus icon-btn"></i></button>
                   <div class="controls-flex">
                     <div class="bolder">FACE A &nbsp;</div>
                     <div class="result-length" id="length sideA"></div>
                   </div>
-                  <button class="btn-minus" onclick="removeTitle('sideA')">-</button>
+                  <button class="btn-minus" onclick="removeTitle('sideA')"><i class="fa-solid fa-minus icon-btn"></i></button>
                 </div>
 
                 <div id="sideA" class="list-group list-group-flush container">
@@ -132,12 +136,12 @@
               <div class="side__container radius box-shadow">
 
                 <div class="controls">
-                  <button class="btn-plus" onclick="addTitle('sideB')">+</button>
+                  <button class="btn-plus" onclick="addTitle('sideB')"><i class="fa-solid fa-plus icon-btn"></i></button>
                   <div class="controls-flex">
                     <div  class="bolder">FACE B&nbsp;</div>
                     <div class="result-length" id="length sideB"></div>
                   </div>
-                  <button class="btn-minus" onclick="removeTitle('sideB')">-</button>
+                  <button class="btn-minus" onclick="removeTitle('sideB')"><i class="fa-solid fa-minus icon-btn"></i></button>
                 </div>
 
                 <div id="sideB" class="list-group list-group-flush container">
@@ -201,6 +205,7 @@
 <!------------------------------------ SECTION RELEASE INFORMATIONS ------------------------------------->
 
     <div class="page__container-basics page__container-basics-not-first">
+      <a id="anchor__release-infos" class="anchor-offset"></a>
       <section id="section__release-infos" class="scroll-margin-top">
         <div class="content__container">
           <div class="page-title logo radius">Release Informations</div>

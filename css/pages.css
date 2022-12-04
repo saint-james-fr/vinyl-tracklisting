@@ -379,6 +379,12 @@
 	color: #4E8D50;
 }
 
+i.icon-btn {
+  position: relative;
+  top: 1px;
+  left: 1px
+}
+
 .btn-minus:hover {
 	color: #4D4652;
 }

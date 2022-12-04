@@ -159,3 +159,10 @@ section {
 .bolder {
 	font-weight: bolder;
 }
+
+a.anchor-offset {
+    display: block;
+    position: relative;
+    top: -45px;
+    visibility: hidden;
+}
