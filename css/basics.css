@@ -57,7 +57,7 @@ button:hover {
 
 @media screen and (max-width: 600px) {
   .page__container-first, .page__container-basics {
-  min-height: 500px;
+  min-height: 550px;
   } /* * fix for mobile issue with keyboard  */
 }
 
