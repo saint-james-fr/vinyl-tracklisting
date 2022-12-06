@@ -409,17 +409,6 @@ i.icon-btn {
 	}
 }
 
-.btn-random {
-	position: relative;
-	top: 3vh;
-	background-color: indianred;
-	margin-bottom: min(1vh);
-}
-
-.btn-random:hover {
-	color: indianred;
-}
-
 
 /*---------------------------- RELEASE INFORMATIONS ---------------------------- */
 
