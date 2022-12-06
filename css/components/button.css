@@ -1,0 +1,91 @@
+button {
+	display: block;
+	margin: auto;
+	outline: none;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+	border-radius: 500px;
+	transition-property: background-color,border-color,color,box-shadow,filter;
+	transition-duration: .2s;
+	border: 1px solid transparent;
+	letter-spacing: 2px;
+	min-width: 160px;
+	text-transform: uppercase;
+	white-space: normal;
+	font-weight: 700;
+	text-align: center;
+	padding: 16px 14px 18px;
+	color: var(--color-cream);
+	box-shadow: inset 0 0 0 2px var(--color-cream);
+	background-color: transparent;
+	height: 48px;
+}
+
+button:hover {
+  color: #616467;
+  background-color: var(--color-cream) ;
+}
+
+.btn-random {
+	position: relative;
+	top: 3vh;
+	background-color: var(--color-black);
+	margin-bottom: min(1vh);
+}
+
+.btn-random:hover {
+	color: var(--color-success);
+}
+
+
+#section__release-infos .section__infos_next_button,
+#section__audio-infos .section__infos_next_button {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  color: #000;
+  transition: 0.1s ease-in-out;
+}
+#section__release-infos .section__infos_next_button:hover,
+#section__audio-infos .section__infos_next_button:hover {
+  opacity: 0.7;
+}
+
+
+#section__audio-infos .section__infos_next_button {
+font-family: 'Kanit';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 30px;
+	letter-spacing: 0.03em;
+  margin-right: 5px;
+	color: black;
+	text-transform: uppercase;
+  cursor: pointer;
+}
+
+.section__infos_next_button i {
+  cursor: pointer;
+}
+
+  #generatePDF {
+	font-size: var(--font-size-1);
+	display: block;
+  padding: 40px;
+  text-align: center;
+	background-color: var(--color-primary);
+  line-height: 0;
+  font-size: 1.2em;
+}
+
+#generatePDF:hover {
+	border-color:  ;
+	background-color: var(--color-success);
+	color: var(--color-cream);
+}
+
+.green {
+  background-color: green;
+}

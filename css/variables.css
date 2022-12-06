@@ -15,6 +15,9 @@
 	--color-cream: #F3EEE0;
 	--color-black: black;
 
+  --color-primary: #24a0ed;
+  --color-success: #04aa6d;
+
 	/*------- FONTS -------*/
 	--font-size-1: 16px; /* paragraph */
 	--font-size-2: 26px; /* header */

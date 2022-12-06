@@ -430,101 +430,15 @@ i.icon-btn {
 }
 
 #section__release-infos {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/pic3-vinyl-records-stock.jpg");
+	background-image: linear-gradient(180deg, #03030c 0%, rgba(36, 0, 0, 0.6) 20%, rgba(36, 21, 0, 0.3) 35%, rgba(127,99,0,0.016) 45%), linear-gradient(0deg, rgb(1, 0, 24) 0%, rgba(36, 22, 0, 0.7) 40%, rgba(36, 28, 0, 0.3) 66%, rgba(165, 131, 6, 0.016) 90%), url("../img/pic3-vinyl-records-stock.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-#form_page_one,
-#form_page_two {
-	width: min(460px, 80vw);
-	margin: 0 auto;
-
-	background: rgba(235, 234, 234, 0.94);
-	border-radius: 10px;
+#section__release-infos .content__container {
+  justify-content: space-evenly;
 }
 
-.form__label {
-	font-family: 'Kanit';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 20px;
-	line-height: 30px;
-	letter-spacing: 0.03em;
-	color: black;
-	text-transform: uppercase;
-}
-
-.form__container {
-	margin: 5%;
-}
-
-.form__container {
-	font-style: normal;
-	font-weight: 250;
-	font-size: 18px;
-	line-height: 30px;
-}
-
-.form__container input {
-	border: 0;
-	appearance: none;
-	width: 100%;
-	transition: all .2s ease;
-    color: var(--color-cream);
-    text-transform: inherit;
-    box-sizing: border-box;
-    border: none;
-    background: transparent;
-    color: black;
-    font-weight: lighter;
-    text-align: left;
-    font-size: 16px;
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
-}
-
-.radio__container input{
-	appearance: auto;
-	width: auto;
-}
-
-.radio__container {
-	display: flex;
-}
-
-.radio__container__sub {
-	display: flex;
-	flex-grow: 0.5;
-	justify-content: space-between;
-}
-
-.input-border {
-	border-bottom: 1px solid;
-}
-
-.form-min-width {
-	min-width: 140px;
-}
-
-input:focus {
-	outline: none;
-	outline: 0;
-}
-
-input::placeholder {
-	text-align: left;
-	color: black;
-	opacity: 0.8;
-}
-
-input:focus::placeholder {
-	color: transparent;
-}
-
-.section__infos_next_button {
-	margin: 2vh 0 2vh 0;
-}
 
 /*---------------------------- AUDIO INFORMATIONS ---------------------------- */
 
@@ -539,32 +453,13 @@ input:focus::placeholder {
 }
 
 #section__audio-infos {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/pic4-hardware-c-mb-mastering.jpg");
-	background-repeat: no-repeat;
+	background-image: linear-gradient(180deg,  rgb(1, 0, 24) 0%, rgba(2,0,36,0.7) 34%, rgba(2,0,36,0.2) 45%, rgba(127,99,0,0.01) 55%), linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,0,36,0.811843487394958) 23%, rgba(2,0,36,0.6885941876750701) 38%, rgba(127,99,0,0.03593312324929976) 65%), url("../img/pic4-hardware-c-mb-mastering.jpg");
+	background-image: ;
+  background-repeat: no-repeat;
 	background-size: cover;
 }
 
 
-#form-speed {
-	justify-content: flex-end;
-}
-
-
-textarea {
-	margin: auto;
-    border: none;
-    width: 100%;
-    background-color: initial;
-    font-family: inherit;
-	line-height: 3ch;
-	background-image: linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
-	background-size: 100% 3ch;
-}
-
-textarea:focus {
-	border: none;
-	outline: none;
-}
 /*---------------------------- GENERATE PDF ---------------------------- */
 
 #section__pdf .content__container {
@@ -574,22 +469,10 @@ textarea:focus {
 }
 
 #section__pdf {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/pic2-cutting-c-mb-mastering.jpg");
+	background-image: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,36,0.811843487394958) 23%, rgba(2,0,36,0.6885941876750701) 38%, rgba(127,99,0,0.03593312324929976) 86%), url("../img/pic2-cutting-c-mb-mastering.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: 40%;
-}
-
-#generatePDF {
-	font-size: var(--font-size-1);
-	display: block;
-	background-color: var(--color-blue);
-}
-
-#generatePDF:hover {
-	border-color: var(--color-cream) ;
-	background-color: var(--color-cream);
-	color: var(--color-blue);
 }
 
 .pdf__infoblock {
@@ -606,4 +489,8 @@ textarea:focus {
 	.pdf__infoblock {
 		width: 80vw;
 	}
+}
+
+.credits {
+  width: 70%;
 }
