@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!------------------------------------ HEAD ------------------------------------->
+<!-- * HEAD -->
 
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
 
-<!------------------------------------ HEADER ------------------------------------->
+<!-- * HEADER -->
 
   <body>
     <div class="header" id="header__desktop">
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-<!------------------------------------ SECTION HOME ------------------------------------->
+<!-- * HOME -->
 
 
     <div class="page__container-first page__container-basics">
@@ -48,7 +48,6 @@
               <span class="block-paragraph">
                 <p>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, aspernatur inventore tempore aperiam cum perspiciatis, minus fuga explicabo odit nobis dolorum architecto esse ab corrupti, sequi molestiae temporibus. Quibusdam, iste.
-
                 </p>
               </span>
             </div>
@@ -57,7 +56,8 @@
         </div>
       </section>
     </div>
-<!------------------------------------ SECTION TIMING ------------------------------------->
+
+<!-- * TIMING -->
 
     <div class="page__container-second page__container-basics page__container-basics-not-first">
       <a id="anchor__timing" class="anchor-offset"></a>
@@ -91,14 +91,41 @@
         <div class="half-hero two-columns" id="timing__hero-2">
             <div class="content__container">
               <div class="timing__motto centrer">Defining the best timing for your tracklisting</div>
-              <div class="timing__infoblock centrer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, reiciendis expedita molestias, eveniet in maxime ipsum ea voluptatibus veniam quas iusto maiores ratione est distinctio repudiandae ipsa esse aspernatur nemo! <br> <br> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Distinctio tenetur iste cupiditate dolorum corrupti nesciunt maxime reiciendis, animi. Ex minus illum reiciendis harum id est excepturi facilis quod doloribus temporibus?</div>
+              <div class="timing__infoblock centrer">
+                <div>
+                  <!-- Trigger/Open The Modal -->
+                  <div>
+                    <button id="myBtn">Open Modal</button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="close">&times;</span>
+                          <h2>Modal Header</h2>
+                        </div>
+                        <div class="modal-body">
+                          <p>Some text in the Modal Body</p>
+                          <p>Some other text...</p>
+                        </div>
+                        <div class="modal-footer">
+                          <h3>Modal Footer</h3>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
       </section>
     </div>
 
 
-<!------------------------------------ SECTION APP:  TRACKLISTING ------------------------------------->
+<!-- * TRACKLISTING -->
 
     <div class="page__container-third page__container-basics page__container-basics-not-first" id="page-container-tracklisting">
       <a id="anchor__tracklisting" class="anchor-offset"></a>
@@ -202,7 +229,7 @@
     </div>
 
 
-<!------------------------------------ SECTION RELEASE INFORMATIONS ------------------------------------->
+<!-- * RELEASE FORM -->
 
     <div class="page__container-basics page__container-basics-not-first">
       <a id="anchor__release-infos" class="anchor-offset"></a>
@@ -257,7 +284,7 @@
 
 
 
-<!------------------------------------ SECTION AUDIO INFORMATIONS ------------------------------------->
+<!-- * AUDIO FORM -->
 
 
 
@@ -308,7 +335,8 @@
     </div>
 
 
-<!------------------------------------ SECTION GENERATE PDF ------------------------------------->
+<!-- * GENERATE PDF -->
+
 
 
 
@@ -350,6 +378,7 @@
     <script src="js/script.js" defer></script>
     <script src="js/sorting.js" defer></script>
     <script src="js/external.js" defer></script>
+    <script src="js/components/modal.js" defer></script>
 
   </body>
 </html>

@@ -94,10 +94,12 @@ function rebuildBothSides(firstSide, secondSide, dataSource)  {
 // ************************* ALGORITHM V2
 
 function sortWithDescending() {
-  if (lengthDifference() !== [0, 0])
+  if (lengthDifference()[0] === 0 && lengthDifference()[1] == 0) {
     return window.alert("Please enter some values.");
-  if (!threshold(lengthDifference()))
-      return window.alert("It seems already well balanced");
+  };
+  if (!threshold(lengthDifference())) {
+    return window.alert("It seems already well balanced, not sure we can help you more.");
+  };
 	resetAndFillData("sideA");
 	resetAndFillData("sideB");
 	allDataSortedByMinutes =  dataSideA.concat(dataSideB).sort((a,b) => b.minute - a.minute);
