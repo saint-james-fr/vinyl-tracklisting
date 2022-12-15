@@ -17,8 +17,12 @@
 	margin-right: -0.4vw;
 }
 
-#section__home .content__container {
-	display: flex;
+.left__content {
+
+
+}
+.right__content {
+  display: flex;
 	flex-direction: column;
 	align-items: end;
 }
@@ -53,11 +57,11 @@
 		top: 12vh;
 	}
 
-	#section__home .content__container {
-		display: flex;
+  .right__content {
+    display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
+  }
 
 	#section__home .logo {
 		font-size: calc(var(--font-size-2));
