@@ -1,6 +1,5 @@
 button {
 	display: block;
-	margin: auto;
 	outline: none;
 	cursor: pointer;
 	font-size: 14px;
@@ -20,6 +19,14 @@ button {
 	box-shadow: inset 0 0 0 2px var(--color-cream);
 	background-color: transparent;
 	height: 48px;
+}
+
+strong {
+  font-weight: 400;
+}
+
+#section__tracklisting button {
+  margin: auto
 }
 
 button:hover {

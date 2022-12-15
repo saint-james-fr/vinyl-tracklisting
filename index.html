@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
 <!-- * HEADER -->
@@ -39,47 +40,76 @@
       <a id="anchor__home" class="anchor-offset"></a>
       <section id="section__home" class="scroll-margin-top">
         <div class="content__container">
-          <div class="left__content">
-            <div class="home__infoblock radius box-shadow">
+          <div class="logo">
+            vinyl tracklisting
+          </div>
+          <div class="home__card_container">
+            <div class="home__card">
               <div class="home__infoblock__text">
-                <span class="block-title">Technical informations about Vinyls </span>
+                <span class="block-title">Simply choose the best order for your tracklisting</span>
                 <span class="block-paragraph">
                   <p>
+                    The mastering engineer who is going to make the cutting on lacquers <strong>needs a
+                    tracklisting</strong>.
+                  </p>
+                  <p>
+                    Ideally, he will have access to several informations:
                     <ul>
-                      <li>The first thing to know is that the more music there is on one side, the less dynamic and therefore, we approach the surface noise.</li>
-                      <li>On a 12 inch, ideally, it should not exceed 22 minutes at 33 rpm1/3 nd 10 minutes at 45 rpm.</li>
-                      <li>other information, the more stereo there is, the more space the groove will take up.</li>
-                      <li>you can burn mono music louder than stereo music.</li>
-                      <li>quieter track take up less space than heavy track</li>
-                      <li>high frequencies are more difficult to engrave</li>
-                      <li>too high high frequencies cause saturation during playback</li>
-                      <li>do not push the stereo to low frequencies</li>
-                      <li>ideally, you should place the energetic tracks on the beginning of the side of
-                      the disc, and the quieter pieces towards the end of the side.</li>
-                      <li>apply a strong deesser to the vocals</li>
-                      <li>do not compress the track too much is better for the cut (DR 14 db ).</li>
-                      <li>think from the start of production to work in high resolution (minimum 24 bits/ 48 khtzs) and send the Masters in high resolution.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> How many songs are on the record.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the distribution per side (A1..., B1...) and time for each song.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the total time per side.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the catalogue number/reference of the release.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the resolution and bitrate of the provided audio files</li>
                     </ul>
                   </p>
-                </span>
-              </div>
-              <div class="home__button"><a href="#section__tracklisting"><button>Create A Tracklist</button></a></div>
-            </div>
-          </div>
-          <div class="right__content">
-            <div class="logo">
-              vinyl tracklisting
-            </div>
-            <div class="home__infoblock radius box-shadow">
-              <div class="home__infoblock__text">
-                <span class="block-title">Choose the best order for the tracklisting of your vinyl!</span>
-                <span class="block-paragraph">
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, aspernatur inventore tempore aperiam cum perspiciatis, minus fuga explicabo odit nobis dolorum architecto esse ab corrupti, sequi molestiae temporibus. Quibusdam, iste.
+                    This website allows you to generate this very own tracklisting for professional use with all informations needed.
+                    It's <strong>simple, easy, effective</strong> and can be used by all recording industry professionals.<br>
+                  </p>
+                  <p>
+                    <span class="bigger-text">Moreover, it's free and we don't collect any data at all.</span><br>
                   </p>
                 </span>
               </div>
-              <div class="home__button"><a href="#section__tracklisting"><button>Create A Tracklist</button></a></div>
+              <div>
+
+                <!-- The Modal -->
+                <div id="modalTechnical" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span id="close" class="home__button">&times;</span>
+                      <h2>Technical Informations</h2>
+                    </div>
+                    <div class="modal-body">
+                      <span class="block-paragraph">
+                        <p>
+                          <ul>
+                            <li>The first thing to know is that the more music there is on one side, the less dynamic and therefore, we approach the surface noise.</li>
+                            <li>On a 12inch, ideally, it should not exceed 22 minutes at 33 RPM 1/3 and 10 minutes at 45 RPM.</li>
+                            <li>Ideally, you should place the energetic tracks on the beginning of the side of
+                            the disc, and the quieter pieces towards the end of the side.</li>
+                            <li>The more stereo there is, the more space the groove will take.</li>
+                            <li>You can burn mono music louder than stereo music.</li>
+                            <li>Quieter tracks take up less space than heavy tracks.</li>
+                            <li>High frequencies are more difficult to engrave.</li>
+                            <li>Too high high frequencies cause saturation during playback.</li>
+                            <li>Do not push the stereo to low frequencies.</li>
+                            <li>Apply a strong deesser to the vocals.</li>
+                            <li>Do not compress the track too much- it is better for the cut (DR 14 decibels).</li>
+                            <li>Think from the start of production to work in high resolution (minimum 24 bits/ 48 kHz).</li>
+                          </ul>
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="align-buttons">
+                <button id="myBtn">Technical Informations</button>
+                <div class="home__button"><a href="#section__tracklisting"><button>Create A Tracklist</button></a>
+              </div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,32 +151,6 @@
             <div class="content__container">
               <div class="timing__motto centrer">Defining the best timing for your tracklisting</div>
               <div class="timing__infoblock centrer">
-                <div>
-                  <!-- Trigger/Open The Modal -->
-                  <div>
-                    <button id="myBtn">Open Modal</button>
-
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <span class="close">&times;</span>
-                          <h2>Modal Header</h2>
-                        </div>
-                        <div class="modal-body">
-                          <p>Some text in the Modal Body</p>
-                          <p>Some other text...</p>
-                        </div>
-                        <div class="modal-footer">
-                          <h3>Modal Footer</h3>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
         </div>
