@@ -54,13 +54,10 @@ button:hover {
   color: #000;
   transition: 0.1s ease-in-out;
 }
-#section__release-infos .section__infos_next_button:hover,
-#section__audio-infos .section__infos_next_button:hover {
-  opacity: 0.7;
-}
 
 
-#section__audio-infos .section__infos_next_button {
+#section__audio-infos .section__infos_next_button,
+#section__release-infos .section__infos_next_button {
 font-family: 'Kanit';
 	font-style: normal;
 	font-weight: 500;
@@ -73,40 +70,23 @@ font-family: 'Kanit';
   cursor: pointer;
 }
 
+#continue {
+  display: flex;
+  justify-content: center;
+}
+
 .section__infos_next_button i {
   cursor: pointer;
 }
-
-  #generatePDF {
-	font-size: var(--font-size-1);
-	display: block;
-  padding: 40px;
-  text-align: center;
-	background-color: var(--color-primary);
-  line-height: 0;
-  font-size: 1.2em;
-}
-
-#generatePDF:hover {
-	border-color:  ;
-	background-color: var(--color-success);
-	color: var(--color-cream);
-}
-
-.green {
-  background-color: green;
-}
-
 
 .home-main-button {
     padding: 5px 10px 10px 10px;
     background-color: var(--color-orange);
     color: var(--color-cream);
-    transition: 0.18s ease-in-out;
+    transition: 0.13s ease-in-out;
     border-radius: 3px;
+    cursor: pointer;
 }
-
-
 
 .home-main-button:hover {
   color: black;
@@ -114,9 +94,35 @@ font-family: 'Kanit';
 
 .home-secondary-button {
   padding: 5px 10px 10px 10px;
-  transition: 0.18s ease-in-out;
+  transition: 0.13s ease-in-out;
+  cursor:pointer;
 }
 
 .home-secondary-button:hover {
   color: var(--color-orange)
+}
+
+#continue-button {
+  text-align: center;
+  display: inline-block;
+  width: 240px;
+}
+
+
+.surligne-inverse {
+  display: inline-block;
+  border-radius: 5px;
+  color: var(--color-cream);
+  background-color: var(--color-gray-dark);
+  padding: 4px 8px;
+  transition: 0.13s ease-in-out;
+}
+
+.surligne-inverse:hover {
+  color: var(--color-orange);
+}
+
+#sort {
+  margin: 0 auto;
+  width: 150px;
 }

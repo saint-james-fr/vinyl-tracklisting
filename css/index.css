@@ -4,7 +4,6 @@
 @import url(basics.css);
 @import url(variables.css);
 @import url(pages.css);
-
+@import url(footer.css);
 @import url(components/index.css);
-
 @import url(../fonts/fonts.css);

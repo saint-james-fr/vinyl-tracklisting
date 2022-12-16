@@ -40,7 +40,7 @@
 
 /* The Close Button */
 #close, #close2{
-  color: white;
+  color: var(--color-cream);
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -58,7 +58,7 @@
 .modal-header {
   padding: 20px 50px;
   background-color: black;
-  color: white;
+  color: var(--color-cream);
   font-weight: 500;
   font-size: 20px;
 }

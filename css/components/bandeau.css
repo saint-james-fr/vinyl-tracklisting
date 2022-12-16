@@ -3,7 +3,7 @@
   padding: 10px;
   text-align: center;
   color: var(--color-gray-tracklisting);
-  background-color: black;
+  background-color: var(--color-black);
   margin: 0 auto;
   font-family: var(--font-family-2);
   text-transform: uppercase;

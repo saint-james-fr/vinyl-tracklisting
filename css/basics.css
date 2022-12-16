@@ -71,14 +71,6 @@ section {
   padding: 0px 3px
 }
 
-.surligne-inverse {
-  display: inline-block;
-  border-radius: 5px;
-  color: var(--color-orange);
-  background-color: var(--color-black);
-  padding: 2px 5px
-}
-
 
 .underline {
   text-decoration: underline;

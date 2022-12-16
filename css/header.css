@@ -1,6 +1,6 @@
 .header {
   height: 45px;
-  background-color: var(--color-black);
+  background-color: var(--color-gray-dark);
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -38,12 +38,12 @@ nav>ul>li {
 
 nav>ul>li a,
 .logo a {
-  transition: 0.1s ease-in-out;
+  transition: 0.13s ease-in-out;
 }
 
 nav>ul>li a:hover,
 .logo a:hover {
-  opacity: 0.8;
+  color: var(--color-orange)!important;
 }
 
 .header .logo {

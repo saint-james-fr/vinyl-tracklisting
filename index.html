@@ -59,9 +59,9 @@
               <canvas id="c">
               </canvas>
               <div class="home_infoblock grid5">
-                <div id="myBtn" class="clickable-div home-secondary-button"> <span class="bigger-text"><i class="fa-solid fa-record-vinyl"></i> I wanna know more about vinyl format</span></div>
+                <div id="myBtn" class="clickable-div home-secondary-button"> <span class="bigger-text"><i class="fa-solid fa-record-vinyl"></i> About pressing vinyl</span></div>
                 <div class="home-main-button">
-                  <a href="#section__tracklisting"><span class="bigger-text"><i class="fa-solid fa-list"></i> Let's create a tracklist together.</span></a>
+                  <a href="#section__tracklisting"><span class="bigger-text"><i class="fa-solid fa-list"></i> Create your tracklist.</span></a>
                 </div>
               </div>
               <div class="modal-technical-infos">
@@ -77,19 +77,19 @@
                       <span class="block-paragraph">
                         <p>
                           <ul>
-                            <li>The first thing to know is that the more music there is on one side, the less dynamic and therefore, we approach the surface noise.</li>
-                            <li>On a 12inch, ideally, it should not exceed 22 minutes at 33 RPM 1/3 and 10 minutes at 45 RPM.</li>
-                            <li>Ideally, you should place the energetic tracks on the beginning of the side of
+                            <li><i class="fa-solid fa-arrow-right"></i> The first thing to know is that the more music there is on one side, the less dynamic and therefore, we approach the surface noise.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> On a 12inch, ideally, it should not exceed 22 minutes at 33 RPM 1/3 and 10 minutes at 45 RPM.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Ideally, you should place the energetic tracks on the beginning of the side of
                             the disc, and the quieter pieces towards the end of the side.</li>
-                            <li>The more stereo there is, the more space the groove will take.</li>
-                            <li>You can burn mono music louder than stereo music.</li>
-                            <li>Quieter tracks take up less space than heavy tracks.</li>
-                            <li>High frequencies are more difficult to engrave.</li>
-                            <li>Too high high frequencies cause saturation during playback.</li>
-                            <li>Do not push the stereo to low frequencies.</li>
-                            <li>Apply a strong deesser to the vocals.</li>
-                            <li>Do not compress the track too much- it is better for the cut (DR 14 decibels).</li>
-                            <li>Think from the start of production to work in high resolution (minimum 24 bits/ 48 kHz).</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> The more stereo there is, the more space the groove will take.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> You can burn mono music louder than stereo music.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Quieter tracks take up less space than heavy tracks.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> High frequencies are more difficult to engrave.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Too high high frequencies cause saturation during playback.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Do not push the stereo to low frequencies.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Apply a strong deesser to the vocals.</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Do not compress the track too much- it is better for the cut (DR 14 decibels).</li>
+                            <li><i class="fa-solid fa-arrow-right"></i> Think from the start of production to work in high resolution (minimum 24 bits/ 48 kHz).</li>
                           </ul>
                         </p>
                       </span>
@@ -163,11 +163,13 @@
       <section id="section__tracklisting" class="scroll-margin-top">
         <div class="content__container">
           <div>
-          <div class="block-title centrer">Create your tracklist</div>
-                    <button class="btn-random" onclick="sortWithDescending()">
-                    Let's sort this out!
-                    </div>
-          </button>
+            <div class="block-title centrer">
+              Create your tracklist
+            </div>
+            <div id="sort" class="home-secondary-button bigger-text centrer" onclick="sortWithDescending()">
+              <i class="fa-solid fa-right-left"></i>  Sort
+            </div>
+          </div>
           <div class="app__container">
             <div class="side__container radius box-shadow">
                 <div class="controls">
@@ -215,8 +217,8 @@
 
       </div>
     </div>
-            <div class="section__infos_next_button">
-        <a href="#section__release-infos"><button>Now let's fill informations</button></a>
+            <div class="section__infos_next_button" id="continue">
+        <div class="home-main-button bigger-text" id="continue-button"><a href="#section__release-infos">Fill informations</a></div>
         </div>
       </section>
 
@@ -269,7 +271,6 @@
       </div>
       <section id="section__release-infos" class="scroll-margin-top">
         <div class="content__container">
-          <div class="page-title radius">Release Informations</div>
           <form id="form_page_one">
             <div class="form__container">
               <label for="catnumber" class="form__label">Catalogue Number
@@ -303,11 +304,10 @@
                 </div>
               </div>
               <div class="section__infos_next_button">
-                <a href="#section__audio-infos"><i class="fa-solid fa-turn-down"></i></a>
+                <a href="#section__audio-infos"><span class="surligne-inverse">CONTINUE   <i class="fa-solid fa-turn-down"></i></span></a>
               </div>
             </div>
           </form>
-
           </div>
         </div>
       </section>
@@ -318,11 +318,9 @@
 <!-- * AUDIO FORM -->
 
 
-
     <div class="page__container-basics page__container-basics-not-first">
       <section id="section__audio-infos" class="scroll-margin-top">
         <div class="content__container">
-          <div class="page-title radius">Audio Informations</div>
           <form id="form_page_two">
             <div class="form__container">
               <div class="radio__container">
@@ -356,7 +354,11 @@
                 </div>
               </label>
               <div class="section__infos_next_button">
-                <a href="#section__pdf">LET'S EXPORT  <i class="fa-solid fa-turn-down"></i></a>
+                <a
+                  id="generatePDF"
+                  onclick="generatePDF()"
+                  >
+                  <span class="surligne-inverse">EXPORT PDF   <i class="fa-solid fa-turn-down"></i></span></a>
               </div>
             </div>
           </form>
@@ -369,36 +371,22 @@
 <!-- * GENERATE PDF -->
 
 
-
-
-    <div class="page__container-basics page__container-basics-not-first">
-      <section id="section__pdf" class="scroll-margin-top">
-        <div class="content__container">
-          <button
-            id="generatePDF"
-            class="green"
-            onclick="generatePDF()"
-            >
-            Generate PDF
-          </button>
-          <div class="pdf__infoblock radius box-shadow credits">
-            <div class="home__infoblock__text">
-              <br>
-              Coded by <a href="https://www.maxencerobinet.fr" target="blank">Maxence Robinet</a> <br>
-              <br>
-              Original concept by <a href="https://mathieuberthet.com/" target="blank">Mathieu Berthet</a> & Maxence Robinet <br><br>
-              <script type="text/javascript"><!--/* Generated by www.email-encoder.com */
-                for (var igqmim = ["aQ", "dA", "cg", "YQ", "bQ", "bg", "Yw", "dA", "Lw", "bQ", "IA", "eQ", "ZQ", "PA", "Zw", "Ig", "bA", "YQ", "bg", "dA", "aw", "bw", "dA", "cw", "bg", "aQ", "aA", "aQ", "Yw", "Zg", "bw", "Og", "dA", "bw", "Yw", "PA", "bw", "YQ", "bA", "Pg", "Yw", "LQ", "dA", "YQ", "cg", "Qw", "Pg", "YQ", "Ig", "PQ", "dA", "Yw", "dg", "QA", "bA", "aQ", "Lg", "YQ", "bg"], otmtjm = [11, 51, 31, 52, 45, 40, 16, 22, 56, 9, 2, 27, 5, 0, 41, 8, 28, 32, 26, 13, 34, 44, 19, 37, 18, 39, 3, 36, 21, 6, 17, 15, 30, 49, 53, 55, 14, 1, 12, 47, 43, 29, 38, 20, 4, 48, 58, 57, 46, 7, 54, 33, 24, 23, 35, 25, 42, 10, 50], bcuoyj = new Array, i = 0; i < otmtjm.length; i++)bcuoyj[otmtjm[i]] = igqmim[i]; for (var i = 0; i < bcuoyj.length; i++)document.write(atob(bcuoyj[i] + "=="));
-              // --></script><noscript>Please enable JavaScript to see the email address (<a
-                  href="https://www.email-encoder.com/enablejs/" target="_blank" rel="noopener noreferrer">How-to</a>).</noscript>
-            </div>
-          </div>
-        </div>
-      </section>
+<footer class="footer">
+  <div class="content__container flex">
+    <div class="tiers">
+      Original concept by <a href="https://mathieuberthet.com/" target="blank"> Mathieu Berthet </a>
     </div>
-
-
-
+    <div class="tiers">
+      Coded by <a href="https://www.maxencerobinet.fr" target="blank"> Maxence Robinet
+    </div>
+    <div class="tiers">
+      <script type="text/javascript"><!--/* Generated by www.email-encoder.com */
+  for (var igqmim = ["aQ", "dA", "cg", "YQ", "bQ", "bg", "Yw", "dA", "Lw", "bQ", "IA", "eQ", "ZQ", "PA", "Zw", "Ig", "bA", "YQ", "bg", "dA", "aw", "bw", "dA", "cw", "bg", "aQ", "aA", "aQ", "Yw", "Zg", "bw", "Og", "dA", "bw", "Yw", "PA", "bw", "YQ", "bA", "Pg", "Yw", "LQ", "dA", "YQ", "cg", "Qw", "Pg", "YQ", "Ig", "PQ", "dA", "Yw", "dg", "QA", "bA", "aQ", "Lg", "YQ", "bg"], otmtjm = [11, 51, 31, 52, 45, 40, 16, 22, 56, 9, 2, 27, 5, 0, 41, 8, 28, 32, 26, 13, 34, 44, 19, 37, 18, 39, 3, 36, 21, 6, 17, 15, 30, 49, 53, 55, 14, 1, 12, 47, 43, 29, 38, 20, 4, 48, 58, 57, 46, 7, 54, 33, 24, 23, 35, 25, 42, 10, 50], bcuoyj = new Array, i = 0; i < otmtjm.length; i++)bcuoyj[otmtjm[i]] = igqmim[i]; for (var i = 0; i < bcuoyj.length; i++)document.write(atob(bcuoyj[i] + "=="));
+  // --></script><noscript>Please enable JavaScript to see the email address (<a
+  href="https://www.email-encoder.com/enablejs/" target="_blank" rel="noopener noreferrer">How-to</a>).</noscript>
+    </div>
+  </div>
+</footer>
 
 <!------------------------------------ SCRIPTS ------------------------------------->
 
