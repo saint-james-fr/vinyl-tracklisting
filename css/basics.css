@@ -118,11 +118,19 @@ section {
   height: auto;
 }
 
-.tiers {
+.tiers,
+.tiers-credits {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: flex-end;
   padding: 40px 10px;
+}
+
+@media screen and (max-width: 890px) {
+
+  .tiers-credits {
+    font-size: 0.8em;
+    flex-wrap: wrap;
+  }
 }
 
 .two-columns > div > div {

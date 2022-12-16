@@ -1,8 +1,7 @@
-
 /*---------------------------- HOME ----------------------------*/
 
 #section__home {
-	height: auto;
+  height: auto;
   background-color: black;
 }
 
@@ -15,16 +14,16 @@
 }
 
 #section__home .content__container {
-  height:70vh;
+  height: 70vh;
 }
 
 #section__home .logo {
-	font-size: calc(2*var(--font-size-2));
-	display: none;
-	text-align: right;
-	padding-top: 100px;
-	padding-bottom: 50px;
-	margin-right: -0.4vw;
+  font-size: calc(2 * var(--font-size-2));
+  display: none;
+  text-align: right;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  margin-right: -0.4vw;
 }
 
 .home__infos_container {
@@ -52,25 +51,23 @@
   margin-bottom: 15px;
 }
 
-
 .block-title {
-	display: inline-block;
-	text-transform: uppercase;
-	font-size: 2rem;
-	line-height: 1em;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 2rem;
+  line-height: 1em;
   margin: 0 auto 0 auto;
   font-weight: bold;
   padding-bottom: 5px;
 }
 
 @media screen and (max-width: 890px) {
-
-	#section__home .logo {
-		font-size: calc(var(--font-size-2));
-		display: block;
-		text-align: center;
-		padding: 50px 0 20px 0;
-	}
+  #section__home .logo {
+    font-size: calc(var(--font-size-2));
+    display: block;
+    text-align: center;
+    padding: 50px 0 20px 0;
+  }
 
   #section__home {
     min-height: 100vh;
@@ -84,14 +81,13 @@
   justify-content: space-between;
 }
 
-
 #any-data-sentence {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 2;
   position: relative;
-  left:-20px;
+  left: -20px;
   text-align: right;
   width: 100%;
   bottom: 100px;
@@ -109,174 +105,179 @@
   padding-top: 3.2em;
 }
 
+@media screen and (max-width: 890px) {
+  .home__infos {
+    grid-template-columns: 1fr;
+  }
 
-@media screen and (min-width: 1200px) {
+  #section__home_background {
+    height: 19vh;
+    background-image: url(../img/pic1-vinyl-records-stock-dimmed.jpg),
+      linear-gradient(black, black);
+    background-blend-mode: darken;
+  }
 }
-
-
-
 
 /*---------------------------- TIMING----------------------------*/
 
 #timing__hero-1 .content__container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #timing__hero-1 {
-	width: 100%;
-	height:  auto;
-	background-image: linear-gradient(180deg, #03030c8e 0%, var(--color-black) 100%), url(../img/pic2-cutting-c-mb-mastering.jpg);
+  width: 100%;
+  height: auto;
+  background-image: linear-gradient(
+      180deg,
+      #03030c8e 0%,
+      var(--color-black) 100%
+    ),
+    url(../img/pic2-cutting-c-mb-mastering.jpg);
   background-position: center;
-
-
 }
 
 #timing__hero-2 {
-	width: 100%;
-	height:  auto;
-	background-color: var(--color-orange);
-	color: var(--color-black);
+  width: 100%;
+  height: auto;
+  background-color: var(--color-orange);
+  color: var(--color-black);
   position: relative;
 }
 
 #timing__hero-2 > div {
-	height: 100%;
+  height: 100%;
 }
 
-
 .timing__cards {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	margin: 40px 0 0 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 40px 0 0 0;
 }
 
 .timing__card {
-	display: block;
-	background-color: var(--color-orange-opacity);
-	width: 30%;
-	height: 100%;
-	min-height: 170px;
-	padding: 1em;
+  display: block;
+  background-color: var(--color-orange-opacity);
+  width: 30%;
+  height: 100%;
+  min-height: 170px;
+  padding: 1em;
 }
 
 .timing__card_title {
-	text-transform: uppercase;
-	font-weight: 500;
-	text-align: center;
-	font-size: calc(2*var(--font-size-1));
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  font-size: calc(2 * var(--font-size-1));
 }
 
 .indice-rpm {
-	font-size: calc(1.5*var(--font-size-1));
+  font-size: calc(1.5 * var(--font-size-1));
 }
 
 .timing__card_separator:after {
-	content: "";
-	display: block;
-	border-bottom: 2px solid var(--color-cream);
-	padding-bottom: .5rem;
-	margin-bottom: 0.5rem;
+  content: "";
+  display: block;
+  border-bottom: 2px solid var(--color-cream);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .timing__card_text {
-	margin-left: 10%;
+  margin-left: 10%;
 }
 
 .timing__card_text {
-	text-transform: uppercase;
-	font-weight: 600;
-	padding: 3px 0;
-	font-size: calc(1.1*var(--font-size-1))
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 0;
+  font-size: calc(1.1 * var(--font-size-1));
 }
 
 .indice-min {
-	font-size: calc(0.8*var(--font-size-1));
+  font-size: calc(0.8 * var(--font-size-1));
 }
 
 .approx {
-	font-size: calc(0.7*var(--font-size-1));
+  font-size: calc(0.7 * var(--font-size-1));
 }
-
 
 .timing__motto {
-	display: block;
-	font-size: calc(2.2*var(--font-size-1));
-	text-transform: uppercase;
-	padding: 1em;
+  display: block;
+  font-size: calc(2.2 * var(--font-size-1));
+  text-transform: uppercase;
+  padding: 1em;
 }
 
-
 .centrer {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: flex-start;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
   padding-top: 20px;
 }
 
-@media screen and (max-width:890px) {
-	#timing__hero-1 {
-		width: 100%;
-		height:  50%;
-	}
+@media screen and (max-width: 890px) {
+  #timing__hero-1 {
+    width: 100%;
+    height: auto;
+    margin-bottom: -10px;
+  }
 
-	#timing__hero-2 {
-		width: 100%;
-		height: 50%;
-	}
+  #timing__hero-2 {
+    width: 100%;
+    height: auto;
+  }
 
-	#timing__hero-2 .content__container {
-		margin: auto;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  flex-wrap: wrap;
-	}
-.two-columns > div {
-	display: flex;
-	justify-content: center
-}
+  #timing__hero-2 .content__container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-.two-columns > div > div {
-  margin: auto;
-  height: 100%;
-  width: 90vw;
-}
+  .two-columns > div {
+    display: flex;
+    justify-content: center;
+  }
 
+  .two-columns > div > div {
+    margin: 20px auto;
+    width: 90vw;
+  }
 
-	.timing__cards {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: auto 0;
-	}
+  .timing__cards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+  }
 
-	.timing__card {
-		display: block;
-		background-color: var(--color-orange-opacity);
-		width: 70%;
-		margin-bottom: 40px;
-	}
+  .timing__card {
+    display: block;
+    background-color: var(--color-orange-opacity);
+    width: 70%;
+    margin-bottom: 40px;
+  }
 
-	.timing__card_texts {
-		text-align: center;
-	}
+  .timing__card_texts {
+    text-align: center;
+  }
 
-	.timing__motto {
-		text-align: center;
-	}
+  .timing__motto {
+    text-align: center;
+  }
 
+  .timing__card_text {
+    margin-left: 0;
+  }
 
-	.timing__card_text{
-		margin-left: 0;
-	}
-
-	.page__container-second {
-		height: 200vh;
-	}
+  .page__container-second {
+    height: auto;
+  }
 }
 
 .timing__infoblock {
@@ -285,237 +286,265 @@
   border-bottom: 1px solid var(--color-cream);
 }
 
-
 /*---------------------------- TRACKLISTING ---------------------------- */
 
 #section__tracklisting {
-	background-color: var(--color-black);
+  background-color: var(--color-black);
 }
-
 
 #section__tracklisting .content__container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-
 
 /*----************ APP *----************ */
 
 .app__container {
-	display: flex;
-	justify-content: space-between;
-	min-height: 50vh;
+  display: flex;
+  justify-content: space-between;
+  min-height: 50vh;
 }
 
 .side__container {
-	margin: 20px;
-	min-width: 32vw;
-	border: solid 1px var(--color-cream);
-	background-color: var(--color-sides-color);
+  margin: 20px;
+  min-width: 32vw;
+  border: solid 1px var(--color-cream);
+  background-color: var(--color-sides-color);
 }
 
 .time-wrapper {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .handle-function {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-	margin-bottom: 10px;
-	margin-left: 2vw;
-	margin-right: 2vw;
-	cursor: grab;
-	border-radius: 25px;
-	padding: 2px 2px 2px 20px;
-	}
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  cursor: grab;
+  border-radius: 25px;
+  padding: 2px 2px 2px 20px;
+}
 
-@media screen and (min-width:890px) {
-	.handle-function {
-		height: 30px;
-	}
+@media screen and (min-width: 890px) {
+  .handle-function {
+    height: 30px;
+  }
 }
 
 .color-side-a {
-	background-color: var(--color-orange);
+  background-color: var(--color-orange);
 }
 .color-side-b {
-	background-color: var(--color-blue);
+  background-color: var(--color-blue);
 }
 
 .color-side-a,
 .color-side-b {
-	transition: 150ms ease-in-out;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
+  transition: 150ms ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .color-side-a:hover {
-	filter: brightness(1.05);
-	box-shadow: none;
+  filter: brightness(1.05);
+  box-shadow: none;
 }
 
 .color-side-b:hover {
-	filter: brightness(1.15);
-	box-shadow: none;
+  filter: brightness(1.15);
+  box-shadow: none;
 }
 
-
 .controls {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px;
 }
 
 .row input {
-	border: 0;
-    appearance: none;
-    width: 66%;
-    transition: all .2s ease;
-    color: var(--color-cream);
-    text-transform: inherit;
-    box-sizing: border-box;
-    border: none;
-    height: 16px;
-    background: #0000;
-    color: #000;
-    font-weight: lighter;
-    text-align: left;
-    font-size: 16px;
+  border: 0;
+  appearance: none;
+  width: 66%;
+  transition: all 0.2s ease;
+  color: var(--color-cream);
+  text-transform: inherit;
+  box-sizing: border-box;
+  border: none;
+  height: 16px;
+  background: #0000;
+  color: #000;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 16px;
 }
 
 .row input,
 .row input::placeholder {
-	color: var(--color-cream);
-	font-weight: 200;
-	font-family: 'Kanit';
+  color: var(--color-cream);
+  font-weight: 200;
+  font-family: "Kanit";
 }
 
 .positionA,
 .positionB {
-	padding-right: 10px;
-	min-width: 31px;
+  padding-right: 10px;
+  min-width: 31px;
 }
 
 .title-background {
-	background-color: darkred;
-	position: relative;
-	top: 0;
-	width: 100%;
+  background-color: darkred;
+  position: relative;
+  top: 0;
+  width: 100%;
 }
 
 .title-input {
-  cursor:text
+  cursor: text;
 }
 
-.btn-plus, .btn-minus {
-	min-width: 50px;
-	min-height: 50px;
+.btn-plus,
+.btn-minus {
+  min-width: 50px;
+  min-height: 50px;
 }
 
 .btn-plus:hover {
-	color: #4E8D50;
+  color: #4e8d50;
 }
 
 i.icon-btn {
   position: relative;
   top: 1px;
-  left: 1px
+  left: 1px;
 }
 
 .btn-minus:hover {
-	color: #4D4652;
+  color: #4d4652;
 }
 
 .minute-input,
 .second-input {
-	width: 35px;
+  width: 35px;
 }
 
 .second-input {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 @media screen and (max-width: 890px) {
-	.app__container {
-		display: block;
-		min-height: auto;
-	}
+  .app__container {
+    display: block;
+    min-height: auto;
+  }
 }
-
 
 /*---------------------------- RELEASE INFORMATIONS ---------------------------- */
 
 #section__release-infos .content__container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #section__release-infos {
-	background-image: linear-gradient(180deg, #03030c 0%, rgba(36, 0, 0, 0.6) 20%, rgba(36, 21, 0, 0.3) 35%, rgba(127,99,0,0.016) 45%), linear-gradient(0deg, rgb(1, 0, 24) 0%, rgba(36, 22, 0, 0.7) 40%, rgba(36, 28, 0, 0.3) 66%, rgba(165, 131, 6, 0.016) 90%), url("../img/pic3-vinyl-records-stock.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
+  background-image: linear-gradient(
+      180deg,
+      #03030c 0%,
+      rgba(36, 0, 0, 0.6) 20%,
+      rgba(36, 21, 0, 0.3) 35%,
+      rgba(127, 99, 0, 0.016) 45%
+    ),
+    linear-gradient(
+      0deg,
+      rgb(1, 0, 24) 0%,
+      rgba(36, 22, 0, 0.7) 40%,
+      rgba(36, 28, 0, 0.3) 66%,
+      rgba(165, 131, 6, 0.016) 90%
+    ),
+    url("../img/pic3-vinyl-records-stock.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #section__release-infos .content__container {
   justify-content: space-evenly;
 }
 
-
 /*---------------------------- AUDIO INFORMATIONS ---------------------------- */
 
 #section__audio-infos .content__container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #section__audio-infos .radio__container__sub {
-	flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 #section__audio-infos {
-	background-image: linear-gradient(180deg,  rgb(1, 0, 24) 0%, rgba(2,0,36,0.7) 34%, rgba(2,0,36,0.2) 45%, rgba(127,99,0,0.01) 55%), linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,0,36,0.811843487394958) 23%, rgba(2,0,36,0.6885941876750701) 38%, rgba(127,99,0,0.03593312324929976) 65%), url("../img/pic4-hardware-c-mb-mastering.jpg");
+  background-image: linear-gradient(
+      180deg,
+      rgb(1, 0, 24) 0%,
+      rgba(2, 0, 36, 0.7) 34%,
+      rgba(2, 0, 36, 0.2) 45%,
+      rgba(127, 99, 0, 0.01) 55%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(2, 0, 36, 0.811843487394958) 23%,
+      rgba(2, 0, 36, 0.6885941876750701) 38%,
+      rgba(127, 99, 0, 0.03593312324929976) 65%
+    ),
+    url("../img/pic4-hardware-c-mb-mastering.jpg");
   background-repeat: no-repeat;
-	background-size: cover;
+  background-size: cover;
 }
-
 
 /*---------------------------- GENERATE PDF ---------------------------- */
 
 #section__pdf .content__container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 #section__pdf {
-	background-image: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,36,0.811843487394958) 23%, rgba(2,0,36,0.6885941876750701) 38%, rgba(127,99,0,0.03593312324929976) 86%), url("../img/pic2-cutting-c-mb-mastering.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position-y: 40%;
+  background-image: linear-gradient(
+      180deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(2, 0, 36, 0.811843487394958) 23%,
+      rgba(2, 0, 36, 0.6885941876750701) 38%,
+      rgba(127, 99, 0, 0.03593312324929976) 86%
+    ),
+    url("../img/pic2-cutting-c-mb-mastering.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40%;
 }
 
 .pdf__infoblock {
-	background-color: var(--color-gray-dark-opacity);
-	width: min(460px, 80vw);
-	height: auto;
-	margin: 0 auto;
-	margin-bottom: 5vh;
-	padding: 1.5em;
-	text-align: center;
+  background-color: var(--color-gray-dark-opacity);
+  width: min(460px, 80vw);
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 5vh;
+  padding: 1.5em;
+  text-align: center;
 }
 
 @media screen and (max-width: 890px) {
-	.pdf__infoblock {
-		width: 80vw;
-	}
+  .pdf__infoblock {
+    width: 80vw;
+  }
 }
 
 .credits {

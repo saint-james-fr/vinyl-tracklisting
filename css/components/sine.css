@@ -9,3 +9,9 @@ canvas {
 .canvas-container {
   position: relative;
 }
+
+@media screen and (max-width: 890px) {
+  canvas {
+    bottom: -53vw;
+  }
+}
