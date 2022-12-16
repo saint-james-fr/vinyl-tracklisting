@@ -170,3 +170,7 @@ a.anchor-offset {
     top: -45px;
     visibility: hidden;
 }
+
+.disclaimer p{
+  font-size: 0.8em;
+}
