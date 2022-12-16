@@ -1,0 +1,12 @@
+.footer {
+  background-color: var(--color-black);
+}
+
+.footer a {
+  color: var(--color-orange)!important;
+}
+
+
+.footer a:hover {
+  color: var(--color-cream)!important;
+}
