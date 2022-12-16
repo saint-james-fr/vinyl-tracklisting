@@ -1,3 +1,23 @@
+// ************************* EXTERNAL LIBRARIES : SWEETALERT
+
+const sweetAlertButton = {
+  text: "Got it!",
+  value: true,
+  visible: true,
+  className: "sweet-alert-button",
+  closeModal: true,
+};
+
+const sweetAlertOptionsError = {
+  icon: "error",
+  button: sweetAlertButton,
+};
+
+const sweetAlertOptionsSuccess = {
+  icon: "success",
+  button: sweetAlertButton,
+};
+
 // ************************* EXTERNAL LIBRARIES : JSSORTAbLE
 
 Sortable.create(sideA, {
@@ -77,7 +97,10 @@ function generatePDF() {
       );
     };
     if (testEmptyness())
-      return window.alert("Please fill all the fields to generate the pdf");
+      return swal(
+        "Please fill all the fields to generate the PDF.",
+        sweetAlertOptionsError
+      );
     console.log(testEmptyness);
     // start gathering informations
     let basicInfosFirstLine = `${catNr} - ${artist} - ${title}`;
@@ -132,10 +155,10 @@ function generatePDF() {
     doc.save("Test.pdf");
   } else {
     if (document.getElementById("sideA").children.length === 0) {
-      alert("Side A is empty");
+      swal("Side A is empty.", sweetAlertOptionsError);
     }
     if (document.getElementById("sideB").children.length === 0) {
-      alert("Side B is empty");
+      swal("Side B is empty.", sweetAlertOptionsError);
     }
   }
 }

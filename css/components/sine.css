@@ -1,7 +1,11 @@
 canvas {
-	width:140%;
-  position: relative;
-  bottom: 20px;
-  left: 1vw;
+  width: 120vw;
+  position: absolute;
+  right: -12vw;
+  bottom: -23vw;
+  z-index: 0;
+}
 
+.canvas-container {
+  position: relative;
 }

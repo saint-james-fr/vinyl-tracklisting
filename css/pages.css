@@ -43,6 +43,9 @@
 
 .home__infoblock {
   width: 100%;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, #000000a1 26%, #000000a1 71%, #fff0 100%);
 }
 
 .home__infoblock p {
@@ -103,6 +106,7 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 2.5em;
+  padding-top: 3.2em;
 }
 
 
@@ -478,7 +482,6 @@ i.icon-btn {
 
 #section__audio-infos {
 	background-image: linear-gradient(180deg,  rgb(1, 0, 24) 0%, rgba(2,0,36,0.7) 34%, rgba(2,0,36,0.2) 45%, rgba(127,99,0,0.01) 55%), linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,0,36,0.811843487394958) 23%, rgba(2,0,36,0.6885941876750701) 38%, rgba(127,99,0,0.03593312324929976) 65%), url("../img/pic4-hardware-c-mb-mastering.jpg");
-	background-image: ;
   background-repeat: no-repeat;
 	background-size: cover;
 }
