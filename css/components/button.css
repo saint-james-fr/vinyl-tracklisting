@@ -116,6 +116,7 @@ font-family: 'Kanit';
   background-color: var(--color-gray-dark);
   padding: 4px 8px;
   transition: 0.13s ease-in-out;
+  text-transform: uppercase;
 }
 
 .surligne-inverse:hover {
