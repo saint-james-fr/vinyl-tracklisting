@@ -31,6 +31,8 @@ nav>ul>li {
   color: var(--color-cream);
   display: inline-block;
   list-style: none;
+  letter-spacing: 1px;
+  font-weight: 500;
 }
 
 

@@ -3,7 +3,6 @@
   padding: 10px;
   text-align: center;
   color: var(--color-gray-tracklisting);
-  border-top: 2px solid var(--color-gray-tracklisting);
   background-color: black;
   margin: 0 auto;
   font-family: var(--font-family-2);

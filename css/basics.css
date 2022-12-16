@@ -4,6 +4,10 @@ body, p, .block-title, .text {
 	color:  var(--color-cream);
 }
 
+p {
+  font-size: 21px;
+}
+
 ::placeholder {
 	color: var(--color-black);
 }
@@ -23,7 +27,6 @@ body, p, .block-title, .text {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
 
 @media screen and (min-width: 890px) {
 	.page__container-basics-not-first {
@@ -59,6 +62,21 @@ section {
 	font-weight: 800;
 	letter-spacing: 0.05em;
 	font-family: var(--font-family-2);
+}
+
+.surligne {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: var(--color-orange);
+  padding: 0px 3px
+}
+
+.surligne-inverse {
+  display: inline-block;
+  border-radius: 5px;
+  color: var(--color-orange);
+  background-color: var(--color-black);
+  padding: 2px 5px
 }
 
 
@@ -102,6 +120,17 @@ section {
 .two-columns > div {
 	display: flex;
 	justify-content: center
+}
+
+.height-auto {
+  height: auto;
+}
+
+.tiers {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 10px;
 }
 
 .two-columns > div > div {

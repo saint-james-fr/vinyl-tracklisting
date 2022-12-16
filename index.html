@@ -14,17 +14,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-
+<script>window.scrollTo(0,0);</script>
 <!-- * HEADER -->
 
     <div class="header" id="header__desktop">
       <div class="header__container content__container">
         <nav>
           <ul>
-            <li><a href="#anchor__home">home</a></li>
-            <li><a href="#anchor__timing">timing</a></li>
-            <li><a href="#anchor__tracklisting">tracklisting</a></li>
-            <li><a href="#anchor__release-infos">infos</a></li>
+            <li><a href="#anchor__tracklisting">create your tracklist</a></li>
+            <li><a href="#anchor__release-infos">generate pdf</a></li>
           </ul>
         </nav>
         <div class="logo">
@@ -36,7 +34,6 @@
 <!-- * HOME -->
 
     <div class="page__container-first">
-      <a id="anchor__home" class="anchor-offset"></a>
       <section id="section__home" class="scroll-margin-top">
         <div id="section__home_background">
           <div class="content__container">
@@ -48,7 +45,7 @@
         <div class="home__infos_container">
             <div class="home__infos">
               <div class="home__infoblock">
-                <span class="block-title">Simply choose the best order for your tracklisting</span>
+                <span class="block-title">Simply choose <br></b><span class="surligne">the best order</span><br>for your tracklisting</span>
                 <span class="block-paragraph">
                   <p>
                     This website helps you to generate your very own tracklisting for professional use with all informations needed.
@@ -56,34 +53,16 @@
                   <p>
                     It's <strong>simple, easy, effective</strong> and can be used by all recording industry professionals.<br>
                   </p>
-                  <p>
-                    <span class="bigger-text">Moreover, it's free and we don't collect any data.</span><br>
-                  </p>
+                  <p>Also, it's <strong>free</strong> and <strong>we don't collect any data.</strong></p>
                 </span>
               </div>
-              <div class="home__infoblock">
-                <canvas id="c"></canvas>
-              </div>
-              <div class="home__infoblock grid4">
-                <span class="block-paragraph">
-                  <p>
-                    <ul>
-                      <li><i class="fa-solid fa-arrow-right"></i> How many songs are on the record.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the distribution of theses songs per side.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the total time per side.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the catalogue number of the release.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the resolution and bitrate of the audio files.</li>
-                    </ul>
-                    <br>
-                    <span class="bigger-text">You can sort your tracks and export these informations.</span>
-                  </p>
-                </span>
-              </div>
+              <canvas id="c">
+              </canvas>
               <div class="home_infoblock grid5">
-                <div>
+                <div id="myBtn" class="clickable-div home-secondary-button"> <span class="bigger-text"><i class="fa-solid fa-record-vinyl"></i> I wanna know more about vinyl format</span></div>
+                <div class="home-main-button">
                   <a href="#section__tracklisting"><span class="bigger-text"><i class="fa-solid fa-list"></i> Let's create a tracklist together.</span></a>
                 </div>
-                <div id="myBtn" class="clickable-div"> <span class="bigger-text"><i class="fa-solid fa-record-vinyl"></i> I wanna know more about vinyl format</span></div>
               </div>
               <div class="modal-technical-infos">
                 <!-- The Modal -->
@@ -127,14 +106,14 @@
 
 <!-- * TIMING -->
 
-    <div class="page__container-second page__container-basics page__container-basics-not-first">
+    <div class="page__container-second height-auto">
       <a id="anchor__timing" class="anchor-offset"></a>
       <section id="section__timing" class="scroll-margin-top">
         <div class="half-hero two-columns" id="timing__hero-2">
           <div class="content__container">
-            <div class="timing__motto centrer">Defining the best timing for your tracklisting</div>
-            <div class="timing__infoblock centrer">
-            </div>
+            <div class="tiers"><span class="block-title">1. ENTER INFOS.</span></div>
+            <div class="tiers"><span class="block-title">2. DRAG AND DROP.</span></div>
+            <div class="tiers"><span class="block-title">3. SORT TRACKS.</span></div>
           </div>
         </div>
         <div class="half-hero" id="timing__hero-1">
@@ -160,6 +139,18 @@
               </div>
             </div>
           </div>
+          <div class="content__container">
+            <div class="timing__infoblock centrer">
+              <p>
+                <span class="bigger-text">This website allows you to evenly distribute your tracks.
+                  <br>
+                  For an optimization of the sound.
+                  <br>
+                  You can do it manually or with our <span class="surligne">sort button</span>.
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -172,7 +163,7 @@
       <section id="section__tracklisting" class="scroll-margin-top">
         <div class="content__container">
           <div>
-          <div class="page-title logo radius">Create your tracklist</div>
+          <div class="block-title centrer">Create your tracklist</div>
                     <button class="btn-random" onclick="sortWithDescending()">
                     Let's sort this out!
                     </div>
@@ -275,10 +266,10 @@
       <a id="anchor__release-infos" class="anchor-offset"></a>
       <div class="bandeau"> <p>None of your infos are saved on our server!
       Once you close the page, data are lost!</p>
-      <a href="#section__pdf">Generate PDF&nbsp;to export</span></a></p></div>
+      </div>
       <section id="section__release-infos" class="scroll-margin-top">
         <div class="content__container">
-          <div class="page-title logo radius">Release Informations</div>
+          <div class="page-title radius">Release Informations</div>
           <form id="form_page_one">
             <div class="form__container">
               <label for="catnumber" class="form__label">Catalogue Number
@@ -331,7 +322,7 @@
     <div class="page__container-basics page__container-basics-not-first">
       <section id="section__audio-infos" class="scroll-margin-top">
         <div class="content__container">
-          <div class="page-title logo radius">Audio Informations</div>
+          <div class="page-title radius">Audio Informations</div>
           <form id="form_page_two">
             <div class="form__container">
               <div class="radio__container">

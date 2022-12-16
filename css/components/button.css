@@ -96,3 +96,27 @@ font-family: 'Kanit';
 .green {
   background-color: green;
 }
+
+
+.home-main-button {
+    padding: 5px 10px 10px 10px;
+    background-color: var(--color-orange);
+    color: var(--color-cream);
+    transition: 0.18s ease-in-out;
+    border-radius: 3px;
+}
+
+
+
+.home-main-button:hover {
+  color: black;
+}
+
+.home-secondary-button {
+  padding: 5px 10px 10px 10px;
+  transition: 0.18s ease-in-out;
+}
+
+.home-secondary-button:hover {
+  color: var(--color-orange)
+}

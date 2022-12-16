@@ -1,6 +1,7 @@
 canvas {
 	width:140%;
   position: relative;
+  bottom: 20px;
   left: 1vw;
-  bottom: -5vh;
+
 }
