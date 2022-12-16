@@ -108,3 +108,13 @@ textarea:focus {
 	border: none;
 	outline: none;
 }
+
+@media screen and (max-width:890px) {
+  .form__container input[type="radio"] {
+    margin-bottom: 0;
+  }
+
+  .radio__container__sub .form__label {
+    font-size: 0.9em;
+  }
+}
