@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
+  <body>
 
 <!-- * HEADER -->
 
-  <body>
     <div class="header" id="header__desktop">
       <div class="header__container content__container">
         <nav>
@@ -35,44 +35,57 @@
 
 <!-- * HOME -->
 
-
-    <div class="page__container-first page__container-basics">
+    <div class="page__container-first">
       <a id="anchor__home" class="anchor-offset"></a>
       <section id="section__home" class="scroll-margin-top">
-        <div class="content__container">
-          <div class="logo">
-            vinyl tracklisting
+        <div id="section__home_background">
+          <div class="content__container">
+            <div class="logo">
+              vinyl tracklisting
+            </div>
           </div>
-          <div class="home__card_container">
-            <div class="home__card">
-              <div class="home__infoblock__text">
+        </div>
+        <div class="home__infos_container">
+            <div class="home__infos">
+              <div class="home__infoblock">
                 <span class="block-title">Simply choose the best order for your tracklisting</span>
                 <span class="block-paragraph">
                   <p>
-                    The mastering engineer who is going to make the cutting on lacquers <strong>needs a
-                    tracklisting</strong>.
+                    This website helps you to generate your very own tracklisting for professional use with all informations needed.
                   </p>
                   <p>
-                    Ideally, he will have access to several informations:
-                    <ul>
-                      <li><i class="fa-solid fa-arrow-right"></i> How many songs are on the record.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the distribution per side (A1..., B1...) and time for each song.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the total time per side.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the catalogue number/reference of the release.</li>
-                      <li><i class="fa-solid fa-arrow-right"></i> What is the resolution and bitrate of the provided audio files</li>
-                    </ul>
-                  </p>
-                  <p>
-                    This website allows you to generate this very own tracklisting for professional use with all informations needed.
                     It's <strong>simple, easy, effective</strong> and can be used by all recording industry professionals.<br>
                   </p>
                   <p>
-                    <span class="bigger-text">Moreover, it's free and we don't collect any data at all.</span><br>
+                    <span class="bigger-text">Moreover, it's free and we don't collect any data.</span><br>
                   </p>
                 </span>
               </div>
-              <div>
-
+              <div class="home__infoblock">
+                <canvas id="c"></canvas>
+              </div>
+              <div class="home__infoblock grid4">
+                <span class="block-paragraph">
+                  <p>
+                    <ul>
+                      <li><i class="fa-solid fa-arrow-right"></i> How many songs are on the record.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the distribution of theses songs per side.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the total time per side.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the catalogue number of the release.</li>
+                      <li><i class="fa-solid fa-arrow-right"></i> What is the resolution and bitrate of the audio files.</li>
+                    </ul>
+                    <br>
+                    <span class="bigger-text">You can sort your tracks and export these informations.</span>
+                  </p>
+                </span>
+              </div>
+              <div class="home_infoblock grid5">
+                <div>
+                  <a href="#section__tracklisting"><span class="bigger-text"><i class="fa-solid fa-list"></i> Let's create a tracklist together.</span></a>
+                </div>
+                <div id="myBtn" class="clickable-div"> <span class="bigger-text"><i class="fa-solid fa-record-vinyl"></i> I wanna know more about vinyl format</span></div>
+              </div>
+              <div class="modal-technical-infos">
                 <!-- The Modal -->
                 <div id="modalTechnical" class="modal">
                   <!-- Modal content -->
@@ -105,25 +118,27 @@
                   </div>
                 </div>
               </div>
-              <div class="align-buttons">
-                <button id="myBtn">Technical Informations</button>
-                <div class="home__button"><a href="#section__tracklisting"><button>Create A Tracklist</button></a>
-              </div>
-              </div>
             </div>
           </div>
-        </div>
       </section>
     </div>
+
+
 
 <!-- * TIMING -->
 
     <div class="page__container-second page__container-basics page__container-basics-not-first">
       <a id="anchor__timing" class="anchor-offset"></a>
       <section id="section__timing" class="scroll-margin-top">
+        <div class="half-hero two-columns" id="timing__hero-2">
+          <div class="content__container">
+            <div class="timing__motto centrer">Defining the best timing for your tracklisting</div>
+            <div class="timing__infoblock centrer">
+            </div>
+          </div>
+        </div>
         <div class="half-hero" id="timing__hero-1">
           <div class="content__container">
-            <div class="page-title logo radius">the best timing</div>
             <div class="timing__cards">
               <div class="timing__card radius box-shadow">
                 <div class="timing__card_title">33<span class="indice-rpm">RPM</span></div>
@@ -145,14 +160,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="half-hero two-columns" id="timing__hero-2">
-            <div class="content__container">
-              <div class="timing__motto centrer">Defining the best timing for your tracklisting</div>
-              <div class="timing__infoblock centrer">
-              </div>
-            </div>
         </div>
       </section>
     </div>
@@ -412,6 +419,7 @@
     <script src="js/sorting.js" defer></script>
     <script src="js/external.js" defer></script>
     <script src="js/components/modal.js" defer></script>
+    <script src="js/components/sine.js" defer></script>
 
   </body>
 </html>

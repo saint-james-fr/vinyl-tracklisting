@@ -20,7 +20,7 @@ body, p, .block-title, .text {
 }
 
 .bigger-text {
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
@@ -61,16 +61,6 @@ section {
 	font-family: var(--font-family-2);
 }
 
-.block-title {
-	display: inline-block;
-	text-transform: uppercase;
-	font-size: var(--font-size-3);
-	line-height: 1em;
-  margin: 20px auto;
-  font-weight: bold;
-  padding-bottom: 5px;
-  border-bottom: 1px solid white
-}
 
 .underline {
   text-decoration: underline;
@@ -78,6 +68,10 @@ section {
 
 .underline:hover {
   text-decoration: none;
+}
+
+.clickable-div {
+  cursor: pointer;
 }
 
 .page-title {
