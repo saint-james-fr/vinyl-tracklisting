@@ -42,6 +42,8 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   let counterA = 0;
   let counterB = 0;
   let firstElement;
+  let firstSideElement = document.getElementById(firstSide);
+  let secondSideElement = document.getElementById(secondSide);
 
   if (index > 2) {
     // creates title until all titles are created
@@ -50,9 +52,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
       index--;
       firstElement = dataSource.shift(); //takes first element and put it at the end
       dataSource.push(firstElement); // avoid empty array of Data
-      // creates nth track from firstelement of Datasource - if no title, gets title from position
-      let firstSideElement = document.getElementById(firstSide);
-      let secondSideElement = document.getElementById(secondSide);
+      // creates nth track from first element of Datasource - if no title, gets title from position
 
       if (firstElement.title === undefined) {
         firstSideElement.children[counterA].children[1].value = `Track A${
@@ -60,6 +60,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
         }`;
         firstElement.title = `Track A${counterA + 1}`;
       } else {
+        debugger
         firstSideElement.children[counterA].children[1].value =
           firstElement.title;
       }
@@ -95,6 +96,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   }
   if (index === 2) {
     //side A
+    debugger
     firstSideElement.children[0].children[1].value = dataSource[0].title;
     firstSideElement.children[0].children[2].children[0].value =
       dataSource[0].minute;
@@ -106,6 +108,7 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
       dataSource[1].minute;
     secondSideElement.children[0].children[2].children[1].value =
       dataSource[1].second;
+      ;
   }
 }
 

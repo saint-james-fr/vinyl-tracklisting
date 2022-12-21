@@ -242,14 +242,14 @@ function sumObjValues(obj) {
 
 // ************************* DOM MANIPULATION *************************
 
-/////////// GET SIDELETTER ///////////
+// ------ Get SideLetter ------ //
 
 function getSideLetter(side) {
   sideLetter = side.slice(4);
   return sideLetter;
 }
 
-/////////// CREATE ELEMENTS ///////////
+// ------ Create Element Functions ------ //
 
 function addElementWithID(el, classes, sourceId, newId) {
   el = document.createElement(el);
@@ -268,7 +268,7 @@ function addElementWithoutID(el, classes, sourceId) {
   document.getElementById(sourceId).appendChild(el);
 }
 
-/////////// UPDATE POSITION NUMBER OF TRACKS ///////////
+// ------ Update Position & Number Of Tracks / side ------ //
 
 function updateNumberOfTracks(side) {
   numberOfTracks = document.getElementById(side).children.length;
@@ -285,7 +285,7 @@ function updatePosition(side) {
   }
 }
 
-/////////// ADD TITLE ///////////
+// ------ Add TITLE ------ //
 
 function addTitle(side) {
   if (side === "sideA") {
@@ -317,7 +317,7 @@ function addTitle(side) {
   adjustTracklistingSectionHeight(side);
 }
 
-/////////// addTitle() NEEDED FEATURES ///////////
+// ------ Add TITLE needed FEATURES ------ //
 
 function createHandler(handlerId, side) {
   addElementWithID(
@@ -400,7 +400,7 @@ function createSecond(secondId, side) {
   el.addEventListener("input", (event) => formatSecond(secondId, side));
 }
 
-/////////// REMOVE TITLE ///////////
+// ------ REMOVE TITLE ------ //
 
 function removeTitle(side) {
   updateNumberOfTracks(`${side}`);
@@ -502,3 +502,56 @@ const allDataAreEmpty = () => {
     }
   });
 };
+
+/*
+
+// ************************* AUDIO UPLOAD *************************
+
+let input = document.getElementById('audioInput');
+let filesMeta = [];
+input.addEventListener("change", (event) => {
+  setFilesMeta(event.currentTarget);
+  rebuildBothSides("sideA", "sideB", filesMeta);
+},false);
+
+function setFilesMeta(target) {
+  const filesList = target.files;
+  Object.keys(filesList).forEach((key) => {
+    meta = {}; // initiate new object
+    setMetaMinutesAndSeconds(meta, filesList[key]);
+    setMetaTitle(meta, filesList[key])
+    filesMeta.push(meta); // populates array of results for further manipulation
+  });
+  return filesMeta
+
+  function setMetaTitle(meta, file) {
+    meta.title = file.name.replace(/\.[^/.]+$/, "");
+  }
+  function setMetaMinutesAndSeconds(meta, file) {
+    let reader = new FileReader();
+    // When the file has been succesfully read
+    reader.onload = function (event) {
+      // Create an instance of AudioContext
+      let audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+      // Asynchronously decode audio file data contained in an ArrayBuffer.
+      audioContext.decodeAudioData(event.target.result, function (buffer) {
+        // Obtain the duration in seconds of the audio file (with milliseconds as well, a float value)
+        let durationInMilliseconds = buffer.duration;
+        // example 12.3234 seconds
+        let result = secondsToMinute(parseInt(durationInMilliseconds));
+        // push result into metainformations
+        meta.minute = result[0];
+        meta.second = result[1];
+      });
+    };
+    // In case that the file couldn't be read
+    reader.onerror = function (event) {
+      console.error("An error ocurred reading the file: ", event);
+    };
+    // Read file as an ArrayBuffer, important !
+    reader.readAsArrayBuffer(file);
+  }
+}
+
+*/
