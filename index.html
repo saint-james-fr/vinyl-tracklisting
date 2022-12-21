@@ -194,10 +194,10 @@
                 <div id="sideA" class="list-group list-group-flush container">
                   <div class="list-group-item handle-function row color-side-a" id="handler A1">
                     <span id="position A1" class="positionA">A1</span>
-                    <input id="title A1" class="title-input" type="text" placeholder="Enter Title..."/>
+                    <input id="title A1" class="title-input" type="text" placeholder="Enter Title..." data-form-type="other" />
                     <div class="time-wrapper">
-                      <input id="minute A1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
-                      <input id="second A1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
+                      <input id="minute A1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" data-form-type="other" />
+                      <input id="second A1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" data-form-type="other" />
                     </div>
                   </div>
                 </div>
@@ -217,10 +217,10 @@
                 <div id="sideB" class="list-group list-group-flush container">
                   <div class="list-group-item handle-function row color-side-b" id="handler B1">
                     <span id="position B1" class="positionB">B1</span>
-                    <input id="title B1" class="title-input" type="text" placeholder="Enter Title..."/>
+                    <input id="title B1" class="title-input" type="text" placeholder="Enter Title..." data-form-type="other" />
                     <div class="time-wrapper">
-                      <input id="minute B1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
-                      <input id="second B1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"/>
+                      <input id="minute B1" class="minute-input" type="number" placeholder="mm" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" data-form-type="other" />
+                      <input id="second B1" class="second-input" type="number" placeholder="ss" min="0" max="59" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" data-form-type="other" />
                     </div>
                   </div>
                 </div>
@@ -245,13 +245,13 @@
           <form id="form_page_one">
             <div class="form__container">
               <label for="catnumber" class="form__label">Catalogue Number
-                <input id="catnumber" type="text" placeholder="TEST-001" class="input-border">
+                <input id="catnumber" type="text" placeholder="TEST-001" class="input-border" data-form-type="other" >
               </label>
               <label for="artist" class="form__label">Artist
-                <input id="artist" type="text" placeholder="JOHN LENNON" class="input-border">
+                <input id="artist" type="text" placeholder="JOHN LENNON" class="input-border" data-form-type="other" >
               </label>
               <label for="title" class="form__label">Title
-                <input id="title" type="text" placeholder="COMPLETE WORKS" class="input-border">
+                <input id="title" type="text" placeholder="COMPLETE WORKS" class="input-border" data-form-type="other" >
               </label>
               <div class="radio__container">
                 <div class="form__label form_label-checkbox form-min-width">
@@ -259,10 +259,10 @@
                 </div>
                 <div class="radio__container__sub">
                   <label class="form__label">
-                    <input type="radio" name="format" value = 'LP/12"'>LP/12"
+                    <input type="radio" name="format" value = 'LP/12"' data-form-type="other" >LP/12"
                   </label>
-                  <label class="form__label"><input type="radio" name="format" value = '10"'>10"</label>
-                  <label class="form__label"><input type="radio" name="format" value = '7"'>7"</label>
+                  <label class="form__label"><input type="radio" name="format" value = '10"' data-form-type="other" >10"</label>
+                  <label class="form__label"><input type="radio" name="format" value = '7"' data-form-type="other" >7"</label>
                 </div>
               </div>
               <div class="radio__container">
@@ -270,8 +270,8 @@
                     Speed
                 </div>
                 <div class="radio__container__sub">
-                  <label class="form__label"><input type="radio" name="speed" value = '33RPM'>33RPM</label>
-                  <label class="form__label"><input type="radio" name="speed" value = '45RPM'>45RPM</label>
+                  <label class="form__label"><input type="radio" name="speed" value = '33RPM' data-form-type="other" >33RPM</label>
+                  <label class="form__label"><input type="radio" name="speed" value = '45RPM' data-form-type="other" >45RPM</label>
                 </div>
               </div>
               <div class="section__infos_next_button">
@@ -299,10 +299,10 @@
                     Bitrate
                 </div>
                 <div class="radio__container__sub">
-                  <label class="form__label"><input type="radio" name="bitrate" value = '44.1kHz'>44.1kHz</label>
-                  <label class="form__label"><input type="radio" name="bitrate" value = '48kHz'>48kHz</label>
-                  <label class="form__label"><input type="radio" name="bitrate" value = '88.2kHz'>88.2kHz</label>
-                  <label class="form__label"><input type="radio" name="bitrate" value = '96kHz'>96kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '44.1kHz' data-form-type="other" >44.1kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '48kHz' data-form-type="other" >48kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '88.2kHz' data-form-type="other" >88.2kHz</label>
+                  <label class="form__label"><input type="radio" name="bitrate" value = '96kHz' data-form-type="other" >96kHz</label>
                 </div>
               </div>
               <div class="radio__container">
@@ -310,9 +310,9 @@
                     Bit Depth
                 </div>
                 <div class="radio__container__sub">
-                  <label class="form__label"><input type="radio" name="bits" value = '16bits'>16Bits</label>
-                  <label class="form__label"><input type="radio" name="bits" value = '24Bits'>24Bits</label>
-                  <label class="form__label"><input type="radio" name="bits" value = '32Bits'>24Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '16bits' data-form-type="other" >16Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '24Bits' data-form-type="other" >24Bits</label>
+                  <label class="form__label"><input type="radio" name="bits" value = '32Bits' data-form-type="other" >24Bits</label>
                 </div>
               </div>
               <div class="comments-container">
@@ -321,7 +321,7 @@
                   el-checkbox form-min-width">
                       Comments
                   </div>
-                  <textarea id="comments" name="comments" id="" cols="30" rows="6"></textarea>
+                  <textarea id="comments" name="comments" id="" cols="30" rows="6" data-form-type="other"></textarea>
                 </div>
               </label>
               <div class="section__infos_next_button">
