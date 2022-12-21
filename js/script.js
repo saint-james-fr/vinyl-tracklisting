@@ -1,36 +1,15 @@
 // ************************* GLOBAL VARIABLES *************************
 
-var numberOfTracks;
-var handlerNumber;
-var positionNumber;
-var timeWrapperNumber;
-var sideLetter;
-var counterA = 1;
-var counterB = 1;
-var counterRecursion = 0;
-var dataSideA = [];
-var dataSideB = [];
-var totalLengthSideA;
-var totalLengthSideB;
-var allData;
-var shuffledData;
-let dataSideASortedByMinutes;
-let dataSideBSortedByMinutes;
-let allDataSortedByMinutes;
-let calculValAbs0 = () => {
-  totalLengthSideA = sum("sideA");
-  totalLengthSideB = sum("sideB");
-  return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
-};
-let calculValAbs1 = () => {
-  totalLengthSideA = sum("sideA");
-  totalLengthSideB = sum("sideB");
-  return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
-};
-var t0LengthDifference = [undefined, undefined];
-var t1LengthDifference = [undefined, undefined];
-let randomNumberMin = () => Math.floor(Math.random() * 6);
-let randomNumberSec = () => Math.floor(Math.random() * 60);
+let numberOfTracks;
+let positionNumber;
+let sideLetter;
+let counterA = 1;
+let counterB = 1;
+let dataSideA = [];
+let dataSideB = [];
+let totalLengthSideA;
+let totalLengthSideB;
+let allData;
 
 // ************************* INITIALIZATION *************************
 
@@ -96,14 +75,14 @@ window.onbeforeunload = function () {
 // ************************* EVENT HANDLER *************************
 
 window.addEventListener("DOMContentLoaded", function () {
-  var mutationObserver = new MutationObserver(function (mutations) {
+  let mutationObserver = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
       updatePosition("sideA");
       updatePosition("sideB");
       updateLength("sideA");
       updateLength("sideB");
-      updateClassSideA();
-      updateClassSideB();
+      updateCSSColor("sideA");
+      updateCSSColor("sideB");
       preventNullTitle("sideA");
       preventNullTitle("sideB");
     });
@@ -137,38 +116,35 @@ function preventNullTitle(side) {
   }
 }
 
-// ************************* CLASS UPDATE *************************
+// ************************* CLASS UPDATE - CSS COLORS *************************
 
-function updateClassSideA() {
-  let children = document.getElementById("sideA").children;
-  let arrayChildren = Array.from(children);
+function updateCSSColor(side) {
+  let arrayChildren = Array.from(document.getElementById(side).children);
   arrayChildren.forEach((element) => {
     let arrayClass = Array.from(element.classList);
-    if (arrayClass.includes("color-side-a")) {
-      return;
-    }
-    if (arrayClass.includes("color-side-b")) {
-      element.classList.remove("color-side-b");
-      element.classList.add("color-side-a");
-    } else {
-      element.classList.add("color-side-a");
-    }
-  });
-}
-
-function updateClassSideB() {
-  let children = document.getElementById("sideB").children;
-  let arrayChildren = Array.from(children);
-  arrayChildren.forEach((element) => {
-    let arrayClass = Array.from(element.classList);
-    if (arrayClass.includes("color-side-b")) {
-      return;
-    }
-    if (arrayClass.includes("color-side-a")) {
-      element.classList.remove("color-side-a");
-      element.classList.add("color-side-b");
-    } else {
-      element.classList.add("color-side-b");
+    switch (side) {
+      case "sideA":
+        if (arrayClass.includes("color-side-a")) {
+          return;
+        }
+        if (arrayClass.includes("color-side-b")) {
+          element.classList.remove("color-side-b");
+          element.classList.add("color-side-a");
+        } else {
+          element.classList.add("color-side-a");
+        }
+        break;
+      case "sideB":
+        if (arrayClass.includes("color-side-b")) {
+          return;
+        }
+        if (arrayClass.includes("color-side-a")) {
+          element.classList.remove("color-side-a");
+          element.classList.add("color-side-b");
+        } else {
+          element.classList.add("color-side-b");
+        }
+        break;
     }
   });
 }
@@ -208,7 +184,7 @@ function sumMinutes(side) {
   updateNumberOfTracks(side);
   let sumMinutesResults = {};
   let el = document.querySelectorAll(`#${side} .minute-input`);
-  for (var i = 0; i < el.length; i++) {
+  for (let i = 0; i < el.length; i++) {
     let value = el[i].value;
     sumMinutesResults[i] = value;
   }
@@ -219,7 +195,7 @@ function sumSeconds(side) {
   updateNumberOfTracks(side);
   let sumSecondsResults = {};
   let el = document.querySelectorAll(`#${side} .second-input`);
-  for (var i = 0; i < el.length; i++) {
+  for (let i = 0; i < el.length; i++) {
     let value = el[i].value;
     sumSecondsResults[i] = value;
   }
@@ -400,7 +376,7 @@ function createSecond(secondId, side) {
   el.addEventListener("input", (event) => formatSecond(secondId, side));
 }
 
-// ------ REMOVE TITLE ------ //
+// ** REMOVE TITLE //
 
 function removeTitle(side) {
   updateNumberOfTracks(`${side}`);
@@ -418,7 +394,7 @@ function removeTitle(side) {
   }
 }
 
-// ------ SWAP TITLE ------ //
+// ** SWAP TITLE  //
 
 function swapTitle(sideFrom, sideTo) {
   title = document.getElementById(sideFrom).lastChild;
@@ -483,14 +459,13 @@ function resetAndFillData(side) {
 const someDataAreEmpty = () => {
   resetAndFillData("sideA");
   resetAndFillData("sideB");
-  allData = dataSideA
-  .concat(dataSideB)
+  allData = dataSideA.concat(dataSideB);
   return allData.some((side) => {
-    if (side.minute === '' || side.second === '') {
-      return true
+    if (side.minute === "" || side.second === "") {
+      return true;
     }
-  })
-}
+  });
+};
 
 const allDataAreEmpty = () => {
   resetAndFillData("sideA");
@@ -503,39 +478,40 @@ const allDataAreEmpty = () => {
   });
 };
 
-/*
-
 // ************************* AUDIO UPLOAD *************************
 
-let input = document.getElementById('audioInput');
+let input = document.getElementById("audioInput");
 let filesMeta = [];
-input.addEventListener("change", (event) => {
-  setFilesMeta(event.currentTarget);
-  rebuildBothSides("sideA", "sideB", filesMeta);
-},false);
+input.addEventListener(
+  "change",
+  (event) => {
+    document.getElementById("overlay").style.display = "block";
+    setFilesMeta(event.currentTarget);
+
+  },
+  false
+);
 
 function setFilesMeta(target) {
   const filesList = target.files;
   Object.keys(filesList).forEach((key) => {
     meta = {}; // initiate new object
+    setMetaTitle(meta, filesList[key]);// populates array of results for further manipulation
     setMetaMinutesAndSeconds(meta, filesList[key]);
-    setMetaTitle(meta, filesList[key])
-    filesMeta.push(meta); // populates array of results for further manipulation
   });
-  return filesMeta
 
   function setMetaTitle(meta, file) {
     meta.title = file.name.replace(/\.[^/.]+$/, "");
   }
+
   function setMetaMinutesAndSeconds(meta, file) {
     let reader = new FileReader();
     // When the file has been succesfully read
-    reader.onload = function (event) {
+    reader.onload = (event) => {
       // Create an instance of AudioContext
-      let audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)();
+      let audioContext = new (window.AudioContext || window.webkitAudioContext)();
       // Asynchronously decode audio file data contained in an ArrayBuffer.
-      audioContext.decodeAudioData(event.target.result, function (buffer) {
+      audioContext.decodeAudioData(event.target.result).then((buffer) => {
         // Obtain the duration in seconds of the audio file (with milliseconds as well, a float value)
         let durationInMilliseconds = buffer.duration;
         // example 12.3234 seconds
@@ -543,6 +519,17 @@ function setFilesMeta(target) {
         // push result into metainformations
         meta.minute = result[0];
         meta.second = result[1];
+        meta.timeArray = [meta.minute, meta.second];
+        filesMeta.push(meta);
+        if (
+          filesMeta.every((el) => el.minute) &&
+          filesMeta.length === filesList.length
+        ) {
+          destroy();
+          rebuildBothSides("sideA", "sideB", filesMeta);
+          document.getElementById("overlay").style.display = "none";
+        } else {
+        }
       });
     };
     // In case that the file couldn't be read
@@ -553,5 +540,3 @@ function setFilesMeta(target) {
     reader.readAsArrayBuffer(file);
   }
 }
-
-*/

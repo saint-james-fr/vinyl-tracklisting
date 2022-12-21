@@ -127,3 +127,7 @@ font-family: 'Kanit';
   margin: 0 auto;
   width: 150px;
 }
+
+input[type="file"] {
+    display: none;
+}

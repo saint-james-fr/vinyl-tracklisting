@@ -1,3 +1,10 @@
+let counterRecursion = 0;
+let allDataSortedByMinutes;
+
+
+let randomNumberMin = () => Math.floor(Math.random() * 6);
+let randomNumberSec = () => Math.floor(Math.random() * 60);
+
 // ************************* GET ALLDATA *************************
 
 function getAllData() {
@@ -44,7 +51,6 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   let firstElement;
   let firstSideElement = document.getElementById(firstSide);
   let secondSideElement = document.getElementById(secondSide);
-
   if (index > 2) {
     // creates title until all titles are created
     while (index > 0) {
@@ -60,7 +66,6 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
         }`;
         firstElement.title = `Track A${counterA + 1}`;
       } else {
-        debugger
         firstSideElement.children[counterA].children[1].value =
           firstElement.title;
       }
@@ -96,7 +101,6 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   }
   if (index === 2) {
     //side A
-    debugger
     firstSideElement.children[0].children[1].value = dataSource[0].title;
     firstSideElement.children[0].children[2].children[0].value =
       dataSource[0].minute;
@@ -108,7 +112,6 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
       dataSource[1].minute;
     secondSideElement.children[0].children[2].children[1].value =
       dataSource[1].second;
-      ;
   }
 }
 
@@ -116,15 +119,22 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
 
 function sortWithDescending() {
   if (allDataAreEmpty()) {
-    return swal("Please enter some timing informations.", sweetAlertOptionsError);
+    return swal(
+      "Please enter some timing informations.",
+      sweetAlertOptionsError
+    );
   }
   if (someDataAreEmpty()) {
-    return swal("Some timing informations are missing.", sweetAlertOptionsError);
+    return swal(
+      "Some timing informations are missing.",
+      sweetAlertOptionsError
+    );
   }
   if (!threshold(lengthDifference())) {
-    return swal("It seems already well balanced, not sure we can help you more. Good job!",
-    sweetAlertOptionsSuccess
-    )
+    return swal(
+      "It seems already well balanced, not sure we can help you more. Good job!",
+      sweetAlertOptionsSuccess
+    );
   }
   resetAndFillData("sideA");
   resetAndFillData("sideB");
@@ -179,6 +189,16 @@ function threshold(arrayMinSec) {
 }
 
 const lengthDifference = () => {
+  let calculValAbs0 = () => {
+    totalLengthSideA = sum("sideA");
+    totalLengthSideB = sum("sideB");
+    return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
+  };
+  let calculValAbs1 = () => {
+    totalLengthSideA = sum("sideA");
+    totalLengthSideB = sum("sideB");
+    return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
+  };
   return [calculValAbs0(), calculValAbs1()];
 };
 

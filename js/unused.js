@@ -1,3 +1,8 @@
+var t0LengthDifference = [undefined, undefined];
+var t1LengthDifference = [undefined, undefined];
+let shuffledData;
+
+
 function sortWithShuffle2() {
   /*
 if (t0LengthDifference[0] ===  t1LengthDifference[0]

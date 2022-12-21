@@ -169,11 +169,13 @@
               Vinyl Tracklisting
             </div>
             <br>
+            <label for="audioInput" class="home-secondary-button bigger-text centrer"><i class="fa-solid fa-upload"></i>  Import</label>
+            <input type="file" accept="audio/*" id="audioInput" multiple>
             <div id="sort" class="home-secondary-button bigger-text centrer" onclick="sortWithDescending()">
               <i class="fa-solid fa-right-left"></i>  Sort
             </div>
             <div class="centrer disclaimer">
-              <input type="file" accept="audio/*" id="audioInput" multiple>
+              <!-- <input type="file" accept="audio/*" id="audioInput" multiple> -->
               <p>None of your infos are saved on our server.
               Once you close the page, data are lost if your don't export PDF.</p>
             </div>
@@ -336,7 +338,6 @@
       </section>
     </div>
 
-
 <!-- * GENERATE PDF -->
 
 
@@ -357,6 +358,11 @@
   </div>
 </footer>
 
+<div id="overlay">
+  <div id="overlay-text">
+    <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
 <!------------------------------------ SCRIPTS ------------------------------------->
 
     <script src="https://cdn.rawgit.com/simonbengtsson/jsPDF/requirejs-fix-dist/dist/jspdf.debug.js"></script>
@@ -369,6 +375,5 @@
     <script src="js/components/modal.js" defer></script>
     <script src="js/components/sine.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" defer></script>
-
   </body>
 </html>
