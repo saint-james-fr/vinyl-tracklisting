@@ -490,7 +490,6 @@ input.addEventListener(
   (event) => {
     document.getElementById("overlay").style.display = "block";
     setFilesMeta(event.currentTarget);
-
   },
   false
 );

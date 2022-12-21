@@ -51,6 +51,23 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   let firstElement;
   let firstSideElement = document.getElementById(firstSide);
   let secondSideElement = document.getElementById(secondSide);
+
+  if (index === 1) {
+    addTitle(firstSide);
+      firstElement = dataSource[0];
+      if (firstElement.title === undefined) {
+        firstSideElement.children[counterA].children[1].value = 'Track A1'
+        firstElement.title = 'Track A1';
+      } else {
+        firstSideElement.children[0].children[1].value =
+          firstElement.title;
+      }
+      firstSideElement.children[0].children[2].children[0].value =
+        firstElement.minute;
+      firstSideElement.children[0].children[2].children[1].value =
+        firstElement.second;
+  }
+
   if (index > 2) {
     // creates title until all titles are created
     while (index > 0) {
