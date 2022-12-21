@@ -325,6 +325,7 @@ function createTitle(titleId, sideLetter) {
   );
   let el = document.getElementById(titleId);
   el.setAttribute("placeholder", "Enter Title...");
+  el.setAttribute("data-form-type", "other");
   el.setAttribute("type", "text");
 }
 
@@ -349,6 +350,7 @@ function createMinute(minuteId, side) {
   el.setAttribute("type", "number");
   el.setAttribute("min", "0");
   el.setAttribute("max", "59");
+  el.setAttribute('data-form-type', 'other')
   el.setAttribute(
     "oninput",
     "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
@@ -368,6 +370,7 @@ function createSecond(secondId, side) {
   el.setAttribute("type", "number");
   el.setAttribute("min", "0");
   el.setAttribute("max", "59");
+  el.setAttribute("data-form-type", "other");
   el.setAttribute(
     "oninput",
     "this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
