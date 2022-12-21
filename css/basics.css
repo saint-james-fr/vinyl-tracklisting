@@ -19,7 +19,7 @@ p {
 	background-color: var(--color-black);
 }
 
-.page__container-first, .page__container-basics  {
+.page__container-basics  {
 	min-height: 100vh;
 }
 
