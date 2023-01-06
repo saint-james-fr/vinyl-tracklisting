@@ -47,6 +47,14 @@ Sortable.create(sideB, {
 
 function generatePDF() {
   // basic test 'not empty'
+  let catNr = document.getElementById("catnumber").value;
+  let artist = document.getElementById("artist").value;
+  let title = document.getElementById("title").value;
+  let format = "";
+  let speed = "";
+  let bitrate = "";
+  let bits = "";
+  let comments = document.getElementById("comments").value;
   if (
     document.getElementById("sideA").children.length > 0 &&
     document.getElementById("sideB").children.length > 0
@@ -56,34 +64,26 @@ function generatePDF() {
     resetAndFillData("sideB");
 
     // Get datas from the form
-    let catNr = document.getElementById("catnumber").value;
-    let artist = document.getElementById("artist").value;
-    let title = document.getElementById("title").value;
-    let format = "";
     document.getElementsByName("format").forEach((element) => {
       if (element.checked === true) {
         format = element.value;
       }
     });
-    let speed = "";
     document.getElementsByName("speed").forEach((element) => {
       if (element.checked === true) {
         speed = element.value;
       }
     });
-    let bitrate = "";
     document.getElementsByName("bitrate").forEach((element) => {
       if (element.checked === true) {
         bitrate = element.value;
       }
     });
-    let bits = "";
     document.getElementsByName("bits").forEach((element) => {
       if (element.checked === true) {
         bits = element.value;
       }
     });
-    let comments = document.getElementById("comments").value;
     // test emptyness of the form
     let testEmptyness = () => {
       return (
@@ -149,10 +149,11 @@ function generatePDF() {
     doc.text(basicInfosSecondLine, 10, 20);
     doc.text(comments, 10, 30);
     doc.setFontType("bold").setFont("Helvetica");
+    doc.text("Generated on vinyl-tracklisting.com", 10, 290);
     doc.text("Total Length Face A - " + totalLengthSideA, 10, 50);
     doc.text("Total Length Face B - " + totalLengthSideB, 10, 60);
     // save pdf
-    doc.save("Test.pdf");
+    doc.save(`${catNr}-trackklisting.pdf`);
   } else {
     if (document.getElementById("sideA").children.length === 0) {
       swal("Side A is empty.", sweetAlertOptionsError);
