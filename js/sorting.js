@@ -44,7 +44,7 @@ function rebuildSide(oldSource, dataSource, side) {
   }
 }
 
-function rebuildBothSides(firstSide, secondSide, dataSource) {
+function rebuildSides(firstSide, secondSide, dataSource) {
   let index = dataSource.length;
   let counterA = 0;
   let counterB = 0;
@@ -117,6 +117,8 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
     }
   }
   if (index === 2) {
+    addTitle(firstSide);
+    addTitle(secondSide);
     //side A
     firstSideElement.children[0].children[1].value = dataSource[0].title;
     firstSideElement.children[0].children[2].children[0].value =
@@ -141,8 +143,8 @@ function sortAlgorithm() {
   const totalLength = () => {
     resetAndFillData("sideA");
     resetAndFillData("sideB");
-    totalLengthSideA = sum("sideA");
-    totalLengthSideB = sum("sideB");
+    totalLengthSideA = length("sideA");
+    totalLengthSideB = length("sideB");
     return [
       totalLengthSideA[0] + totalLengthSideB[0],
       totalLengthSideA[1] + totalLengthSideB[1],
@@ -151,13 +153,13 @@ function sortAlgorithm() {
 
   const lengthDifference = () => {
     let calculValAbs0 = () => {
-      totalLengthSideA = sum("sideA");
-      totalLengthSideB = sum("sideB");
+      totalLengthSideA = length("sideA");
+      totalLengthSideB = length("sideB");
       return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
     };
     let calculValAbs1 = () => {
-      totalLengthSideA = sum("sideA");
-      totalLengthSideB = sum("sideB");
+      totalLengthSideA = length("sideA");
+      totalLengthSideB = length("sideB");
       return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
     };
     return [calculValAbs0(), calculValAbs1()];
@@ -200,29 +202,30 @@ function sortAlgorithm() {
   // DESTROY SIDES
   destroy();
   // REBUILD SIDES
-  rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
+  rebuildSides("sideA", "sideB", allDataSortedByMinutes);
 
   // STEP 2 : OUPUT RESULTS
   const logResults = () => {
-  console.log("Length Difference:", lengthDifference());
-  console.log("Total Length:", GET);
+  console.log("Length Difference:", `minutes: ${lengthDifference()[0]}`, `seconds: ${lengthDifference()[1]}`);
+  console.log("Total Length:", totalLength());
   }
   logResults();
 
 
   // STEP 3 : STARTS RECURSION
-  const delta = lengthDifference();
-  const condition = threshold(delta) &&
-                    counterRecursion < 30
+  let delta = lengthDifference();
 
-  while (condition) {
+  while (threshold(delta) && counterRecursion < 30) {
     console.log("Starting Recursion...");
-    if (totalLengthSideA > totalLengthSideB) {
-      swapTitle("sideA", "sideB");
+    totalLength();
+    console.log(totalLength())
+    if (totalLengthSideA[0] > totalLengthSideB[0]) {
+      swap("sideA", "sideB");
       totalLength();
       console.log("swapped A to B");
-    } else if (totalLengthSideA < totalLengthSideB) {
-      swapTitle("sideB", "sideA");
+    }
+    else {
+      swap("sideB", "sideA");
       totalLength();
       console.log("swapped B to A");
     }
@@ -236,8 +239,8 @@ function sortAlgorithm() {
   }
 
   // STEP 4 : CLEAN EMPTY TITLES
-  removeEmptyTitles("sideA");
-  removeEmptyTitles("sideB");
+  clean("sideA");
+  clean("sideB");
 }
 
 
@@ -284,7 +287,7 @@ const getRandomValues = () => {
 
 const writeRandomValues = () => {
   allData = dataSideA.concat(dataSideB);
-  rebuildBothSides("sideA", "sideB", allData);
+  rebuildSides("sideA", "sideB", allData);
 }
 
 
@@ -293,12 +296,12 @@ function populate() {
   getRandomLines();
   getRandomValues();
   writeRandomValues();
-  removeEmptyTitles("sideA");
-  removeEmptyTitles("sideA");
-  removeEmptyTitles("sideA");
-  removeEmptyTitles("sideA");
-  removeEmptyTitles("sideB");
-  removeEmptyTitles("sideB");
-  removeEmptyTitles("sideB");
-  removeEmptyTitles("sideB");
+  clean("sideA");
+  clean("sideA");
+  clean("sideA");
+  clean("sideA");
+  clean("sideB");
+  clean("sideB");
+  clean("sideB");
+  clean("sideB");
 }

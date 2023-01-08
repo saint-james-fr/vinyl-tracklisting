@@ -101,7 +101,6 @@ function generatePDF() {
         "Please fill all the fields to generate the PDF.",
         sweetAlertOptionsError
       );
-    console.log(testEmptyness);
     // start gathering informations
     let basicInfosFirstLine = `${catNr} - ${artist} - ${title}`;
     let basicInfosSecondLine = `${format} - ${speed} - ${bitrate} - ${bits}`;

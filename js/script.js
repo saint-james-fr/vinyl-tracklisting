@@ -13,12 +13,12 @@ let allData;
 
 // ************************* INITIALIZATION *************************
 
-init("sideA");
-init("sideB");
+initialization("sideA");
+initialization("sideB");
 initSecondA();
 initSecondB();
 
-function init(side) {
+function initialization(side) {
   updateNumberOfTracks(side);
   getSideLetter(side);
   // attach first event listeners
@@ -45,7 +45,7 @@ function initSecondB() {
 
 // ************************* CSS MANIPULATION *************************
 
-function adjustTracklistingSectionHeight(side) {
+function adjustHeight(side) {
   if (document.getElementById(side).children.length > 6) {
     document.getElementById("page-container-tracklisting").style.height =
       "auto";
@@ -81,8 +81,8 @@ window.addEventListener("DOMContentLoaded", function () {
       updatePosition("sideB");
       updateLength("sideA");
       updateLength("sideB");
-      updateCSSColor("sideA");
-      updateCSSColor("sideB");
+      updateColor("sideA");
+      updateColor("sideB");
       preventNullTitle("sideA");
       preventNullTitle("sideB");
     });
@@ -118,7 +118,7 @@ function preventNullTitle(side) {
 
 // ************************* CLASS UPDATE - CSS COLORS *************************
 
-function updateCSSColor(side) {
+function updateColor(side) {
   let arrayChildren = Array.from(document.getElementById(side).children);
   arrayChildren.forEach((element) => {
     let arrayClass = Array.from(element.classList);
@@ -152,7 +152,7 @@ function updateCSSColor(side) {
 // ************************* LENGTH/SIDE CALCULATION *************************
 
 function updateLength(side) {
-  formatLength(sum(side));
+  formatLength(length(side));
   let el = document.getElementById(`length ${side}`);
   return (el.textContent = `${result}`);
 }
@@ -171,7 +171,7 @@ function formatLength(value) {
   return result;
 }
 
-function sum(side) {
+function length(side) {
   updateNumberOfTracks(side);
   let seconds = sumSeconds(side);
   let minutes = sumMinutes(side);
@@ -220,8 +220,8 @@ function sumObjValues(obj) {
 
 // ------ Get SideLetter ------ //
 
-function getSideLetter(side) {
-  sideLetter = side.slice(4);
+function getSideLetter(string) {
+  sideLetter = string.slice(4);
   return sideLetter;
 }
 
@@ -247,8 +247,7 @@ function addElementWithoutID(el, classes, sourceId) {
 // ------ Update Position & Number Of Tracks / side ------ //
 
 function updateNumberOfTracks(side) {
-  numberOfTracks = document.getElementById(side).children.length;
-  return numberOfTracks;
+  return numberOfTracks = document.getElementById(side).children.length;
 }
 
 function updatePosition(side) {
@@ -290,7 +289,7 @@ function addTitle(side) {
     createMinute(`minute ${sideLetter}${positionNumber}`, side);
     createSecond(`second ${sideLetter}${positionNumber}`, side);
   }
-  adjustTracklistingSectionHeight(side);
+  adjustHeight(side);
 }
 
 // ------ Add TITLE needed FEATURES ------ //
@@ -382,7 +381,7 @@ function createSecond(secondId, side) {
 // ** REMOVE TITLE //
 
 function removeTitle(side) {
-  updateNumberOfTracks(`${side}`);
+  updateNumberOfTracks(side);
   lastPosition = numberOfTracks;
   let lastTitle = document.getElementById(`${side}`).lastElementChild;
   if (lastPosition > 1) {
@@ -399,7 +398,7 @@ function removeTitle(side) {
 
 // ** SWAP TITLE  //
 
-function swapTitle(sideFrom, sideTo) {
+function swap(sideFrom, sideTo) {
   title = document.getElementById(sideFrom).lastChild;
   addTitle(sideTo);
   newTitle = document.getElementById(sideTo).lastChild;
@@ -411,7 +410,7 @@ function swapTitle(sideFrom, sideTo) {
   removeTitle(sideFrom);
 }
 
-function removeEmptyTitles(side) {
+function clean(side) {
   for (let i = 0; i < document.getElementById(side).children.length; i++) {
     if (
       document.getElementById(side).children[i].children[2].children[0]
@@ -453,7 +452,7 @@ function resetAndFillData(side) {
       object["second"] = second;
       object["timeArray"] = [minute, second];
       dataSideA.push(object);
-      totalLengthSideA = formatLength(sum(side));
+      totalLengthSideA = length(side);
     }
     if (side === "sideB") {
       let object = {};
@@ -463,7 +462,7 @@ function resetAndFillData(side) {
       object["second"] = second;
       object["timeArray"] = [this.minute, this.second];
       dataSideB.push(object);
-      totalLengthSideB = formatLength(sum(side));
+      totalLengthSideB = length(side);
     }
   }
 }
@@ -494,16 +493,29 @@ const allDataAreEmpty = () => {
 
 let input = document.getElementById("audioInput");
 let filesMeta = [];
+input.addEventListener(
+  "change",
+  (event) => {
+    filesMeta = [];
+    document.getElementById("overlay").style.display = "block";
+    setFilesMeta(event.currentTarget);
+  },
+  false
+);
 
-// Get Meta Informations Procedure
-const setFilesMeta = (target) => {
+function setFilesMeta(target) {
+  const filesList = target.files;
+  Object.keys(filesList).forEach((key) => {
+    meta = {}; // initiate new object
+    setMetaTitle(meta, filesList[key]);// populates array of results for further manipulation
+    setMetaMinutesAndSeconds(meta, filesList[key]);
+  });
 
-
-  const setTitle = (meta, file) => {
+  function setMetaTitle(meta, file) {
     meta.title = file.name.replace(/\.[^/.]+$/, "");
   }
 
-  const setTimeAndRebuild = (meta, file) => {
+  function setMetaMinutesAndSeconds(meta, file) {
     let reader = new FileReader();
     // When the file has been succesfully read
     reader.onload = (event) => {
@@ -520,14 +532,12 @@ const setFilesMeta = (target) => {
         meta.second = result[1];
         meta.timeArray = [meta.minute, meta.second];
         filesMeta.push(meta);
-        // if all files have been read, destroy the reader and rebuild the sides
         if (
-          // check if all files have been read : they have time infos and lengths are equal
           filesMeta.every((el) => el.minute) &&
           filesMeta.length === filesList.length
         ) {
           destroy();
-          rebuildBothSides("sideA", "sideB", filesMeta);
+          rebuildSides("sideA", "sideB", filesMeta);
           document.getElementById("overlay").style.display = "none";
         } else {
         }
@@ -540,22 +550,4 @@ const setFilesMeta = (target) => {
     // Read file as an ArrayBuffer, important !
     reader.readAsArrayBuffer(file);
   }
-
-  // Get the files from the input
-  const filesList = target.files;
-  // Loop through the files to set the metadata
-  Object.keys(filesList).forEach((key) => {
-    let meta = {};
-    setTitle(meta, filesList[key]);
-    setTimeAndRebuild(meta, filesList[key]);
-  });
 }
-// Listen for the change event on the input and call the setFilesMeta function
-input.addEventListener(
-  "change",
-  (event) => {
-    document.getElementById("overlay").style.display = "block";
-    setFilesMeta(event.currentTarget);
-  },
-  false
-);

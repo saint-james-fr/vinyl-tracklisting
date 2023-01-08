@@ -80,14 +80,14 @@ function sortWithShuffle() {
 	getRandomLines()
 	getRandomValues();
 	writeRandomValues();
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
+	clean("sideA");
+	clean("sideA");
+	clean("sideA");
+	clean("sideA");
+	clean("sideB");
+	clean("sideB");
+	clean("sideB");
+	clean("sideB");
 	sortWithShuffle2();
 	if(counterRecursion<3){
 	sortWithShuffle2();
@@ -100,22 +100,22 @@ function sortWithShuffle() {
 	getRandomLines()
 	getRandomValues();
 	writeRandomValues();
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideA");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
-	removeEmptyTitles("sideB");
+	clean("sideA");
+	clean("sideA");
+	clean("sideA");
+	clean("sideA");
+	clean("sideB");
+	clean("sideB");
+	clean("sideB");
+	clean("sideB");
 	sortAlgorithm();
 }*/
 
 // ************************* AVERAGE
 
 function average() {
-	totalLengthSideA = sum("sideA");
-	totalLengthSideB = sum("sideB");
+	totalLengthSideA = length("sideA");
+	totalLengthSideB = length("sideB");
 	avr = [];
 	let integer;
 	avr[0] = Math.trunc((totalLengthSideA[0] + totalLengthSideB[0])/2); // get integer part of minutes
