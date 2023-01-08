@@ -33,7 +33,7 @@ if (t0LengthDifference[0] ===  t1LengthDifference[0]
   //if ( t1LengthDifference[0] === 0 )
   //{combinations.push(t1LengthDifference)}
   if (counterRecursion >= 5) {
-    sortWithDescending();
+    sortAlgorithm();
   } else {
     // 	console.log("let's do a recursion motherfucker!");
     sortWithShuffle2();
@@ -108,7 +108,7 @@ function sortWithShuffle() {
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
 	removeEmptyTitles("sideB");
-	sortWithDescending();
+	sortAlgorithm();
 }*/
 
 // ************************* AVERAGE

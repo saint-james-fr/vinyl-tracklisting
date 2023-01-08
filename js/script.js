@@ -411,7 +411,18 @@ function swapTitle(sideFrom, sideTo) {
   removeTitle(sideFrom);
 }
 
-// ************************* RESET AND FILL DATA *************************
+function removeEmptyTitles(side) {
+  for (let i = 0; i < document.getElementById(side).children.length; i++) {
+    if (
+      document.getElementById(side).children[i].children[2].children[0]
+        .value === ""
+    ) {
+      document.getElementById(side).children[i].remove();
+    }
+  }
+}
+
+// ************************* DATA MANIPULATION : OBJECT DATA, DATA TESTS *************************
 
 function resetAndFillData(side) {
   if (side === "sideA") {
@@ -457,8 +468,6 @@ function resetAndFillData(side) {
   }
 }
 
-// ************************* TEST DATA EMPTYNESS *************************
-
 const someDataAreEmpty = () => {
   resetAndFillData("sideA");
   resetAndFillData("sideB");
@@ -485,28 +494,16 @@ const allDataAreEmpty = () => {
 
 let input = document.getElementById("audioInput");
 let filesMeta = [];
-input.addEventListener(
-  "change",
-  (event) => {
-    document.getElementById("overlay").style.display = "block";
-    setFilesMeta(event.currentTarget);
-  },
-  false
-);
 
-function setFilesMeta(target) {
-  const filesList = target.files;
-  Object.keys(filesList).forEach((key) => {
-    meta = {}; // initiate new object
-    setMetaTitle(meta, filesList[key]);// populates array of results for further manipulation
-    setMetaMinutesAndSeconds(meta, filesList[key]);
-  });
+// Get Meta Informations Procedure
+const setFilesMeta = (target) => {
 
-  function setMetaTitle(meta, file) {
+
+  const setTitle = (meta, file) => {
     meta.title = file.name.replace(/\.[^/.]+$/, "");
   }
 
-  function setMetaMinutesAndSeconds(meta, file) {
+  const setTimeAndRebuild = (meta, file) => {
     let reader = new FileReader();
     // When the file has been succesfully read
     reader.onload = (event) => {
@@ -523,7 +520,9 @@ function setFilesMeta(target) {
         meta.second = result[1];
         meta.timeArray = [meta.minute, meta.second];
         filesMeta.push(meta);
+        // if all files have been read, destroy the reader and rebuild the sides
         if (
+          // check if all files have been read : they have time infos and lengths are equal
           filesMeta.every((el) => el.minute) &&
           filesMeta.length === filesList.length
         ) {
@@ -541,4 +540,22 @@ function setFilesMeta(target) {
     // Read file as an ArrayBuffer, important !
     reader.readAsArrayBuffer(file);
   }
+
+  // Get the files from the input
+  const filesList = target.files;
+  // Loop through the files to set the metadata
+  Object.keys(filesList).forEach((key) => {
+    let meta = {};
+    setTitle(meta, filesList[key]);
+    setTimeAndRebuild(meta, filesList[key]);
+  });
 }
+// Listen for the change event on the input and call the setFilesMeta function
+input.addEventListener(
+  "change",
+  (event) => {
+    document.getElementById("overlay").style.display = "block";
+    setFilesMeta(event.currentTarget);
+  },
+  false
+);

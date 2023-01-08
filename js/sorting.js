@@ -132,9 +132,44 @@ function rebuildBothSides(firstSide, secondSide, dataSource) {
   }
 }
 
-// ************************* ALGORITHM V2
+// ************************* ALGORITHM V2 *************************
 
-function sortWithDescending() {
+function sortAlgorithm() {
+
+  // ** USEFUL FUNCTIONS
+
+  const totalLength = () => {
+    resetAndFillData("sideA");
+    resetAndFillData("sideB");
+    totalLengthSideA = sum("sideA");
+    totalLengthSideB = sum("sideB");
+    return [
+      totalLengthSideA[0] + totalLengthSideB[0],
+      totalLengthSideA[1] + totalLengthSideB[1],
+    ];
+  };
+
+  const lengthDifference = () => {
+    let calculValAbs0 = () => {
+      totalLengthSideA = sum("sideA");
+      totalLengthSideB = sum("sideB");
+      return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
+    };
+    let calculValAbs1 = () => {
+      totalLengthSideA = sum("sideA");
+      totalLengthSideB = sum("sideB");
+      return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
+    };
+    return [calculValAbs0(), calculValAbs1()];
+  };
+
+  const threshold = (arrayMinSec) => {
+    return arrayMinSec[0] > 1 || (arrayMinSec[0] > 2 && arrayMinSec[1] > 30);
+  }
+
+
+  // ** SPECIAL CASES TESTS **
+
   if (allDataAreEmpty()) {
     return swal(
       "Please enter some timing informations.",
@@ -153,75 +188,64 @@ function sortWithDescending() {
       sweetAlertOptionsSuccess
     );
   }
+
+  // ** ALGORITHM **
+  // STEP 1 : SORT ALL DATA BY MINUTES AND REBUILD SIDES
+  // BUILD ALLDATASORTEDBYMINUTES
   resetAndFillData("sideA");
   resetAndFillData("sideB");
   allDataSortedByMinutes = dataSideA
     .concat(dataSideB)
     .sort((a, b) => b.minute - a.minute);
+  // DESTROY SIDES
   destroy();
+  // REBUILD SIDES
   rebuildBothSides("sideA", "sideB", allDataSortedByMinutes);
 
-  // test
-  let total = [0, 0];
-  calculLength = () => {
-    resetAndFillData("sideA");
-    resetAndFillData("sideB");
-    totalLengthSideA = sum("sideA");
-    totalLengthSideB = sum("sideB");
-    total = [
-      totalLengthSideA[0] + totalLengthSideB[0],
-      totalLengthSideA[1] + totalLengthSideB[1],
-    ];
-  };
-  calculLength();
-  console.log("side A:", totalLengthSideA);
-  console.log("side B:", totalLengthSideB);
-  console.log("Length Difference", lengthDifference());
-  console.log("TOTAL both sides", total);
-  // Recursion
-  let lD = lengthDifference();
-  while (threshold(lD) && counterRecursion < 30) {
-    console.log("im in");
-    if (totalLengthSideA > totalLengthSideB) {
-      console.log("swapping A to B");
-      swapTitle("sideA", "sideB");
-      calculLength();
-    } else if (totalLengthSideA < totalLengthSideB) {
-      console.log("swapping B to A");
-      swapTitle("sideB", "sideA");
-      calculLength();
-    }
-    counterRecursion += 1;
-    console.log("I've made " + counterRecursion + " iterations :).");
-    lD = lengthDifference();
-    console.log("Length Difference", lD);
-    console.log("TOTAL both sides", total);
+  // STEP 2 : OUPUT RESULTS
+  const logResults = () => {
+  console.log("Length Difference:", lengthDifference());
+  console.log("Total Length:", GET);
   }
+  logResults();
+
+
+  // STEP 3 : STARTS RECURSION
+  const delta = lengthDifference();
+  const condition = threshold(delta) &&
+                    counterRecursion < 30
+
+  while (condition) {
+    console.log("Starting Recursion...");
+    if (totalLengthSideA > totalLengthSideB) {
+      swapTitle("sideA", "sideB");
+      totalLength();
+      console.log("swapped A to B");
+    } else if (totalLengthSideA < totalLengthSideB) {
+      swapTitle("sideB", "sideA");
+      totalLength();
+      console.log("swapped B to A");
+    }
+    // update delta
+    delta = lengthDifference();
+    // update counter
+    counterRecursion += 1;
+    // logs results
+    console.log("I've made " + counterRecursion + " iterations :).");
+    logResults()
+  }
+
+  // STEP 4 : CLEAN EMPTY TITLES
   removeEmptyTitles("sideA");
   removeEmptyTitles("sideB");
 }
 
-function threshold(arrayMinSec) {
-  return arrayMinSec[0] > 1 || (arrayMinSec[0] > 2 && arrayMinSec[1] > 30);
-}
 
-const lengthDifference = () => {
-  let calculValAbs0 = () => {
-    totalLengthSideA = sum("sideA");
-    totalLengthSideB = sum("sideB");
-    return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
-  };
-  let calculValAbs1 = () => {
-    totalLengthSideA = sum("sideA");
-    totalLengthSideB = sum("sideB");
-    return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
-  };
-  return [calculValAbs0(), calculValAbs1()];
-};
+
 
 // ************************* GET RANDOM VALUES FOR TEST
 
-function getRandomLines() {
+const getRandomLines = () => {
   let randomnNumberOfLines = randomNumberMin();
   let randomSide;
   let randomSideOpposite;
@@ -240,7 +264,7 @@ function getRandomLines() {
   }
 }
 
-function getRandomValues() {
+const getRandomValues = () => {
   let totalLength =
     document.getElementById("sideA").children.length +
     document.getElementById("sideB").children.length;
@@ -258,21 +282,12 @@ function getRandomValues() {
   }
 }
 
-function writeRandomValues() {
+const writeRandomValues = () => {
   allData = dataSideA.concat(dataSideB);
   rebuildBothSides("sideA", "sideB", allData);
 }
 
-function removeEmptyTitles(side) {
-  for (let i = 0; i < document.getElementById(side).children.length; i++) {
-    if (
-      document.getElementById(side).children[i].children[2].children[0]
-        .value === ""
-    ) {
-      document.getElementById(side).children[i].remove();
-    }
-  }
-}
+
 
 function populate() {
   getRandomLines();
