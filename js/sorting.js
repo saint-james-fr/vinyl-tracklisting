@@ -166,7 +166,13 @@ function sortAlgorithm() {
   };
 
   const threshold = (arrayMinSec) => {
+    // returns true if the difference is more than 2 minutes and 30 seconds
     return arrayMinSec[0] > 1 || (arrayMinSec[0] > 2 && arrayMinSec[1] > 30);
+  }
+
+  const loweredThreshold = (arrayMinSec) => {
+    // returns true if the difference is more than 3
+    return arrayMinSec[0] > 3 ;
   }
 
 
@@ -190,6 +196,14 @@ function sortAlgorithm() {
       sweetAlertOptionsSuccess
     );
   }
+/*
+  if (counterRecursion === 30) {
+    return swal(
+      "Seems like we can't find a better solution. Try rearranging your tracks manually.",
+      sweetAlertOptionsSuccess
+    );
+  }
+*/
 
   // ** ALGORITHM **
   // STEP 1 : SORT ALL DATA BY MINUTES AND REBUILD SIDES
@@ -236,6 +250,11 @@ function sortAlgorithm() {
     // logs results
     console.log("I've made " + counterRecursion + " iterations :).");
     logResults()
+    if (counterRecursion > 20 && !loweredThreshold(delta)) {
+      debugger
+      console.log("This is a special case, we're going to stop here.");
+      break ;
+    }
   }
 
   // STEP 4 : CLEAN EMPTY TITLES
