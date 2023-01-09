@@ -155,20 +155,6 @@ function sortAlgorithm() {
     ];
   };
 
-  const lengthDifference = () => {
-    let calculValAbs0 = () => {
-      totalLengthSideA = length("sideA");
-      totalLengthSideB = length("sideB");
-      return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
-    };
-    let calculValAbs1 = () => {
-      totalLengthSideA = length("sideA");
-      totalLengthSideB = length("sideB");
-      return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
-    };
-    return [calculValAbs0(), calculValAbs1()];
-  };
-
   const threshold = (arrayMinSec) => {
     // !! this part is the most important to change if needed !!
     // returns true if the difference is more than 2 minutes and 30 seconds
@@ -189,23 +175,22 @@ function sortAlgorithm() {
 
     let deltaSwap;
     let unity;
-    let beta;
     let permutationMatrix = {};
     let lengthMatrix = [];
     let attempts = []
     let permutationResults = [];
     let permutationIndex = 0;
+    let data;
 
     switch (timeUnity) {
       case "minute":
+
         deltaSwap = lengthDifference()[0];
         unity = "minute";
-        beta = 1;
       break;
       case "second":
         deltaSwap = lengthDifference()[1];
         unity = "second";
-        beta = 25;
       break;
     }
 
@@ -249,7 +234,8 @@ function sortAlgorithm() {
     }
 
     // Test Permutations
-    let data = testPermutations()
+    data = []
+    data = testPermutations()
     console.log({lengthMatrix, deltaSwap, permutationMatrix, data})
 
     // Depending on timeUnity, apply threshold to results of the tested permutations
@@ -397,7 +383,36 @@ function sortAlgorithm() {
 
 
 
-// ************************* GET RANDOM VALUES FOR TEST
+// ************************* TESTS *************************
+
+function lengthDifference() {
+  let calculValAbs0 = () => {
+    totalLengthSideA = length("sideA");
+    totalLengthSideB = length("sideB");
+    return Math.abs(totalLengthSideB[0] - totalLengthSideA[0]);
+  };
+  let calculValAbs1 = () => {
+    totalLengthSideA = length("sideA");
+    totalLengthSideB = length("sideB");
+    return Math.abs(totalLengthSideB[1] - totalLengthSideA[1]);
+  };
+  return [calculValAbs0(), calculValAbs1()];
+};
+
+/*
+const testAlgo = () => {
+  let index = 0
+  setInterval(() => {
+    populate()
+    sortAlgorithm()
+    console.log("LengthDifference:", lengthDifference())
+    index++
+  }, 2000);
+  if (index < 10) {
+    clearInterval()
+  }
+}
+*/
 
 const getRandomLines = () => {
   let randomnNumberOfLines = randomNumberMin();
