@@ -5,7 +5,8 @@
 	margin: 0 auto;
 
 	background: rgba(235, 234, 234, 0.94);
-	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	        border-radius: 10px;
 }
 
 .form__label {
@@ -32,12 +33,19 @@
 
 .form__container input {
 	border: 0;
-	appearance: none;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
 	width: 100%;
+	-webkit-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	-moz-transition: all .2s ease;
 	transition: all .2s ease;
     color: var(--color-cream);
     text-transform: inherit;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     border: none;
     background: transparent;
     color: black;
@@ -49,18 +57,36 @@
 }
 
 .radio__container input{
-	appearance: auto;
+	-webkit-appearance: auto;
+	   -moz-appearance: auto;
+	        appearance: auto;
 	width: auto;
 }
 
 .radio__container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
 .radio__container__sub {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-grow: 0.5;
-	justify-content: space-between;
+	-webkit-box-flex: 0.5;
+	-webkit-flex-grow: 0.5;
+	   -moz-box-flex: 0.5;
+	    -ms-flex-positive: 0.5;
+	        flex-grow: 0.5;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	   -moz-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 .input-border {
@@ -76,10 +102,60 @@ input:focus {
 	outline: 0;
 }
 
+input::-webkit-input-placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
+input:-moz-placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
+input::-moz-placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
+input:-ms-input-placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
+input::-ms-input-placeholder {
+	text-align: left;
+	color: black;
+	opacity: 0.8;
+}
+
 input::placeholder {
 	text-align: left;
 	color: black;
 	opacity: 0.8;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+input:focus:-moz-placeholder {
+	color: transparent;
+}
+
+input:focus::-moz-placeholder {
+	color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+	color: transparent;
+}
+
+input:focus::-ms-input-placeholder {
+	color: transparent;
 }
 
 input:focus::placeholder {
@@ -89,7 +165,11 @@ input:focus::placeholder {
 /* -------- */
 
 #form-speed {
-	justify-content: flex-end;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	   -moz-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
 }
 
 
@@ -100,8 +180,13 @@ textarea {
     background-color: initial;
     font-family: inherit;
 	line-height: 3ch;
+	background-image: -webkit-linear-gradient(transparent, transparent -webkit-calc(3ch - 1px), black 0px);
+	background-image: -moz-linear-gradient(transparent, transparent -moz-calc(3ch - 1px), black 0px);
+	background-image: -o-linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
 	background-image: linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
-	background-size: 100% 3ch;
+	-webkit-background-size: 100% 3ch;
+	     -o-background-size: 100% 3ch;
+	        background-size: 100% 3ch;
 }
 
 textarea:focus {

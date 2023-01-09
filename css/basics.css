@@ -8,6 +8,26 @@ p {
   font-size: 21px;
 }
 
+::-webkit-input-placeholder {
+	color: var(--color-black);
+}
+
+:-moz-placeholder {
+	color: var(--color-black);
+}
+
+::-moz-placeholder {
+	color: var(--color-black);
+}
+
+:-ms-input-placeholder {
+	color: var(--color-black);
+}
+
+::-ms-input-placeholder {
+	color: var(--color-black);
+}
+
 ::placeholder {
 	color: var(--color-black);
 }
@@ -30,6 +50,8 @@ p {
 
 @media screen and (min-width: 890px) {
 	.page__container-basics-not-first {
+		min-height: -webkit-calc(100vh - 45px);
+		min-height: -moz-calc(100vh - 45px);
 		min-height: calc(100vh - 45px);
 	}
 }
@@ -66,7 +88,8 @@ section {
 
 .surligne {
   display: inline-block;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   background-color: var(--color-orange);
   padding: 0px 3px
 }
@@ -102,6 +125,8 @@ section {
 }
 
 .page-title.logo {
+	font-size: -webkit-calc(0.8*var(--font-size-2));
+	font-size: -moz-calc(0.8*var(--font-size-2));
 	font-size: calc(0.8*var(--font-size-2));
 }
 
@@ -110,8 +135,16 @@ section {
 }
 
 .two-columns > div {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	   -moz-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center
 }
 
 .height-auto {
@@ -120,8 +153,16 @@ section {
 
 .tiers,
 .tiers-credits {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-end;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+     -moz-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   padding: 40px 10px;
 }
 
@@ -129,7 +170,9 @@ section {
 
   .tiers-credits {
     font-size: 0.8em;
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 }
 
@@ -138,16 +181,24 @@ section {
 }
 
 .radius {
-	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	        border-radius: 10px;
 }
 
 .flex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
 }
 
 .box-shadow {
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+	        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
 }
 
 .scroll-margin-top {

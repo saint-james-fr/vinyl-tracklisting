@@ -4,9 +4,18 @@ button {
 	cursor: pointer;
 	font-size: 14px;
 	line-height: 1;
-	border-radius: 500px;
+	-webkit-border-radius: 500px;
+	        border-radius: 500px;
+	-webkit-transition-property: background-color,border-color,color,-webkit-box-shadow,-webkit-filter;
+	transition-property: background-color,border-color,color,-webkit-box-shadow,-webkit-filter;
+	-o-transition-property: background-color,border-color,color,box-shadow,filter;
+	-moz-transition-property: background-color,border-color,color,box-shadow,filter;
 	transition-property: background-color,border-color,color,box-shadow,filter;
-	transition-duration: .2s;
+	transition-property: background-color,border-color,color,box-shadow,filter,-webkit-box-shadow,-webkit-filter;
+	-webkit-transition-duration: .2s;
+	   -moz-transition-duration: .2s;
+	     -o-transition-duration: .2s;
+	        transition-duration: .2s;
 	border: 1px solid transparent;
 	letter-spacing: 2px;
 	min-width: 160px;
@@ -16,7 +25,8 @@ button {
 	text-align: center;
 	padding: 16px 14px 18px;
 	color: var(--color-cream);
-	box-shadow: inset 0 0 0 2px var(--color-cream);
+	-webkit-box-shadow: inset 0 0 0 2px var(--color-cream);
+	        box-shadow: inset 0 0 0 2px var(--color-cream);
 	background-color: transparent;
 	height: 48px;
 }
@@ -48,10 +58,25 @@ button:hover {
 
 #section__release-infos .section__infos_next_button,
 #section__audio-infos .section__infos_next_button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: end;
+     -moz-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
   color: #000;
+  -webkit-transition: 0.1s ease-in-out;
+  -o-transition: 0.1s ease-in-out;
+  -moz-transition: 0.1s ease-in-out;
   transition: 0.1s ease-in-out;
 }
 
@@ -71,8 +96,16 @@ font-family: 'Kanit';
 }
 
 #continue {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .section__infos_next_button i {
@@ -83,8 +116,12 @@ font-family: 'Kanit';
     padding: 5px 10px 10px 10px;
     background-color: var(--color-orange);
     color: var(--color-cream);
+    -webkit-transition: 0.13s ease-in-out;
+    -o-transition: 0.13s ease-in-out;
+    -moz-transition: 0.13s ease-in-out;
     transition: 0.13s ease-in-out;
-    border-radius: 3px;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
     cursor: pointer;
 }
 
@@ -94,6 +131,9 @@ font-family: 'Kanit';
 
 .home-secondary-button {
   padding: 5px 10px 10px 10px;
+  -webkit-transition: 0.13s ease-in-out;
+  -o-transition: 0.13s ease-in-out;
+  -moz-transition: 0.13s ease-in-out;
   transition: 0.13s ease-in-out;
   cursor:pointer;
 }
@@ -111,10 +151,14 @@ font-family: 'Kanit';
 
 .surligne-inverse {
   display: inline-block;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   color: var(--color-cream);
   background-color: var(--color-gray-dark);
   padding: 4px 8px;
+  -webkit-transition: 0.13s ease-in-out;
+  -o-transition: 0.13s ease-in-out;
+  -moz-transition: 0.13s ease-in-out;
   transition: 0.13s ease-in-out;
   text-transform: uppercase;
 }
