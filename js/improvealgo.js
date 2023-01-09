@@ -1,36 +1,76 @@
-let a = [2,6,3,2,6,4,1]
-const b = [6,1,1,4,4,2,1,1]
+function swapRescueAlgorithm(timeUnity) {
 
-let sum = (array) => {
-	count = 0
-	array.forEach((el) => count += el)
-  return count
-}
+  resetAndFillData("sideA");
+  resetAndFillData("sideB");
 
-function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
-}
+  let deltaSwap;
+  let unity;
+  let beta;
+  const permutationMatrix = {};
+  const lengthMatrix = [];
+  let permutationIndex = 1;
 
-const diff = () => sum(a) - sum(b)
-console.log("diff:", diff())
+  switch (timeUnity) {
+    case "minute":
+      deltaSwap = lengthDifference()[0];
+      unity = "minute";
+      beta = 1;
+      break;
+    case "second":
+      deltaSwap = lengthDifference()[1];
+      unity = "second";
+      beta = 25;
+      break;
+  }
 
-matrix = {}
+  // determine the side with the longest length
+  totalLengthSideA[0] > totalLengthSideB[0] ? (longestSide = dataSideA) : (longestSide = dataSideB);
+  totalLengthSideA[0] > totalLengthSideB[0] ? (shortestSide = dataSideB) : (shortestSide = dataSideA);
 
-for (let i = 0; i < a.length; i++) {
-	matrix[`row-${i}`] = []
-	for (let j = 0; j < b.length; j ++) {
-  matrix[`row-${i}`].push(a[i] - b[j])
+  for (let i = 0; i < shortestSide.length; i++) {
+    lengthMatrix.push([]);
+    for (let j = 0; j < longestSide.length; j ++) {
+    lengthMatrix[i].push(shortestSide[i][`${unity}`] - longestSide[j][`${unity}`]);
+    }
+  }
+
+  for (let i = 0; i < lengthMatrix.length; i++) {
+    row = lengthMatrix[i];
+    for (let j = 0; j < row.length; j ++) {
+    if (row[j] < 0 && Math.abs(row[j]) === deltaSwap / 2 ||
+        row[j] < 0 && Math.abs(row[j] + beta) === deltaSwap / 2) {
+
+      console.log("From shorter side, take track ", i + 1, "on opposite side, change with track on", j + 1);
+      permutationMatrix[`permutation-${permutationIndex}`] = {
+        "fromIndex": i,
+        "toIndex": j
+      };
+      permutationIndex++;
+    }
+      else {
+      console.log("no match")
+      }
+    }
+  }
+
+  console.log("matrix", lengthMatrix);
+  console.log("deltaSwap", deltaSwap);
+  console.log("permutationMatrix",permutationMatrix);
+  swapRescue(shortestSide, longestSide, permutationMatrix);
+
+  function swapRescue (firstSide, secondSide, permutationMatrix) {
+    for (let i = 0; i < permutationMatrix.length; i++) {
+      const fromIndex = permutationMatrix[i].fromIndex
+      const toIndex = permutationMatrix[i].toIndex
+      const temp = firstSide[fromIndex]
+      firstSide[fromIndex] = secondSide[toIndex]
+      secondSide[toIndex] = temp
+      allData =
+      destroy();
+      rebuildSides("sideA", "sideB", firstSide.concat(secondSide));
+      debugger
+    }
   }
 }
 
-console.log(matrix)
-swap(1, 3)
-console.log("a", a)
-console.log("b", b)
-console.log("diff:", diff())
-
-function swap(indexA, indexB) {
-	let temp = a[indexA]
-	a[indexA] = b[indexB]
-  b[indexB] = temp
-}
+// document.querySelectorAll("#sideA > .row")

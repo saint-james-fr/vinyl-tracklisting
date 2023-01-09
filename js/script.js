@@ -381,18 +381,15 @@ function createSecond(secondId, side) {
 // ** REMOVE TITLE //
 
 function removeTitle(side) {
-  updateNumberOfTracks(side);
-  lastPosition = numberOfTracks;
-  let lastTitle = document.getElementById(`${side}`).lastElementChild;
-  if (lastPosition > 1) {
-    lastTitle.remove();
-    updateLength(side);
-    if (side === "sideA" && dataSideA.length > 0) {
-      resetAndFillData(side);
-    }
-    if (side === "sideB" && dataSideB.length > 0) {
-      resetAndFillData(side);
-    }
+  if (updateNumberOfTracks(side) === 0) return;
+
+  document.getElementById(`${side}`).lastElementChild.remove();
+  updateLength(side);
+  if (side === "sideA" && dataSideA.length > 0) {
+    resetAndFillData(side);
+  }
+  if (side === "sideB" && dataSideB.length > 0) {
+    resetAndFillData(side);
   }
 }
 

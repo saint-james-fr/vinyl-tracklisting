@@ -26,22 +26,14 @@ function destroy() {
   }
 }
 
-function rebuildSide(oldSource, dataSource, side) {
-  for (let i = 0; i < oldSource.length; i++) {
-    addTitle(side); // Crée les lignes
-  }
-  let firstElement;
-  for (let i = 0; i < document.getElementById(side).children.length; i++) {
-    firstElement = dataSource.shift();
-    dataSource.push(firstElement); // avoid empty array of Data
-    // gets infos from objects
-    document.getElementById(side).children[i].children[1].value =
-      firstElement.title;
-    document.getElementById(side).children[i].children[2].children[0].value =
-      firstElement.minute;
-    document.getElementById(side).children[i].children[2].children[1].value =
-      firstElement.second;
-  }
+function rebuildSide(dataSource, side) {
+  dataSource.forEach((track) => {
+    addTitle(side);
+    let title = document.getElementById(side).lastElementChild;
+    title.children[1].value = track.title;
+    title.children[2].children[0].value = track.minute;
+    title.children[2].children[1].value = track.second;
+  })
 }
 
 function rebuildSides(firstSide, secondSide, dataSource) {
@@ -136,6 +128,18 @@ function rebuildSides(firstSide, secondSide, dataSource) {
 
 // ************************* ALGORITHM V2 *************************
 
+/*
+HOW DOES IT WORK?
+
+Try to sort the data by minutes and seconds and starts a recursion with a threshold.
+It begins swapping title from side to side. If it's blocked, it calls the rescue algo.
+Rescue algo checks all possible and interesting permutations for minutes.
+It chooses the first that corresponds to the thresold.
+If none, it starts rescue algo for seconds.
+*/
+
+
+
 function sortAlgorithm() {
 
   // ** USEFUL FUNCTIONS
@@ -166,6 +170,7 @@ function sortAlgorithm() {
   };
 
   const threshold = (arrayMinSec) => {
+    // !! this part is the most important to change if needed !!
     // returns true if the difference is more than 2 minutes and 30 seconds
     return arrayMinSec[0] > 1 || (arrayMinSec[0] > 2 && arrayMinSec[1] > 30);
   }
@@ -173,6 +178,141 @@ function sortAlgorithm() {
   const loweredThreshold = (arrayMinSec) => {
     // returns true if the difference is more than 3
     return arrayMinSec[0] > 3 ;
+  }
+
+  // ** SECOND ALORITHM
+
+  function swapRescueAlgorithm(timeUnity) {
+
+    resetAndFillData("sideA");
+    resetAndFillData("sideB");
+
+    let deltaSwap;
+    let unity;
+    let beta;
+    let permutationMatrix = {};
+    let lengthMatrix = [];
+    let attempts = []
+    let permutationResults = [];
+    let permutationIndex = 0;
+
+    switch (timeUnity) {
+      case "minute":
+        deltaSwap = lengthDifference()[0];
+        unity = "minute";
+        beta = 1;
+      break;
+      case "second":
+        deltaSwap = lengthDifference()[1];
+        unity = "second";
+        beta = 25;
+      break;
+    }
+
+    // Determine the side with the longest length
+    totalLengthSideA[0] > totalLengthSideB[0] ? (longestSide = dataSideA) : (longestSide = dataSideB);
+    totalLengthSideA[0] > totalLengthSideB[0] ? (shortestSide = dataSideB) : (shortestSide = dataSideA);
+
+    // Build LengthMatrix
+    for (let i = 0; i < shortestSide.length; i++) {
+      lengthMatrix.push([]);
+      for (let j = 0; j < longestSide.length; j ++) {
+      lengthMatrix[i].push(shortestSide[i][`${unity}`] - longestSide[j][`${unity}`]);
+      }
+    }
+
+    // Build Permutation Matrix
+    for (let i = 0; i < lengthMatrix.length; i++) {
+      row = lengthMatrix[i];
+      for (let j = 0; j < row.length; j ++) {
+      // !! below is another important condition !!
+      switch (timeUnity) {
+        case "minute":
+          permutationCondition = row[j] < 0 && Math.abs(row[j]) === deltaSwap / 2;
+        break;
+        case "second":
+          permutationCondition = row[j] < 0 && Math.abs(row[j]) <= deltaSwap / 2;
+        break;
+      }
+      if (permutationCondition) {
+        // console.log("From shorter side, take track ", i + 1, "on opposite side, change with track on", j + 1);
+        permutationMatrix[`permutation-${permutationIndex}`] = {
+          "fromIndex": i,
+          "toIndex": j
+        };
+        permutationIndex++;
+      }
+        else {
+        // console.log("no match")
+        }
+      }
+    }
+
+    // Test Permutations
+    let data = testPermutations()
+    console.log({lengthMatrix, deltaSwap, permutationMatrix, data})
+
+    // Depending on timeUnity, apply threshold to results of the tested permutations
+    switch (timeUnity) {
+      case "minute":
+        let found = false
+        // every allows to iterate and exits when we found something interesting!
+        data.every((result) => {
+          // !! using thresold function here again
+          if (!threshold(result[1])) {
+            rebuildFromPermutation(result[0])
+            // console.log("Chosen Permutation", result)
+            found = true
+            return false
+          }
+          return true
+        })
+        if (!found) {
+        console.log("No permutation found, trying with seconds")
+        swapRescueAlgorithm('second')
+        }
+      break;
+      case "second":
+        data.every((result) => {
+          // !! another condition
+          let conditionOnSeconds = ((result[1][0] < 3)) && (result[1][1] <= 45)
+          if (conditionOnSeconds) {
+            rebuildFromPermutation(result[0])
+            return false
+          }
+          return true
+        })
+    }
+
+
+    // Needed functions for this second algorithm
+    function testPermutations() {
+    // make permutations and store combinations
+    permute(shortestSide, longestSide, permutationMatrix);
+    // Try all combinations and rebuild the sides
+    attempts.forEach((permutedDataArray) => {
+      rebuildFromPermutation(permutedDataArray)
+      permutationResults.push([permutedDataArray, lengthDifference()])
+    })
+    return permutationResults
+    }
+
+    function rebuildFromPermutation(array) {
+      destroy();
+      rebuildSide(array[0], "sideA");
+      rebuildSide(array[1], "sideB");
+    }
+
+    function permute(firstSide, secondSide, permutationMatrix) {
+      Object.values(permutationMatrix).forEach((change) => {
+        const fromIndex = change.fromIndex
+        const toIndex = change.toIndex
+        const temp = firstSide[fromIndex]
+        firstSide[fromIndex] = secondSide[toIndex]
+        secondSide[toIndex] = temp
+        attempts.push([firstSide, secondSide])
+      })
+    }
   }
 
 
@@ -196,16 +336,8 @@ function sortAlgorithm() {
       sweetAlertOptionsSuccess
     );
   }
-/*
-  if (counterRecursion === 30) {
-    return swal(
-      "Seems like we can't find a better solution. Try rearranging your tracks manually.",
-      sweetAlertOptionsSuccess
-    );
-  }
-*/
 
-  // ** ALGORITHM **
+  // ** MAIN ALGORITHM **
   // STEP 1 : SORT ALL DATA BY MINUTES AND REBUILD SIDES
   // BUILD ALLDATASORTEDBYMINUTES
   resetAndFillData("sideA");
@@ -223,37 +355,37 @@ function sortAlgorithm() {
   console.log("Length Difference:", `minutes: ${lengthDifference()[0]}`, `seconds: ${lengthDifference()[1]}`);
   console.log("Total Length:", totalLength());
   }
-  logResults();
+  // ?? logResults();
 
 
   // STEP 3 : STARTS RECURSION
   let delta = lengthDifference();
 
   while (threshold(delta) && counterRecursion < 30) {
-    console.log("Starting Recursion...");
+    // ?? console.log("Starting Recursion...");
     totalLength();
-    console.log(totalLength())
+    // ? ?console.log(totalLength())
     if (totalLengthSideA[0] > totalLengthSideB[0]) {
       swap("sideA", "sideB");
       totalLength();
-      console.log("swapped A to B");
+      // ?? console.log("swapped A to B");
     }
     else {
       swap("sideB", "sideA");
       totalLength();
-      console.log("swapped B to A");
+      // ?? console.log("swapped B to A");
     }
     // update delta
     delta = lengthDifference();
     // update counter
     counterRecursion += 1;
     // logs results
-    console.log("I've made " + counterRecursion + " iterations :).");
-    logResults()
+    // ?? console.log("I've made " + counterRecursion + " iterations");
+    // ?? logResults()
     if (counterRecursion > 20 && !loweredThreshold(delta)) {
-      debugger
-      console.log("This is a special case, we're going to stop here.");
-      break ;
+      console.log("Trying with rescue Algorithm using minutes...")
+      swapRescueAlgorithm("minute");
+      break;
     }
   }
 
@@ -312,6 +444,7 @@ const writeRandomValues = () => {
 
 
 function populate() {
+  destroy();
   getRandomLines();
   getRandomValues();
   writeRandomValues();
