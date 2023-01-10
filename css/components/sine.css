@@ -6,6 +6,25 @@ canvas {
   z-index: 0;
 }
 
+
+@media screen and (min-width: 2000px) {
+  canvas {
+    width: 184vw;
+    position: absolute;
+    right: -64vw;
+    bottom: -50vw;
+    }
+}
+
+@media screen and (min-width: 2500px) {
+  canvas {
+    width: 174vw;
+    position: absolute;
+    right: -52vw;
+    bottom: -47vw;
+    }
+}
+
 .canvas-container {
   position: relative;
 }

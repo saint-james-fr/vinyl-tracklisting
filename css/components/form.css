@@ -1,20 +1,20 @@
 
 #form_page_one,
 #form_page_two {
-	width: min(460px, 80vw);
+	width: min(28.75rem, 80vw);
 	margin: 0 auto;
 
 	background: rgba(235, 234, 234, 0.94);
-	-webkit-border-radius: 10px;
-	        border-radius: 10px;
+	-webkit-border-radius: 0.625rem;
+	        border-radius: 0.625rem;
 }
 
 .form__label {
 	font-family: 'Kanit';
 	font-style: normal;
 	font-weight: 700;
-	font-size: 20px;
-	line-height: 30px;
+	font-size: 1.25rem;
+	line-height: 1.875rem;
 	letter-spacing: 0.03em;
 	color: black;
 	text-transform: uppercase;
@@ -27,8 +27,8 @@
 .form__container {
 	font-style: normal;
 	font-weight: 250;
-	font-size: 18px;
-	line-height: 30px;
+	font-size: 1.125rem;
+	line-height: 1.875rem;
 }
 
 .form__container input {
@@ -51,9 +51,9 @@
     color: black;
     font-weight: lighter;
     text-align: left;
-    font-size: 16px;
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    border-bottom: 0.0625rem solid black;
+    margin-bottom: 1.25rem;
 }
 
 .radio__container input{
@@ -90,11 +90,11 @@
 }
 
 .input-border {
-	border-bottom: 1px solid;
+	border-bottom: 0.0625rem solid;
 }
 
 .form-min-width {
-	min-width: 140px;
+	min-width: 8.75rem;
 }
 
 input:focus {
@@ -180,10 +180,10 @@ textarea {
     background-color: initial;
     font-family: inherit;
 	line-height: 3ch;
-	background-image: -webkit-linear-gradient(transparent, transparent -webkit-calc(3ch - 1px), black 0px);
-	background-image: -moz-linear-gradient(transparent, transparent -moz-calc(3ch - 1px), black 0px);
-	background-image: -o-linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
-	background-image: linear-gradient(transparent, transparent calc(3ch - 1px), black 0px);
+	background-image: -webkit-linear-gradient(transparent, transparent -webkit-calc(3ch - 0.0625rem), black 0px);
+	background-image: -moz-linear-gradient(transparent, transparent -moz-calc(3ch - 0.0625rem), black 0px);
+	background-image: -o-linear-gradient(transparent, transparent calc(3ch - 0.0625rem), black 0px);
+	background-image: linear-gradient(transparent, transparent calc(3ch - 0.0625rem), black 0px);
 	-webkit-background-size: 100% 3ch;
 	     -o-background-size: 100% 3ch;
 	        background-size: 100% 3ch;
@@ -200,6 +200,6 @@ textarea:focus {
   }
 
   .radio__container__sub .form__label {
-    font-size: 0.9em;
+    font-size: 0.9rem;
   }
 }

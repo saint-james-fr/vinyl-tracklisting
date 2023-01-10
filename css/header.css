@@ -1,5 +1,5 @@
 .header {
-  height: 45px;
+  height: 2.8125rem;
   background-color: var(--color-gray-dark);
   width: 100%;
   position: fixed;
@@ -27,7 +27,7 @@
 
 nav {
   width: 38vw;
-  margin-top: 15px;
+  margin-top: 0.9375rem;
 }
 
 nav>ul {
@@ -57,7 +57,7 @@ nav>ul>li {
   color: var(--color-cream);
   display: inline-block;
   list-style: none;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
   font-weight: 500;
 }
 
